@@ -3,7 +3,7 @@
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 import { createCustomElement } from "@angular/elements";
-import { Formio } from 'formiojs';
+import { Formio } from "formiojs";
 import { createCustomFormioComponent } from "./create-custom-component";
 /**
  * @param {?} options

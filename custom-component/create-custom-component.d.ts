@@ -1,5 +1,5 @@
-import { BuilderInfo } from 'formiojs';
-import { FormioCustomComponentInfo, FormioCustomElement } from '../formio.common';
+import { BuilderInfo } from "formiojs";
+import { FormioCustomComponentInfo, FormioCustomElement } from "../formio.common";
 export declare function createCustomFormioComponent(customComponentOptions: FormioCustomComponentInfo): {
     new (component: any, options: any, data: any): {
         id: string;

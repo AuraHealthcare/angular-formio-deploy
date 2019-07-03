@@ -15,7 +15,7 @@ var __extends = (this && this.__extends) || (function () {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-import { Formio, Utils as FormioUtils } from 'formiojs';
+import { Formio, Utils as FormioUtils } from "formiojs";
 /** @type {?} */
 var BaseComponent = Formio.Components.components.base;
 /**
