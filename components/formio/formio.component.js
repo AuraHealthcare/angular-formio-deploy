@@ -471,7 +471,7 @@ var FormioComponent = /** @class */ (function () {
         var _this = this;
         if (this.service && !this.url) {
             this.service
-                .saveSubmission(submission)
+                .saveSubmission(submission, this.submitOptions)
                 .subscribe((/**
              * @param {?} sub
              * @return {?}
@@ -546,6 +546,7 @@ var FormioComponent = /** @class */ (function () {
         options: [{ type: Input }],
         formioOptions: [{ type: Input }],
         renderOptions: [{ type: Input }],
+        submitOptions: [{ type: Input }],
         readOnly: [{ type: Input }],
         viewOnly: [{ type: Input }],
         hideComponents: [{ type: Input }],
@@ -589,6 +590,8 @@ if (false) {
     FormioComponent.prototype.formioOptions;
     /** @type {?} */
     FormioComponent.prototype.renderOptions;
+    /** @type {?} */
+    FormioComponent.prototype.submitOptions;
     /** @type {?} */
     FormioComponent.prototype.readOnly;
     /** @type {?} */

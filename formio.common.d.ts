@@ -1,29 +1,9 @@
-export interface ConditionalOptions {
-    show?: string;
-    when?: any;
-    eq?: any;
-}
-export interface ValidateOptions {
-    required?: boolean;
-    custom?: string;
-    customPrivate?: boolean;
-}
-export interface ComponentOptions<T, V> {
-    defaultValue?: T | T[];
-    type?: string;
-    key?: string;
-    label?: string;
-    input?: boolean;
-    required?: boolean;
-    multiple?: boolean;
-    protected?: boolean;
-    unique?: boolean;
-    persistent?: boolean;
-    tableView?: boolean;
-    lockKey?: boolean;
+import { ExtendedComponentSchema, BuilderInfo, ValidateOptions } from "formiojs";
+import { EventEmitter } from '@angular/core';
+import { NgElement, WithProperties } from '@angular/elements';
+export { ConditionalOptions, ValidateOptions } from "formiojs";
+export interface ComponentOptions<T = any, V = ValidateOptions> extends ExtendedComponentSchema<T> {
     validate?: V;
-    conditional?: ConditionalOptions;
-    customConditional?: string;
 }
 export interface FormioRefreshValue {
     property?: string;
@@ -43,7 +23,7 @@ export interface FormioForm {
     type?: string;
     project?: string;
     template?: string;
-    components?: Array<ComponentOptions<any, ValidateOptions>>;
+    components?: ExtendedComponentSchema[];
     tags?: string[];
     access?: AccessSetting[];
     submissionAccess?: AccessSetting[];
@@ -56,8 +36,8 @@ export interface ErrorsOptions {
 }
 export declare class FormioError {
     message: string;
-    component: ComponentOptions<any, ValidateOptions>;
-    constructor(message: string, component: ComponentOptions<any, ValidateOptions>);
+    component: ExtendedComponentSchema;
+    constructor(message: string, component: ExtendedComponentSchema);
 }
 export declare type FormioSubmissionCallback = (error: FormioError, submission: object) => void;
 export declare type FormioBeforeSubmit = (submission: object, callback: FormioSubmissionCallback) => void;
@@ -71,4 +51,16 @@ export interface FormioOptions {
     i18n?: object;
     fileService?: object;
     hooks?: FormioHookOptions;
+}
+export interface FormioCustomComponentInfo extends BuilderInfo {
+    type: string;
+    selector: string;
+    editForm?: ExtendedComponentSchema[];
+}
+export declare type FormioCustomElement = NgElement & WithProperties<{
+    value: any;
+}>;
+export interface FormioCustomComponent<T> {
+    value: T;
+    valueChange: EventEmitter<T>;
 }

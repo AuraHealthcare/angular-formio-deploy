@@ -15,6 +15,7 @@ export declare class FormioComponent implements OnInit, OnChanges, OnDestroy {
     options?: FormioOptions;
     formioOptions?: any;
     renderOptions?: any;
+    submitOptions?: any;
     readOnly?: boolean;
     viewOnly?: boolean;
     hideComponents?: string[];

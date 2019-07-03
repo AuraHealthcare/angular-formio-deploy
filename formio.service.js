@@ -102,18 +102,20 @@ var FormioService = /** @class */ (function () {
     };
     /**
      * @param {?} submission
+     * @param {?=} opts
      * @return {?}
      */
     FormioService.prototype.saveSubmission = /**
      * @param {?} submission
+     * @param {?=} opts
      * @return {?}
      */
-    function (submission) {
+    function (submission, opts) {
         var _this = this;
         return this.requestWrapper((/**
          * @return {?}
          */
-        function () { return _this.formio.saveSubmission(submission); }));
+        function () { return _this.formio.saveSubmission(submission, opts); }));
     };
     /**
      * @return {?}

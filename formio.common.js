@@ -4,64 +4,12 @@
  */
 /**
  * @record
- */
-export function ConditionalOptions() { }
-if (false) {
-    /** @type {?|undefined} */
-    ConditionalOptions.prototype.show;
-    /** @type {?|undefined} */
-    ConditionalOptions.prototype.when;
-    /** @type {?|undefined} */
-    ConditionalOptions.prototype.eq;
-}
-/**
- * @record
- */
-export function ValidateOptions() { }
-if (false) {
-    /** @type {?|undefined} */
-    ValidateOptions.prototype.required;
-    /** @type {?|undefined} */
-    ValidateOptions.prototype.custom;
-    /** @type {?|undefined} */
-    ValidateOptions.prototype.customPrivate;
-}
-/**
- * @record
  * @template T, V
  */
 export function ComponentOptions() { }
 if (false) {
     /** @type {?|undefined} */
-    ComponentOptions.prototype.defaultValue;
-    /** @type {?|undefined} */
-    ComponentOptions.prototype.type;
-    /** @type {?|undefined} */
-    ComponentOptions.prototype.key;
-    /** @type {?|undefined} */
-    ComponentOptions.prototype.label;
-    /** @type {?|undefined} */
-    ComponentOptions.prototype.input;
-    /** @type {?|undefined} */
-    ComponentOptions.prototype.required;
-    /** @type {?|undefined} */
-    ComponentOptions.prototype.multiple;
-    /** @type {?|undefined} */
-    ComponentOptions.prototype.protected;
-    /** @type {?|undefined} */
-    ComponentOptions.prototype.unique;
-    /** @type {?|undefined} */
-    ComponentOptions.prototype.persistent;
-    /** @type {?|undefined} */
-    ComponentOptions.prototype.tableView;
-    /** @type {?|undefined} */
-    ComponentOptions.prototype.lockKey;
-    /** @type {?|undefined} */
     ComponentOptions.prototype.validate;
-    /** @type {?|undefined} */
-    ComponentOptions.prototype.conditional;
-    /** @type {?|undefined} */
-    ComponentOptions.prototype.customConditional;
 }
 /**
  * @record
@@ -170,4 +118,27 @@ if (false) {
     FormioOptions.prototype.fileService;
     /** @type {?|undefined} */
     FormioOptions.prototype.hooks;
+}
+/**
+ * @record
+ */
+export function FormioCustomComponentInfo() { }
+if (false) {
+    /** @type {?} */
+    FormioCustomComponentInfo.prototype.type;
+    /** @type {?} */
+    FormioCustomComponentInfo.prototype.selector;
+    /** @type {?|undefined} */
+    FormioCustomComponentInfo.prototype.editForm;
+}
+/**
+ * @record
+ * @template T
+ */
+export function FormioCustomComponent() { }
+if (false) {
+    /** @type {?} */
+    FormioCustomComponent.prototype.value;
+    /** @type {?} */
+    FormioCustomComponent.prototype.valueChange;
 }
