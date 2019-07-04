@@ -41,7 +41,9 @@ export declare function createCustomFormioComponent(customComponentOptions: Form
         evaluate(func: any, args: any, ret: any, tokenize: any): any;
         hook(): any;
     };
-    editForm: import("formiojs").ExtendedComponentSchema<any>[];
+    editForm: () => {
+        components: import("formiojs").ExtendedComponentSchema<any>[];
+    };
     schema(): import("formiojs").ExtendedComponentSchema<any>;
     readonly builderInfo: BuilderInfo;
 };
