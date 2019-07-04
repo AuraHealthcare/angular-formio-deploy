@@ -56,6 +56,7 @@ export interface FormioCustomComponentInfo extends BuilderInfo {
     type: string;
     selector: string;
     editForm?: ExtendedComponentSchema[];
+    extraClasses?: string;
 }
 export declare type FormioCustomElement = NgElement & WithProperties<{
     value: any;

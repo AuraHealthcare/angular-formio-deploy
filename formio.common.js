@@ -130,6 +130,8 @@ if (false) {
     FormioCustomComponentInfo.prototype.selector;
     /** @type {?|undefined} */
     FormioCustomComponentInfo.prototype.editForm;
+    /** @type {?|undefined} */
+    FormioCustomComponentInfo.prototype.extraClasses;
 }
 /**
  * @record
