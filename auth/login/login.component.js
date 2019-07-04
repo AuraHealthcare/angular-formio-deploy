@@ -10,7 +10,7 @@ var FormioAuthLoginComponent = /** @class */ (function () {
     }
     FormioAuthLoginComponent.decorators = [
         { type: Component, args: [{
-                    template: "<formio [src]=\"service.loginForm\" (submit)=\"service.onLoginSubmit($event)\"></formio> "
+                    template: "<formio [src]=\"service.loginForm\" (submit)=\"service.onLoginSubmit($event)\" [submitOptions]=\"{ skipQueue: true }\"></formio> "
                 },] },
     ];
     /** @nocollapse */

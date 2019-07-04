@@ -26,9 +26,9 @@ var __assign = (this && this.__assign) || function () {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-import { Formio, Utils as FormioUtils } from "formiojs";
+import { Components, Utils as FormioUtils } from 'formiojs';
 /** @type {?} */
-var BaseComponent = Formio.Components.components.base;
+var BaseComponent = Components.components.base;
 /**
  * @param {?} customComponentOptions
  * @return {?}
@@ -39,19 +39,11 @@ export function createCustomFormioComponent(customComponentOptions) {
             __extends(CustomComponent, _super);
             function CustomComponent(component, options, data) {
                 var _this = _super.call(this, component, options, data) || this;
+                _this.component = component;
                 _this.id = FormioUtils.getRandomComponentId();
                 _this.type = customComponentOptions.type;
                 return _this;
             }
-            /**
-             * @return {?}
-             */
-            CustomComponent.schema = /**
-             * @return {?}
-             */
-            function () {
-                return BaseComponent.schema(__assign({}, customComponentOptions.schema, { type: customComponentOptions.type }));
-            };
             Object.defineProperty(CustomComponent.prototype, "defaultSchema", {
                 get: /**
                  * @return {?}
@@ -92,6 +84,15 @@ export function createCustomFormioComponent(customComponentOptions) {
             /**
              * @return {?}
              */
+            CustomComponent.schema = /**
+             * @return {?}
+             */
+            function () {
+                return BaseComponent.schema(__assign({}, customComponentOptions.schema, { type: customComponentOptions.type }));
+            };
+            /**
+             * @return {?}
+             */
             CustomComponent.prototype.elementInfo = /**
              * @return {?}
              */
@@ -125,6 +126,11 @@ export function createCustomFormioComponent(customComponentOptions) {
                     _self._value = event.detail;
                 }));
                 this._customElement = customElement;
+                for (var key in this.component.customOptions) {
+                    if (this.component.customOptions.hasOwnProperty(key)) {
+                        customElement[key] = this.component.customOptions[key];
+                    }
+                }
                 this.element.appendChild(customElement);
                 ((/** @type {?} */ (this.element))).component = this;
             };
@@ -149,6 +155,7 @@ export function createCustomFormioComponent(customComponentOptions) {
                 console.log('setValue', value); // TODO: Remove
                 this._value = value;
                 this._customElement.setAttribute('value', value);
+                return true;
             };
             return CustomComponent;
         }(BaseComponent)),

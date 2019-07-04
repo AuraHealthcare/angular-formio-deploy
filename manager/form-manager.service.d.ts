@@ -28,5 +28,5 @@ export declare class FormManagerService {
     setSubmission(route: ActivatedRoute): Promise<{}>;
     submissionLoaded(submission: any): void;
     loadForms(): any;
-    createForm(form: any): any;
+    createForm(form: any): Promise<any>;
 }
