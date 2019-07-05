@@ -42,6 +42,9 @@ export function createCustomFormioComponent(customComponentOptions) {
                 _this.component = component;
                 _this.id = FormioUtils.getRandomComponentId();
                 _this.type = customComponentOptions.type;
+                if (customComponentOptions.extraValidators) {
+                    _this.validators = _this.validators.concat(customComponentOptions.extraValidators);
+                }
                 return _this;
             }
             Object.defineProperty(CustomComponent.prototype, "defaultSchema", {

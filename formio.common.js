@@ -131,6 +131,8 @@ if (false) {
     /** @type {?|undefined} */
     FormioCustomComponentInfo.prototype.emptyValue;
     /** @type {?|undefined} */
+    FormioCustomComponentInfo.prototype.extraValidators;
+    /** @type {?|undefined} */
     FormioCustomComponentInfo.prototype.editForm;
 }
 /**

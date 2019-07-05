@@ -16,6 +16,7 @@ export declare function createCustomFormioComponent(customComponentOptions: Form
         readonly info: import("formiojs").ElementInfo;
         readonly hasInput: any;
         readonly key: any;
+        validators: ("required" | "minLength" | "maxLength" | "pattern" | "custom" | "customPrivate" | "min" | "max" | "minSelectedCount" | "maxSelectedCount" | "minWords" | "maxWords" | "email" | "url" | "date" | "day" | "json" | "mask" | "minDate" | "maxDate")[];
         calculatedValue: any;
         currentForm: any;
         errorContainer: any;
