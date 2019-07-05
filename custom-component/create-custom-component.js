@@ -130,10 +130,15 @@ export function createCustomFormioComponent(customComponentOptions) {
                     this.createLabel(this.element);
                 }
                 this.createDescription(this.element);
-                // Bind the custom options to the Angular component (inputs)
+                // Bind the custom options and the validations to the Angular component (inputs)
                 for (var key in this.component.customOptions) {
                     if (this.component.customOptions.hasOwnProperty(key)) {
                         this._customAngularElement[key] = this.component.customOptions[key];
+                    }
+                }
+                for (var key in this.component.validate) {
+                    if (this.component.validate.hasOwnProperty(key)) {
+                        this._customAngularElement[key] = this.component.validate[key];
                     }
                 }
                 // Disable if needed.
