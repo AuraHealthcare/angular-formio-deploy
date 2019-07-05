@@ -129,9 +129,9 @@ if (false) {
     /** @type {?} */
     FormioCustomComponentInfo.prototype.selector;
     /** @type {?|undefined} */
-    FormioCustomComponentInfo.prototype.editForm;
+    FormioCustomComponentInfo.prototype.emptyValue;
     /** @type {?|undefined} */
-    FormioCustomComponentInfo.prototype.extraClasses;
+    FormioCustomComponentInfo.prototype.editForm;
 }
 /**
  * @record

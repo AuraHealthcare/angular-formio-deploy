@@ -59,7 +59,7 @@ export function createCustomFormioComponent(customComponentOptions) {
                  * @return {?}
                  */
                 function () {
-                    return '';
+                    return customComponentOptions.emptyValue || null;
                 },
                 enumerable: true,
                 configurable: true
@@ -99,63 +99,72 @@ export function createCustomFormioComponent(customComponentOptions) {
             function () {
                 /** @type {?} */
                 var info = _super.prototype.elementInfo.call(this);
-                info.type = 'input';
-                info.changeEvent = 'click';
+                info.type = customComponentOptions.selector;
+                info.changeEvent = 'valueChange';
+                info.attr = __assign({}, info.attr, { class: '' // remove the form-control class as the custom angular component may look different
+                 });
                 return info;
             };
             /**
+             * @param {?} state
              * @return {?}
              */
             CustomComponent.prototype.build = /**
+             * @param {?} state
              * @return {?}
              */
-            function () {
-                this.element = _super.prototype.ce.call(this, 'div', { class: 'form-group formio-component ' + customComponentOptions.extraClasses });
-                this.element.id = this.id;
-                _super.prototype.createLabel.call(this, this.element);
+            function (state) {
+                state = state || {};
+                this.calculatedValue = state.calculatedValue;
+                this.createElement();
                 /** @type {?} */
-                var customElement = (/** @type {?} */ (_super.prototype.ce.call(this, customComponentOptions.selector)));
-                /** @type {?} */
-                var _self = this;
-                customElement.addEventListener('valueChange', (/**
-                 * @param {?} event
-                 * @return {?}
-                 */
-                function (event) {
-                    console.log('valueChange', event.detail); // TODO: Remove
-                    _self._value = event.detail;
-                }));
-                this._customElement = customElement;
+                var labelAtTheBottom = this.component.labelPosition === 'bottom';
+                if (!labelAtTheBottom) {
+                    this.createLabel(this.element);
+                }
+                this.createInput(this.element);
+                if (labelAtTheBottom) {
+                    this.createLabel(this.element);
+                }
+                this.createDescription(this.element);
+                // Bind the custom options to the Angular component (inputs)
                 for (var key in this.component.customOptions) {
                     if (this.component.customOptions.hasOwnProperty(key)) {
-                        customElement[key] = this.component.customOptions[key];
+                        this._customAngularElement[key] = this.component.customOptions[key];
                     }
                 }
-                this.element.appendChild(customElement);
-                ((/** @type {?} */ (this.element))).component = this;
+                // Disable if needed.
+                if (this.shouldDisable) {
+                    this.disabled = true;
+                }
+                // Restore the value.
+                this.restoreValue();
+                // Attach the refresh on events.
+                this.attachRefreshOn();
+                this.autofocus();
+                this.attachLogic();
             };
             /**
+             * @param {?} container
              * @return {?}
              */
-            CustomComponent.prototype.getValue = /**
+            CustomComponent.prototype.createInput = /**
+             * @param {?} container
              * @return {?}
              */
-            function () {
-                return this._value;
-            };
-            /**
-             * @param {?} value
-             * @return {?}
-             */
-            CustomComponent.prototype.setValue = /**
-             * @param {?} value
-             * @return {?}
-             */
-            function (value) {
-                console.log('setValue', value); // TODO: Remove
-                this._value = value;
-                this._customElement.setAttribute('value', value);
-                return true;
+            function (container) {
+                /** @type {?} */
+                var input = (/** @type {?} */ (this.ce(this.info.type, this.info.attr)));
+                this.setInputMask(input);
+                /** @type {?} */
+                var inputGroup = this.addInputGroup(input, container);
+                this.addPrefix(input, inputGroup);
+                this.addInput(input, inputGroup || container);
+                this.addSuffix(input, inputGroup);
+                this.errorContainer = container;
+                this.setInputStyles(inputGroup || input);
+                this._customAngularElement = input;
+                return inputGroup || input;
             };
             return CustomComponent;
         }(BaseComponent)),

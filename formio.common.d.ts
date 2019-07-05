@@ -55,10 +55,10 @@ export interface FormioOptions {
 export interface FormioCustomComponentInfo extends BuilderInfo {
     type: string;
     selector: string;
+    emptyValue?: any;
     editForm?: () => {
         components: ExtendedComponentSchema[];
     };
-    extraClasses?: string;
 }
 export declare type FormioCustomElement = NgElement & WithProperties<{
     value: any;
