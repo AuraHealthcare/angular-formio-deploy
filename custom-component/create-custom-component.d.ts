@@ -13,6 +13,7 @@ export declare function createCustomFormioComponent(customComponentOptions: Form
         elementInfo(): import("formiojs").ElementInfo;
         build(state: any): void;
         createInput(container: HTMLElement): HTMLElement;
+        readonly defaultValue: any;
         readonly info: import("formiojs").ElementInfo;
         readonly hasInput: any;
         readonly key: any;
@@ -20,6 +21,7 @@ export declare function createCustomFormioComponent(customComponentOptions: Form
         calculatedValue: any;
         currentForm: any;
         errorContainer: any;
+        options: any;
         getModifiedSchema(schema: ExtendedComponentSchema<any>, defaultSchema: import("formiojs").ComponentSchema<any>): ExtendedComponentSchema<any>;
         readonly schema: ExtendedComponentSchema<any>;
         t(text: string, params: Object): any;
@@ -48,7 +50,6 @@ export declare function createCustomFormioComponent(customComponentOptions: Form
         createElement(): HTMLElement;
         createWrapper(): boolean;
         evalContext(additional: any): any;
-        readonly defaultValue: any;
         setPristine(pristine: boolean): void;
         addNewValue(value: any): void;
         addValue(): void;
@@ -190,7 +191,7 @@ export declare function createCustomFormioComponent(customComponentOptions: Form
         iconClass(name: string, spinning: boolean): string;
         getIcon(name: string): HTMLElement;
         interpolate(string: any, data: any): any;
-        evaluate(func: any, args: any, ret: any, tokenize: any): any;
+        evaluate(func: any, args: any, ret: any, tokenize?: any): any;
         hook(): any;
     };
     editForm: () => {

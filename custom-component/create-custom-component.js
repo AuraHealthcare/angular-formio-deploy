@@ -27,6 +27,7 @@ var __assign = (this && this.__assign) || function () {
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 import { Components, Utils as FormioUtils } from 'formiojs';
+import { clone, isNil } from 'lodash';
 /** @type {?} */
 var BaseComponent = Components.components.base;
 /**
@@ -174,6 +175,25 @@ export function createCustomFormioComponent(customComponentOptions) {
                 this._customAngularElement = input;
                 return inputGroup || input;
             };
+            Object.defineProperty(CustomComponent.prototype, "defaultValue", {
+                get: /**
+                 * @return {?}
+                 */
+                function () {
+                    /** @type {?} */
+                    var defaultValue = this.emptyValue;
+                    if (!isNil(this.component.defaultValue)) {
+                        defaultValue = this.component.defaultValue;
+                    }
+                    if (this.component.customDefaultValue && !this.options.preview) {
+                        defaultValue = this.evaluate(this.component.customDefaultValue, { value: '' }, 'value');
+                    }
+                    // Clone so that it creates a new instance.
+                    return clone(defaultValue);
+                },
+                enumerable: true,
+                configurable: true
+            });
             return CustomComponent;
         }(BaseComponent)),
         _a.editForm = customComponentOptions.editForm || BaseComponent.editForm,
