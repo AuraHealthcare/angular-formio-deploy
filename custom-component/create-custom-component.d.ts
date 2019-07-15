@@ -14,6 +14,12 @@ export declare function createCustomFormioComponent(customComponentOptions: Form
         build(state: any): void;
         createInput(container: HTMLElement): HTMLElement;
         readonly defaultValue: any;
+        /**
+         * Set this component's label text and render it.
+         *
+         * @param value - The new label text.
+         */
+        label: string;
         readonly info: import("formiojs").ElementInfo;
         readonly hasInput: any;
         readonly key: any;
@@ -22,6 +28,7 @@ export declare function createCustomFormioComponent(customComponentOptions: Form
         currentForm: any;
         errorContainer: any;
         options: any;
+        labelElement: any;
         getModifiedSchema(schema: ExtendedComponentSchema<any>, defaultSchema: import("formiojs").ComponentSchema<any>): ExtendedComponentSchema<any>;
         readonly schema: ExtendedComponentSchema<any>;
         t(text: string, params: Object): any;
@@ -98,7 +105,11 @@ export declare function createCustomFormioComponent(customComponentOptions: Form
         attachActions(element: any, actions: any[]): void;
         hasCondition(): boolean;
         conditionallyVisible(data: any): boolean;
-        checkCondition(row: any, data: Object): boolean;
+        checkCondition(row: any, data: Object): boolean; /**
+         * Set this component's label text and render it.
+         *
+         * @param value - The new label text.
+         */
         checkConditions(data: any): any;
         readonly logic: any[];
         fieldLogic(data: any): any;
@@ -141,7 +152,6 @@ export declare function createCustomFormioComponent(customComponentOptions: Form
         readonly hasSetValue: boolean;
         restoreValue(): void;
         calculateValue(data: Object, flags: any): boolean;
-        label: any;
         getRoot(): import("formiojs").BaseComponent;
         invalidMessage(data: any, dirty: boolean, ignoreCondition?: boolean): any;
         isValid(data: any, dirty: boolean): boolean;

@@ -56,6 +56,7 @@ export interface FormioCustomComponentInfo extends BuilderInfo {
     type: string;
     selector: string;
     emptyValue?: any;
+    supportHTMLforLabel?: boolean;
     extraValidators?: (keyof ValidateOptions)[];
     editForm?: () => {
         components: ExtendedComponentSchema[];

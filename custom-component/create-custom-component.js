@@ -131,6 +131,10 @@ export function createCustomFormioComponent(customComponentOptions) {
                     this.createLabel(this.element);
                 }
                 this.createDescription(this.element);
+                // Support custom html in the label
+                if (customComponentOptions.supportHTMLforLabel) {
+                    this.labelElement.innerHTML = this.component.label;
+                }
                 // Bind the custom options and the validations to the Angular component (inputs)
                 for (var key in this.component.customOptions) {
                     if (this.component.customOptions.hasOwnProperty(key)) {
@@ -190,6 +194,30 @@ export function createCustomFormioComponent(customComponentOptions) {
                     }
                     // Clone so that it creates a new instance.
                     return clone(defaultValue);
+                },
+                enumerable: true,
+                configurable: true
+            });
+            Object.defineProperty(CustomComponent.prototype, "label", {
+                /**
+                 * Set this component's label text and render it.
+                 *
+                 * @param value - The new label text.
+                 */
+                set: /**
+                 * Set this component's label text and render it.
+                 *
+                 * @param {?} value - The new label text.
+                 * @return {?}
+                 */
+                function (value) {
+                    this.component.label = value;
+                    if (this.labelElement && customComponentOptions.supportHTMLforLabel) {
+                        this.labelElement.innerHTML = value;
+                    }
+                    else if (this.labelElement) {
+                        this.labelElement.innerText = value;
+                    }
                 },
                 enumerable: true,
                 configurable: true
