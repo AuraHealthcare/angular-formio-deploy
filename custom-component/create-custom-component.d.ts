@@ -105,11 +105,7 @@ export declare function createCustomFormioComponent(customComponentOptions: Form
         attachActions(element: any, actions: any[]): void;
         hasCondition(): boolean;
         conditionallyVisible(data: any): boolean;
-        checkCondition(row: any, data: Object): boolean; /**
-         * Set this component's label text and render it.
-         *
-         * @param value - The new label text.
-         */
+        checkCondition(row: any, data: Object): boolean;
         checkConditions(data: any): any;
         readonly logic: any[];
         fieldLogic(data: any): any;

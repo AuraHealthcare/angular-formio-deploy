@@ -118,6 +118,7 @@ export function createCustomFormioComponent(customComponentOptions) {
              * @return {?}
              */
             function (state) {
+                var _this = this;
                 state = state || {};
                 this.calculatedValue = state.calculatedValue;
                 this.createElement();
@@ -135,17 +136,31 @@ export function createCustomFormioComponent(customComponentOptions) {
                 if (customComponentOptions.supportHTMLforLabel) {
                     this.labelElement.innerHTML = this.component.label;
                 }
-                // Bind the custom options and the validations to the Angular component (inputs)
-                for (var key in this.component.customOptions) {
-                    if (this.component.customOptions.hasOwnProperty(key)) {
-                        this._customAngularElement[key] = this.component.customOptions[key];
+                // TODO: Remove setTimeout after https://github.com/angular/angular/pull/31604 is merged
+                setTimeout((/**
+                 * @return {?}
+                 */
+                function () {
+                    // Bind the basic fields to the Angular component's inputs
+                    ['disabled', 'placeholder'].forEach((/**
+                     * @param {?} key
+                     * @return {?}
+                     */
+                    function (key) {
+                        _this._customAngularElement[key] = _this.component[key];
+                    }));
+                    // Bind the custom options and the validations to the Angular component's inputs (flattened)
+                    for (var key in _this.component.customOptions) {
+                        if (_this.component.customOptions.hasOwnProperty(key)) {
+                            _this._customAngularElement[key] = _this.component.customOptions[key];
+                        }
                     }
-                }
-                for (var key in this.component.validate) {
-                    if (this.component.validate.hasOwnProperty(key)) {
-                        this._customAngularElement[key] = this.component.validate[key];
+                    for (var key in _this.component.validate) {
+                        if (_this.component.validate.hasOwnProperty(key)) {
+                            _this._customAngularElement[key] = _this.component.validate[key];
+                        }
                     }
-                }
+                }));
                 // Disable if needed.
                 if (this.shouldDisable) {
                     this.disabled = true;
