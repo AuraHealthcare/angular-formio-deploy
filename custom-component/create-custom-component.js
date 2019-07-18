@@ -145,14 +145,6 @@ export function createCustomFormioComponent(customComponentOptions) {
                  * @return {?}
                  */
                 function () {
-                    // Bind the basic fields to the Angular component's inputs
-                    ['disabled', 'placeholder'].forEach((/**
-                     * @param {?} key
-                     * @return {?}
-                     */
-                    function (key) {
-                        _this._customAngularElement[key] = _this.component[key];
-                    }));
                     // Bind the custom options and the validations to the Angular component's inputs (flattened)
                     for (var key in _this.component.customOptions) {
                         if (_this.component.customOptions.hasOwnProperty(key)) {
