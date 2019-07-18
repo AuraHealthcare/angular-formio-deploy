@@ -68,4 +68,5 @@ export declare type FormioCustomElement = NgElement & WithProperties<{
 export interface FormioCustomComponent<T> {
     value: T;
     valueChange: EventEmitter<T>;
+    disabled: boolean;
 }

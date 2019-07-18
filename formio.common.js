@@ -147,4 +147,6 @@ if (false) {
     FormioCustomComponent.prototype.value;
     /** @type {?} */
     FormioCustomComponent.prototype.valueChange;
+    /** @type {?} */
+    FormioCustomComponent.prototype.disabled;
 }

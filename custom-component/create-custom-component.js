@@ -136,6 +136,10 @@ export function createCustomFormioComponent(customComponentOptions) {
                 if (customComponentOptions.supportHTMLforLabel) {
                     this.labelElement.innerHTML = this.component.label;
                 }
+                // Disable if needed.
+                if (this.shouldDisable) {
+                    this.disabled = true;
+                }
                 // TODO: Remove setTimeout after https://github.com/angular/angular/pull/31604 is merged
                 setTimeout((/**
                  * @return {?}
@@ -161,10 +165,6 @@ export function createCustomFormioComponent(customComponentOptions) {
                         }
                     }
                 }));
-                // Disable if needed.
-                if (this.shouldDisable) {
-                    this.disabled = true;
-                }
                 // Restore the value.
                 this.restoreValue();
                 // Attach the refresh on events.
