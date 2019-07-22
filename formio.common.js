@@ -131,8 +131,6 @@ if (false) {
     /** @type {?|undefined} */
     FormioCustomComponentInfo.prototype.emptyValue;
     /** @type {?|undefined} */
-    FormioCustomComponentInfo.prototype.supportHTMLforLabel;
-    /** @type {?|undefined} */
     FormioCustomComponentInfo.prototype.extraValidators;
     /** @type {?|undefined} */
     FormioCustomComponentInfo.prototype.editForm;

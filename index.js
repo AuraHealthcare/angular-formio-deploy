@@ -12,6 +12,7 @@ export { FormioLoader } from './components/loader/formio.loader';
 export { FormioLoaderComponent } from './components/loader/formio.loader.component';
 export { FormioAlerts } from './components/alerts/formio.alerts';
 export { FormioAlertsComponent } from './components/alerts/formio.alerts.component';
-export { registerCustomFormioComponent } from './custom-component/register-custom-component';
+export { createCustomFormioComponent } from './custom-component/create-custom-component';
+export { registerCustomFormioComponent, registerCustomFormioComponentWithClass } from './custom-component/register-custom-component';
 export { FormioModule } from './formio.module';
 export { Formio, Utils as FormioUtils } from 'formiojs';

@@ -5,4 +5,4 @@
 /**
  * Generated bundle index. Do not edit.
  */
-export { FormioModule, Formio, FormioUtils, FormioAppConfig, FormioError, FormioService, extendRouter, FormioComponent, FormBuilderComponent, FormioLoader, FormioLoaderComponent, FormioAlerts, FormioAlertsComponent, registerCustomFormioComponent } from './index';
+export { FormioModule, Formio, FormioUtils, FormioAppConfig, FormioError, FormioService, extendRouter, FormioComponent, FormBuilderComponent, FormioLoader, FormioLoaderComponent, FormioAlerts, FormioAlertsComponent, createCustomFormioComponent, registerCustomFormioComponent, registerCustomFormioComponentWithClass } from './index';

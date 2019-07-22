@@ -105,7 +105,7 @@ export function createCustomFormioComponent(customComponentOptions) {
                 var info = _super.prototype.elementInfo.call(this);
                 info.type = customComponentOptions.selector;
                 info.changeEvent = 'valueChange';
-                info.attr = __assign({}, info.attr, { class: '' // remove the form-control class as the custom angular component may look different
+                info.attr = __assign({}, info.attr, { class: info.attr.class.replace('form-control', '') // remove the form-control class as the custom angular component may look different
                  });
                 return info;
             };
@@ -132,15 +132,11 @@ export function createCustomFormioComponent(customComponentOptions) {
                     this.createLabel(this.element);
                 }
                 this.createDescription(this.element);
-                // Support custom html in the label
-                if (customComponentOptions.supportHTMLforLabel) {
-                    this.labelElement.innerHTML = this.component.label;
-                }
                 // Disable if needed.
                 if (this.shouldDisable) {
                     this.disabled = true;
                 }
-                // TODO: Remove setTimeout after https://github.com/angular/angular/pull/31604 is merged
+                // TODO: Remove setTimeout after https://github.com/angular/angular/pull/31604 is merged => v8.1.3 is released
                 setTimeout((/**
                  * @return {?}
                  */
@@ -201,30 +197,6 @@ export function createCustomFormioComponent(customComponentOptions) {
                     }
                     // Clone so that it creates a new instance.
                     return clone(defaultValue);
-                },
-                enumerable: true,
-                configurable: true
-            });
-            Object.defineProperty(CustomComponent.prototype, "label", {
-                /**
-                 * Set this component's label text and render it.
-                 *
-                 * @param value - The new label text.
-                 */
-                set: /**
-                 * Set this component's label text and render it.
-                 *
-                 * @param {?} value - The new label text.
-                 * @return {?}
-                 */
-                function (value) {
-                    this.component.label = value;
-                    if (this.labelElement && customComponentOptions.supportHTMLforLabel) {
-                        this.labelElement.innerHTML = value;
-                    }
-                    else if (this.labelElement) {
-                        this.labelElement.innerText = value;
-                    }
                 },
                 enumerable: true,
                 configurable: true

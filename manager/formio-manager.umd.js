@@ -1,8 +1,8 @@
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('formiojs'), require('lodash'), require('lodash/each'), require('lodash/intersection')) :
-    typeof define === 'function' && define.amd ? define('formManagerConfig', ['exports', '@angular/core', 'formiojs', 'lodash', 'lodash/each', 'lodash/intersection'], factory) :
-    (global = global || self, factory(global['formio-manager'] = {}, global.core, global.formiojs, global.lodash, global._each, global._intersection));
-}(this, function (exports, core, formiojs, lodash, _each, _intersection) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('formiojs'), require('lodash'), require('lodash/each'), require('lodash/intersection'), require('@angular/router')) :
+    typeof define === 'function' && define.amd ? define('formManagerConfig', ['exports', '@angular/core', 'formiojs', 'lodash', 'lodash/each', 'lodash/intersection', '@angular/router'], factory) :
+    (global = global || self, factory(global['formio-manager'] = {}, global.core, global.formiojs, global.lodash, global._each, global._intersection, global.router));
+}(this, function (exports, core, formiojs, lodash, _each, _intersection, router) { 'use strict';
 
     _each = _each && _each.hasOwnProperty('default') ? _each['default'] : _each;
     _intersection = _intersection && _intersection.hasOwnProperty('default') ? _intersection['default'] : _intersection;
@@ -612,23 +612,101 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var SubmissionViewComponent = /** @class */ (function () {
-        function SubmissionViewComponent(service) {
-            this.service = service;
+    var FormioAlerts = /** @class */ (function () {
+        function FormioAlerts() {
+            this.alerts = [];
         }
-        SubmissionViewComponent.decorators = [
+        /**
+         * @param {?} alert
+         * @return {?}
+         */
+        FormioAlerts.prototype.setAlert = /**
+         * @param {?} alert
+         * @return {?}
+         */
+        function (alert) {
+            this.alerts = [alert];
+        };
+        /**
+         * @param {?} alert
+         * @return {?}
+         */
+        FormioAlerts.prototype.addAlert = /**
+         * @param {?} alert
+         * @return {?}
+         */
+        function (alert) {
+            this.alerts.push(alert);
+        };
+        /**
+         * @param {?} alerts
+         * @return {?}
+         */
+        FormioAlerts.prototype.setAlerts = /**
+         * @param {?} alerts
+         * @return {?}
+         */
+        function (alerts) {
+            this.alerts = alerts;
+        };
+        return FormioAlerts;
+    }());
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var SubmissionDeleteComponent = /** @class */ (function () {
+        function SubmissionDeleteComponent(service, router, route, alerts) {
+            this.service = service;
+            this.router = router;
+            this.route = route;
+            this.alerts = alerts;
+        }
+        /**
+         * @return {?}
+         */
+        SubmissionDeleteComponent.prototype.onDelete = /**
+         * @return {?}
+         */
+        function () {
+            var _this = this;
+            this.service.formio.deleteSubmission().then((/**
+             * @return {?}
+             */
+            function () {
+                _this.router.navigate(['../../'], { relativeTo: _this.route });
+            })).catch((/**
+             * @param {?} err
+             * @return {?}
+             */
+            function (err) { return _this.alerts.setAlert({ type: 'danger', message: (err.message || err) }); }));
+        };
+        /**
+         * @return {?}
+         */
+        SubmissionDeleteComponent.prototype.onCancel = /**
+         * @return {?}
+         */
+        function () {
+            this.router.navigate(['../', 'view'], { relativeTo: this.route });
+        };
+        SubmissionDeleteComponent.decorators = [
             { type: core.Component, args: [{
-                        template: "<formio [renderer]=\"service.config.renderer\" [src]=\"service.formio.submissionUrl\" [readOnly]=\"true\" (formLoad)=\"service.setForm($event)\" (submissionLoad)=\"service.submissionLoaded($event)\" ></formio> "
+                        template: "<formio-alerts [alerts]=\"alerts\"></formio-alerts> <h3>Are you sure you wish to delete this record?</h3> <div class=\"btn-toolbar\"> <button type=\"button\" (click)=\"onDelete()\" class=\"btn btn-danger\" style=\"margin-right: 10px;\">Yes</button> <button type=\"button\" (click)=\"onCancel()\" class=\"btn btn-danger\">No</button> </div> "
                     },] },
         ];
         /** @nocollapse */
-        SubmissionViewComponent.ctorParameters = function () { return [
-            { type: FormManagerService }
+        SubmissionDeleteComponent.ctorParameters = function () { return [
+            { type: FormManagerService },
+            { type: router.Router },
+            { type: router.ActivatedRoute },
+            { type: FormioAlerts }
         ]; };
-        return SubmissionViewComponent;
+        return SubmissionDeleteComponent;
     }());
 
-    exports.SubmissionViewComponent = SubmissionViewComponent;
+    exports.SubmissionDeleteComponent = SubmissionDeleteComponent;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 

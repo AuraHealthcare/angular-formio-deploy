@@ -5,7 +5,6 @@ export declare function createCustomFormioComponent(customComponentOptions: Form
         id: string;
         type: string;
         element: HTMLElement;
-        _value: any;
         _customAngularElement: FormioCustomElement;
         readonly defaultSchema: ExtendedComponentSchema<any>;
         readonly emptyValue: any;
@@ -14,12 +13,6 @@ export declare function createCustomFormioComponent(customComponentOptions: Form
         build(state: any): void;
         createInput(container: HTMLElement): HTMLElement;
         readonly defaultValue: any;
-        /**
-         * Set this component's label text and render it.
-         *
-         * @param value - The new label text.
-         */
-        label: string;
         readonly info: import("formiojs").ElementInfo;
         readonly hasInput: any;
         readonly key: any;
@@ -148,6 +141,7 @@ export declare function createCustomFormioComponent(customComponentOptions: Form
         readonly hasSetValue: boolean;
         restoreValue(): void;
         calculateValue(data: Object, flags: any): boolean;
+        label: any;
         getRoot(): import("formiojs").BaseComponent;
         invalidMessage(data: any, dirty: boolean, ignoreCondition?: boolean): any;
         isValid(data: any, dirty: boolean): boolean;
@@ -198,7 +192,7 @@ export declare function createCustomFormioComponent(customComponentOptions: Form
         getIcon(name: string): HTMLElement;
         interpolate(string: any, data: any): any;
         evaluate(func: any, args: any, ret: any, tokenize?: any): any;
-        hook(): any;
+        hook(...args: any): any;
     };
     editForm: () => {
         components: ExtendedComponentSchema<any>[];
