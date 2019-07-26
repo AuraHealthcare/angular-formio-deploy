@@ -300,23 +300,23 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var FormioAuthLoginComponent = /** @class */ (function () {
-        function FormioAuthLoginComponent(service) {
+    var FormioAuthRegisterComponent = /** @class */ (function () {
+        function FormioAuthRegisterComponent(service) {
             this.service = service;
         }
-        FormioAuthLoginComponent.decorators = [
+        FormioAuthRegisterComponent.decorators = [
             { type: core.Component, args: [{
-                        template: "<formio [src]=\"service.loginForm\" (submit)=\"service.onLoginSubmit($event)\" [submitOptions]=\"{ skipQueue: true }\"></formio> "
+                        template: "<formio [src]=\"service.registerForm\" (submit)=\"service.onRegisterSubmit($event)\" [submitOptions]=\"{ skipQueue: true }\"></formio> "
                     },] },
         ];
         /** @nocollapse */
-        FormioAuthLoginComponent.ctorParameters = function () { return [
+        FormioAuthRegisterComponent.ctorParameters = function () { return [
             { type: FormioAuthService }
         ]; };
-        return FormioAuthLoginComponent;
+        return FormioAuthRegisterComponent;
     }());
 
-    exports.FormioAuthLoginComponent = FormioAuthLoginComponent;
+    exports.FormioAuthRegisterComponent = FormioAuthRegisterComponent;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 

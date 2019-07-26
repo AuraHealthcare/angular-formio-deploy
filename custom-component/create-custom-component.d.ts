@@ -192,7 +192,7 @@ export declare function createCustomFormioComponent(customComponentOptions: Form
         getIcon(name: string): HTMLElement;
         interpolate(string: any, data: any): any;
         evaluate(func: any, args: any, ret: any, tokenize?: any): any;
-        hook(...args: any): any;
+        hook(): any;
     };
     editForm: () => {
         components: ExtendedComponentSchema<any>[];
