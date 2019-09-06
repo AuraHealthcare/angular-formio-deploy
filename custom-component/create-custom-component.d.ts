@@ -80,7 +80,7 @@ export declare function createCustomFormioComponent(customComponentOptions: Form
         addShortcutToLabel(label: string, shortcut: string | RegExp): string;
         addShortcut(element: any, shortcut: any): void;
         removeShortcut(element: any, shortcut: any): void;
-        createTooltip(container: HTMLElement, component: any, classes: string): void;
+        createTooltip(container: HTMLElement, component?: any, classes?: string): void;
         createDescription(container: any): void;
         createErrorElement(): void;
         addPrefix(input: HTMLElement, inputGroup: HTMLElement): HTMLElement;
@@ -192,7 +192,7 @@ export declare function createCustomFormioComponent(customComponentOptions: Form
         getIcon(name: string): HTMLElement;
         interpolate(string: any, data: any): any;
         evaluate(func: any, args: any, ret: any, tokenize?: any): any;
-        hook(): any;
+        hook(...args: any): any;
     };
     editForm: () => {
         components: ExtendedComponentSchema<any>[];
