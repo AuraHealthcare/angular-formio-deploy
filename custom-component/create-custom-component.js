@@ -119,10 +119,9 @@ export function createCustomFormioComponent(customComponentOptions) {
              * @return {?}
              */
             function () {
-                _super.prototype.render.call(this, _super.prototype.renderTemplate.call(this, 'container', {
-                    nestedKey: customElementRef,
-                    children: customComponentOptions.selector
-                }));
+                /** @type {?} */
+                var info = this.elementInfo();
+                _super.prototype.render.call(this, "<" + info.type + " ref=\"" + customElementRef + "\"></" + info.type + ">");
             };
             /**
              * @param {?} element
@@ -138,6 +137,8 @@ export function createCustomFormioComponent(customComponentOptions) {
                 this.loadRefs(element, (_a = {}, _a[customElementRef] = 'single', _a));
                 /** @type {?} */
                 var superAttach = _super.prototype.attach.call(this, element);
+                console.log(this.refs);
+                console.log(this.refs[customElementRef]);
                 this._customAngularElement = this.refs[customElementRef].firstChild;
                 // Bind the custom options and the validations to the Angular component's inputs (flattened)
                 for (var key in this.component.customOptions) {
