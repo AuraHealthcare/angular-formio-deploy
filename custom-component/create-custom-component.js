@@ -119,14 +119,15 @@ export function createCustomFormioComponent(customComponentOptions) {
              * @return {?}
              */
             function () {
-                /** @type {?} */
-                var info = this.elementInfo();
-                /** @type {?} */
-                var element = "<" + info.type + " ref=\"" + customElementRef + "\"></" + info.type + ">";
-                _super.prototype.render.call(this, this.renderTemplate('field', {
-                    label: this.labelInfo,
-                    element: element,
-                }));
+                console.log('render');
+                console.log(this.type);
+                // const info = this.elementInfo();
+                // const element = `<${info.type} ref="${customElementRef}"></${info.type}>`;
+                // super.render(this.renderTemplate('field', {
+                //   label: this.labelInfo,
+                //   element: element,
+                //   // tooltip: this.interpolate(this.component.tooltip || '').replace(/(?:\r\n|\r|\n)/g, '<br />'),
+                // }));
             };
             /**
              * @param {?} element
