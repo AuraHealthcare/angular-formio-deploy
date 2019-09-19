@@ -297,23 +297,23 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var FormioAuthRegisterComponent = /** @class */ (function () {
-        function FormioAuthRegisterComponent(service) {
+    var FormioAuthLoginComponent = /** @class */ (function () {
+        function FormioAuthLoginComponent(service) {
             this.service = service;
         }
-        FormioAuthRegisterComponent.decorators = [
+        FormioAuthLoginComponent.decorators = [
             { type: core.Component, args: [{
-                        template: "<formio [src]=\"service.registerForm\" (submit)=\"service.onRegisterSubmit($event)\"></formio> "
+                        template: "<formio [src]=\"service.loginForm\" (submit)=\"service.onLoginSubmit($event)\"></formio> "
                     },] },
         ];
         /** @nocollapse */
-        FormioAuthRegisterComponent.ctorParameters = function () { return [
+        FormioAuthLoginComponent.ctorParameters = function () { return [
             { type: FormioAuthService }
         ]; };
-        return FormioAuthRegisterComponent;
+        return FormioAuthLoginComponent;
     }());
 
-    exports.FormioAuthRegisterComponent = FormioAuthRegisterComponent;
+    exports.FormioAuthLoginComponent = FormioAuthLoginComponent;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
