@@ -142,8 +142,7 @@ export function createCustomFormioComponent(customComponentOptions) {
                 console.log('sajt');
                 console.log(element);
                 this.loadRefs(element, (_a = {}, _a[customElementRef] = 'single', _a));
-                /** @type {?} */
-                var superAttach = _super.prototype.attach.call(this, element);
+                // const superAttach = super.attach(element);
                 console.log(this.type);
                 console.log(customComponentOptions);
                 console.log(this.refs);
@@ -160,7 +159,7 @@ export function createCustomFormioComponent(customComponentOptions) {
                 //     this._customAngularElement[key] = this.component.validate[key];
                 //   }
                 // }
-                return superAttach;
+                // return superAttach;
             };
             Object.defineProperty(CustomComponent.prototype, "defaultValue", {
                 get: /**

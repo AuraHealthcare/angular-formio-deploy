@@ -11,7 +11,7 @@ export declare function createCustomFormioComponent(customComponentOptions: Form
         component: ExtendedComponentSchema<any>;
         elementInfo(): import("formiojs").ElementInfo;
         render(): void;
-        attach(element: any): any;
+        attach(element: any): void;
         readonly defaultValue: any;
         originalComponent: any;
         refs: Object;
