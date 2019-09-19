@@ -1,9 +1,9 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 import { Observable } from 'rxjs';
-import { Formio } from 'formiojs';
+import Formio from 'formiojs/Formio';
 var FormioService = /** @class */ (function () {
     function FormioService(url, options) {
         this.url = url;
@@ -102,20 +102,18 @@ var FormioService = /** @class */ (function () {
     };
     /**
      * @param {?} submission
-     * @param {?=} opts
      * @return {?}
      */
     FormioService.prototype.saveSubmission = /**
      * @param {?} submission
-     * @param {?=} opts
      * @return {?}
      */
-    function (submission, opts) {
+    function (submission) {
         var _this = this;
         return this.requestWrapper((/**
          * @return {?}
          */
-        function () { return _this.formio.saveSubmission(submission, opts); }));
+        function () { return _this.formio.saveSubmission(submission); }));
     };
     /**
      * @return {?}

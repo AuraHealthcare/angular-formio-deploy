@@ -24,12 +24,12 @@ var __assign = (this && this.__assign) || function () {
 };
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 import { Components, Utils as FormioUtils } from 'formiojs';
 import { clone, isNil } from 'lodash';
 /** @type {?} */
-var BaseComponent = Components.components.base;
+var BaseComponent = Components.components.input;
 /**
  * @param {?} customComponentOptions
  * @return {?}
@@ -41,6 +41,7 @@ export function createCustomFormioComponent(customComponentOptions) {
             function CustomComponent(component, options, data) {
                 var _this = _super.call(this, component, options, data) || this;
                 _this.component = component;
+                // || BaseComponent.editForm;
                 _this.id = FormioUtils.getRandomComponentId();
                 _this.type = customComponentOptions.type;
                 if (customComponentOptions.extraValidators) {
@@ -48,6 +49,15 @@ export function createCustomFormioComponent(customComponentOptions) {
                 }
                 return _this;
             }
+            /**
+             * @return {?}
+             */
+            CustomComponent.schema = /**
+             * @return {?}
+             */
+            function () {
+                return BaseComponent.schema(__assign({}, customComponentOptions.schema, { type: customComponentOptions.type }));
+            };
             Object.defineProperty(CustomComponent.prototype, "defaultSchema", {
                 get: /**
                  * @return {?}
@@ -88,15 +98,6 @@ export function createCustomFormioComponent(customComponentOptions) {
             /**
              * @return {?}
              */
-            CustomComponent.schema = /**
-             * @return {?}
-             */
-            function () {
-                return BaseComponent.schema(__assign({}, customComponentOptions.schema, { type: customComponentOptions.type }));
-            };
-            /**
-             * @return {?}
-             */
             CustomComponent.prototype.elementInfo = /**
              * @return {?}
              */
@@ -109,71 +110,41 @@ export function createCustomFormioComponent(customComponentOptions) {
                  });
                 return info;
             };
+            Object.defineProperty(CustomComponent.prototype, "inputInfo", {
+                get: /**
+                 * @return {?}
+                 */
+                function () {
+                    return __assign({ id: this.key }, this.elementInfo());
+                },
+                enumerable: true,
+                configurable: true
+            });
             /**
-             * @param {?} state
              * @return {?}
              */
-            CustomComponent.prototype.build = /**
-             * @param {?} state
+            CustomComponent.prototype.render = /**
              * @return {?}
              */
-            function (state) {
-                state = state || {};
-                this.calculatedValue = state.calculatedValue;
-                this.createElement();
+            function () {
                 /** @type {?} */
-                var labelAtTheBottom = this.component.labelPosition === 'bottom';
-                if (!labelAtTheBottom) {
-                    this.createLabel(this.element);
+                var element = _super.prototype.renderTemplate.call(this, customComponentOptions.selector, {
+                    input: this.inputInfo,
+                    value: this.dataValue,
+                });
+                console.log(element);
+                _super.prototype.render.call(this, element);
+                /*// Bind the custom options and the validations to the Angular component's inputs (flattened)
+                for (const key in this.component.customOptions) {
+                  if (this.component.customOptions.hasOwnProperty(key)) {
+                    this._customAngularElement[key] = this.component.customOptions[key];
+                  }
                 }
-                this.createInput(this.element);
-                if (labelAtTheBottom) {
-                    this.createLabel(this.element);
-                }
-                this.createDescription(this.element);
-                // Disable if needed.
-                if (this.shouldDisable) {
-                    this.disabled = true;
-                }
-                // Bind the custom options and the validations to the Angular component's inputs (flattened)
-                for (var key in this.component.customOptions) {
-                    if (this.component.customOptions.hasOwnProperty(key)) {
-                        this._customAngularElement[key] = this.component.customOptions[key];
-                    }
-                }
-                for (var key in this.component.validate) {
-                    if (this.component.validate.hasOwnProperty(key)) {
-                        this._customAngularElement[key] = this.component.validate[key];
-                    }
-                }
-                // Restore the value.
-                this.restoreValue();
-                // Attach the refresh on events.
-                this.attachRefreshOn();
-                this.autofocus();
-                this.attachLogic();
-            };
-            /**
-             * @param {?} container
-             * @return {?}
-             */
-            CustomComponent.prototype.createInput = /**
-             * @param {?} container
-             * @return {?}
-             */
-            function (container) {
-                /** @type {?} */
-                var input = (/** @type {?} */ (this.ce(this.info.type, this.info.attr)));
-                this.setInputMask(input);
-                /** @type {?} */
-                var inputGroup = this.addInputGroup(input, container);
-                this.addPrefix(input, inputGroup);
-                this.addInput(input, inputGroup || container);
-                this.addSuffix(input, inputGroup);
-                this.errorContainer = container;
-                this.setInputStyles(inputGroup || input);
-                this._customAngularElement = input;
-                return inputGroup || input;
+                for (const key in this.component.validate) {
+                  if (this.component.validate.hasOwnProperty(key)) {
+                    this._customAngularElement[key] = this.component.validate[key];
+                  }
+                }*/
             };
             Object.defineProperty(CustomComponent.prototype, "defaultValue", {
                 get: /**
@@ -188,7 +159,6 @@ export function createCustomFormioComponent(customComponentOptions) {
                     if (this.component.customDefaultValue && !this.options.preview) {
                         defaultValue = this.evaluate(this.component.customDefaultValue, { value: '' }, 'value');
                     }
-                    // Clone so that it creates a new instance.
                     return clone(defaultValue);
                 },
                 enumerable: true,
@@ -196,6 +166,7 @@ export function createCustomFormioComponent(customComponentOptions) {
             });
             return CustomComponent;
         }(BaseComponent)),
-        _a.editForm = customComponentOptions.editForm || BaseComponent.editForm,
+        _a.editForm = customComponentOptions.editForm // || BaseComponent.editForm;
+    ,
         _a;
 }

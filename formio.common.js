@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @record
@@ -80,9 +80,10 @@ if (false) {
     ErrorsOptions.prototype.message;
 }
 var FormioError = /** @class */ (function () {
-    function FormioError(message, component) {
+    function FormioError(message, component, silent) {
         this.message = message;
         this.component = component;
+        this.silent = silent;
     }
     return FormioError;
 }());
@@ -92,6 +93,8 @@ if (false) {
     FormioError.prototype.message;
     /** @type {?} */
     FormioError.prototype.component;
+    /** @type {?} */
+    FormioError.prototype.silent;
 }
 /**
  * @record

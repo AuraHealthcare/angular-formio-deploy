@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 import { Injectable } from '@angular/core';
 /**
@@ -41,8 +41,6 @@ if (false) {
     FormioAuthConfig.prototype.component;
     /** @type {?} */
     FormioAuthConfig.prototype.delayAuth;
-    /** @type {?} */
-    FormioAuthConfig.prototype.project;
     /** @type {?} */
     FormioAuthConfig.prototype.login;
     /** @type {?} */

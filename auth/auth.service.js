@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 import { EventEmitter, Injectable } from '@angular/core';
 import { FormioAuthConfig } from './auth.config';
@@ -25,15 +25,12 @@ var FormioAuthService = /** @class */ (function () {
         else {
             console.error('You must provide an AppConfig within your application!');
         }
-        if (this.config.project) {
-            Formio.setAuthUrl(this.config.project);
-        }
         this.loginForm =
-            (this.config.project || this.appConfig.appUrl) +
+            this.appConfig.appUrl +
                 '/' +
                 get(this.config, 'login.form', 'user/login');
         this.registerForm =
-            (this.config.project || this.appConfig.appUrl) +
+            this.appConfig.appUrl +
                 '/' +
                 get(this.config, 'register.form', 'user/login');
         this.onLogin = new EventEmitter();

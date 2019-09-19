@@ -11,7 +11,6 @@ export interface FormioAuthRouteConfig {
 export declare class FormioAuthConfig {
     component?: any;
     delayAuth?: any;
-    project?: string;
     login?: FormioAuthFormConfig;
     register?: FormioAuthFormConfig;
 }

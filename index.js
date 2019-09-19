@@ -1,11 +1,12 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 export { FormioAppConfig } from './formio.config';
 export { FormioError } from './formio.common';
 export { FormioService } from './formio.service';
 export { extendRouter } from './formio.utils';
+export { FormioBaseComponent } from './FormioBaseComponent';
 export { FormioComponent } from './components/formio/formio.component';
 export { FormBuilderComponent } from './components/formbuilder/formbuilder.component';
 export { FormioLoader } from './components/loader/formio.loader';

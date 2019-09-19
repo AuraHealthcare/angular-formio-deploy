@@ -1,6 +1,6 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 import { Component } from '@angular/core';
 import { FormioAuthService } from '../auth.service';
@@ -10,7 +10,7 @@ var FormioAuthLoginComponent = /** @class */ (function () {
     }
     FormioAuthLoginComponent.decorators = [
         { type: Component, args: [{
-                    template: "<formio [src]=\"service.loginForm\" (submit)=\"service.onLoginSubmit($event)\" [submitOptions]=\"{ skipQueue: true }\"></formio> "
+                    template: "<formio [src]=\"service.loginForm\" (submit)=\"service.onLoginSubmit($event)\"></formio> "
                 },] },
     ];
     /** @nocollapse */

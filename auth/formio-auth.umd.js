@@ -6,7 +6,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var FormioAuthConfig = /** @class */ (function () {
         function FormioAuthConfig() {
@@ -19,7 +19,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var FormioAppConfig = /** @class */ (function () {
         function FormioAppConfig() {
@@ -34,7 +34,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var FormioAuthService = /** @class */ (function () {
         function FormioAuthService(appConfig, config) {
@@ -54,15 +54,12 @@
             else {
                 console.error('You must provide an AppConfig within your application!');
             }
-            if (this.config.project) {
-                formiojs.Formio.setAuthUrl(this.config.project);
-            }
             this.loginForm =
-                (this.config.project || this.appConfig.appUrl) +
+                this.appConfig.appUrl +
                     '/' +
                     lodash.get(this.config, 'login.form', 'user/login');
             this.registerForm =
-                (this.config.project || this.appConfig.appUrl) +
+                this.appConfig.appUrl +
                     '/' +
                     lodash.get(this.config, 'register.form', 'user/login');
             this.onLogin = new core.EventEmitter();
@@ -298,25 +295,25 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var FormioAuthRegisterComponent = /** @class */ (function () {
-        function FormioAuthRegisterComponent(service) {
+    var FormioAuthLoginComponent = /** @class */ (function () {
+        function FormioAuthLoginComponent(service) {
             this.service = service;
         }
-        FormioAuthRegisterComponent.decorators = [
+        FormioAuthLoginComponent.decorators = [
             { type: core.Component, args: [{
-                        template: "<formio [src]=\"service.registerForm\" (submit)=\"service.onRegisterSubmit($event)\" [submitOptions]=\"{ skipQueue: true }\"></formio> "
+                        template: "<formio [src]=\"service.loginForm\" (submit)=\"service.onLoginSubmit($event)\"></formio> "
                     },] },
         ];
         /** @nocollapse */
-        FormioAuthRegisterComponent.ctorParameters = function () { return [
+        FormioAuthLoginComponent.ctorParameters = function () { return [
             { type: FormioAuthService }
         ]; };
-        return FormioAuthRegisterComponent;
+        return FormioAuthLoginComponent;
     }());
 
-    exports.FormioAuthRegisterComponent = FormioAuthRegisterComponent;
+    exports.FormioAuthLoginComponent = FormioAuthLoginComponent;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 

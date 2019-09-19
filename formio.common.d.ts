@@ -37,7 +37,8 @@ export interface ErrorsOptions {
 export declare class FormioError {
     message: string;
     component: ExtendedComponentSchema;
-    constructor(message: string, component: ExtendedComponentSchema);
+    silent?: boolean;
+    constructor(message: string, component: ExtendedComponentSchema, silent?: boolean);
 }
 export declare type FormioSubmissionCallback = (error: FormioError, submission: object) => void;
 export declare type FormioBeforeSubmit = (submission: object, callback: FormioSubmissionCallback) => void;
