@@ -29,7 +29,7 @@ var __assign = (this && this.__assign) || function () {
 import { Components, Utils as FormioUtils } from 'formiojs';
 import { clone, isNil } from 'lodash';
 /** @type {?} */
-var BaseComponent = Components.components.base;
+var BaseComponent = clone(Components.components.base);
 /** @type {?} */
 var customElementRef = 'customElement';
 /**
