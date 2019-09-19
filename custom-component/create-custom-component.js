@@ -30,6 +30,8 @@ import { Components, Utils as FormioUtils } from 'formiojs';
 import { clone, isNil } from 'lodash';
 /** @type {?} */
 var BaseComponent = Components.components.input;
+/** @type {?} */
+var customElementRef = 'customElement';
 /**
  * @param {?} customComponentOptions
  * @return {?}
@@ -110,16 +112,6 @@ export function createCustomFormioComponent(customComponentOptions) {
                  });
                 return info;
             };
-            Object.defineProperty(CustomComponent.prototype, "inputInfo", {
-                get: /**
-                 * @return {?}
-                 */
-                function () {
-                    return __assign({ id: this.key }, this.elementInfo());
-                },
-                enumerable: true,
-                configurable: true
-            });
             /**
              * @return {?}
              */
@@ -127,24 +119,38 @@ export function createCustomFormioComponent(customComponentOptions) {
              * @return {?}
              */
             function () {
-                /** @type {?} */
-                var element = _super.prototype.renderTemplate.call(this, customComponentOptions.selector, {
-                    input: this.inputInfo,
-                    value: this.dataValue,
-                });
+                _super.prototype.render.call(this, _super.prototype.renderTemplate.call(this, 'container', {
+                    nestedKey: customElementRef,
+                    children: customComponentOptions.selector
+                }));
+            };
+            /**
+             * @param {?} element
+             * @return {?}
+             */
+            CustomComponent.prototype.attach = /**
+             * @param {?} element
+             * @return {?}
+             */
+            function (element) {
+                var _a;
                 console.log(element);
-                _super.prototype.render.call(this, element);
-                /*// Bind the custom options and the validations to the Angular component's inputs (flattened)
-                for (const key in this.component.customOptions) {
-                  if (this.component.customOptions.hasOwnProperty(key)) {
-                    this._customAngularElement[key] = this.component.customOptions[key];
-                  }
+                this.loadRefs(element, (_a = {}, _a[customElementRef] = 'single', _a));
+                /** @type {?} */
+                var superAttach = _super.prototype.attach.call(this, element);
+                this._customAngularElement = this.refs[customElementRef].firstChild;
+                // Bind the custom options and the validations to the Angular component's inputs (flattened)
+                for (var key in this.component.customOptions) {
+                    if (this.component.customOptions.hasOwnProperty(key)) {
+                        this._customAngularElement[key] = this.component.customOptions[key];
+                    }
                 }
-                for (const key in this.component.validate) {
-                  if (this.component.validate.hasOwnProperty(key)) {
-                    this._customAngularElement[key] = this.component.validate[key];
-                  }
-                }*/
+                for (var key in this.component.validate) {
+                    if (this.component.validate.hasOwnProperty(key)) {
+                        this._customAngularElement[key] = this.component.validate[key];
+                    }
+                }
+                return superAttach;
             };
             Object.defineProperty(CustomComponent.prototype, "defaultValue", {
                 get: /**

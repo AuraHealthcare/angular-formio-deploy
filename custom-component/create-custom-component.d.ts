@@ -11,15 +11,16 @@ export declare function createCustomFormioComponent(customComponentOptions: Form
         readonly emptyValue: any;
         component: ExtendedComponentSchema<any>;
         elementInfo(): ElementInfo;
-        readonly inputInfo: {
-            type: string;
-            component: ExtendedComponentSchema<any>;
-            changeEvent: string;
-            attr: any;
-            id: any;
-        };
         render(): void;
+        attach(element: any): any;
         readonly defaultValue: any;
+        readonly inputInfo: {
+            id: string | number;
+            type: string;
+            changeEvent: string;
+            content?: any;
+            attr: any;
+        };
         readonly maskOptions: {
             label: any;
             value: any;
@@ -37,7 +38,6 @@ export declare function createCustomFormioComponent(customComponentOptions: Form
         updateValueAt(value: any, flags: any, index: string | number): void;
         getValueAt(index: string | number): any;
         updateValue(value: any, flags: any, index: string | number): any;
-        attach(element: any): any;
         attachElement(element: any, index: string | number): void;
         readonly widget: any;
         createWidget(index: string | number): any;
