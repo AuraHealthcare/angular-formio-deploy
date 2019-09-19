@@ -121,18 +121,12 @@ export function createCustomFormioComponent(customComponentOptions) {
             function () {
                 /** @type {?} */
                 var info = this.elementInfo();
-                console.log('sajt');
-                console.log(this.key);
-                console.log(customComponentOptions);
-                console.log(this.type);
-                console.log(_super.prototype.render);
-                // super.render(`<${info.type} ref="${customElementRef}"></${info.type}>`);
-                _super.prototype.render.call(this, "<p>sajt</p>");
-                /*super.render(this.renderTemplate('field', {
-                  label: this.labelInfo,
-                  element: element,
-                  tooltip: this.interpolate(this.component.tooltip || '').replace(/(?:\r\n|\r|\n)/g, '<br />'),
-                }));*/
+                /** @type {?} */
+                var element = "<" + info.type + " ref=\"" + customElementRef + "\"></" + info.type + ">";
+                _super.prototype.render.call(this, this.renderTemplate('field', {
+                    label: this.labelInfo,
+                    element: element,
+                }));
             };
             /**
              * @param {?} element
@@ -144,10 +138,13 @@ export function createCustomFormioComponent(customComponentOptions) {
              */
             function (element) {
                 var _a;
+                console.log('sajt');
                 console.log(element);
                 this.loadRefs(element, (_a = {}, _a[customElementRef] = 'single', _a));
                 /** @type {?} */
                 var superAttach = _super.prototype.attach.call(this, element);
+                console.log(this.type);
+                console.log(customComponentOptions);
                 console.log(this.refs);
                 console.log(this.refs[customElementRef]);
                 // this._customAngularElement = this.refs[customElementRef].firstChild;
