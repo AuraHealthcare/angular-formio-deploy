@@ -29,7 +29,7 @@ var __assign = (this && this.__assign) || function () {
 import { Components, Utils as FormioUtils } from 'formiojs';
 import { clone, isNil } from 'lodash';
 /** @type {?} */
-var BaseComponent = Components.components.input;
+var BaseComponent = Components.components.base;
 /** @type {?} */
 var customElementRef = 'customElement';
 /**
@@ -128,6 +128,11 @@ export function createCustomFormioComponent(customComponentOptions) {
                 console.log(_super.prototype.render);
                 // super.render(`<${info.type} ref="${customElementRef}"></${info.type}>`);
                 _super.prototype.render.call(this, "<p>sajt</p>");
+                /*super.render(this.renderTemplate('field', {
+                  label: this.labelInfo,
+                  element: element,
+                  tooltip: this.interpolate(this.component.tooltip || '').replace(/(?:\r\n|\r|\n)/g, '<br />'),
+                }));*/
             };
             /**
              * @param {?} element
