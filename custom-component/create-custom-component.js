@@ -27,9 +27,9 @@ var __assign = (this && this.__assign) || function () {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 import { Components, Utils as FormioUtils } from 'formiojs';
-import { clone, isNil } from 'lodash';
+import { clone, cloneDeep, isNil } from 'lodash';
 /** @type {?} */
-var BaseComponent = Components.components.input;
+var BaseComponent = cloneDeep(Components.components.input);
 /** @type {?} */
 var customElementRef = 'customElement';
 /**
