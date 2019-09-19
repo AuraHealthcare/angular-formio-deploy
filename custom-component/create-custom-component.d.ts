@@ -13,6 +13,43 @@ export declare function createCustomFormioComponent(customComponentOptions: Form
         render(): void;
         attach(element: any): void;
         readonly defaultValue: any;
+        readonly inputInfo: {
+            id: string | number;
+            type: string;
+            changeEvent: string;
+            content?: any;
+            attr: any;
+        };
+        readonly maskOptions: {
+            label: any;
+            value: any;
+        }[];
+        readonly isMultipleMasksField: boolean;
+        getMaskByName(maskName: string): any;
+        setInputMask(input: any, inputMask: any): any;
+        getMaskOptions(): {
+            label: any;
+            value: any;
+        }[];
+        readonly remainingWords: number;
+        renderElement(value: any, index: string | number): any;
+        setCounter(type: string, element: any, count: number, max: number): void;
+        updateValueAt(value: any, flags: any, index: string | number): void;
+        getValueAt(index: string | number): any;
+        updateValue(value: any, flags: any, index: string | number): any;
+        attachElement(element: any, index: string | number): void;
+        readonly widget: any;
+        createWidget(index: string | number): any;
+        addFocusBlurEvents(element: any): void;
+        dataValue: any;
+        readonly addAnother: any;
+        useWrapper(): boolean;
+        renderRow(value: any, index: any): any;
+        onSelectMaskHandler(event: any): void;
+        tryAttachMultipleMasksInput(): boolean;
+        updateMask(input: any, mask: any): void;
+        addNewValue(value: any): void;
+        addValue(): void;
         originalComponent: any;
         refs: Object;
         attached: boolean;
@@ -120,11 +157,9 @@ export declare function createCustomFormioComponent(customComponentOptions: Form
         hasValue(data: Object): boolean;
         readonly rootValue: any;
         readonly rootPristine: any;
-        dataValue: any;
         splice(index: string | number): void;
         deleteValue(): void;
         getValue(): any;
-        getValueAt(index: number): any;
         setValue(value: any, flags: any): boolean;
         setValueAt(index: number, value: any, flags: any): void;
         readonly hasSetValue: boolean;
@@ -186,7 +221,6 @@ export declare function createCustomFormioComponent(customComponentOptions: Form
         ce(type: string, attr?: Object, children?: string | HTMLElement | (string | HTMLElement)[]): HTMLElement;
         appendChild(element: any, child: any): any;
         maskPlaceholder(mask: HTMLElement): string;
-        setInputMask(input: HTMLElement, inputMask: string, placeholder: boolean): void;
         text(text: string): Text;
         attr(element: HTMLElement, attr: Object): void;
         empty(element: HTMLElement): void;

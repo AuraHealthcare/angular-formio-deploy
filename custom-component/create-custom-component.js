@@ -29,7 +29,7 @@ var __assign = (this && this.__assign) || function () {
 import { Components, Utils as FormioUtils } from 'formiojs';
 import { clone, isNil } from 'lodash';
 /** @type {?} */
-var BaseComponent = Components.components.base;
+var BaseComponent = Components.components.input;
 /** @type {?} */
 var customElementRef = 'customElement';
 /**
@@ -139,6 +139,7 @@ export function createCustomFormioComponent(customComponentOptions) {
              */
             function (element) {
                 var _a;
+                debugger;
                 console.log('sajt');
                 console.log(element);
                 this.loadRefs(element, (_a = {}, _a[customElementRef] = 'single', _a));
