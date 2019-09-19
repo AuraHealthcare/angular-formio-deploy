@@ -27,9 +27,9 @@ var __assign = (this && this.__assign) || function () {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 import { Components, Utils as FormioUtils } from 'formiojs';
-import { clone, cloneDeep, isNil } from 'lodash';
+import { clone, isNil } from 'lodash';
 /** @type {?} */
-var BaseComponent = cloneDeep(Components.components.input);
+var BaseComponent = Components.components.input;
 /** @type {?} */
 var customElementRef = 'customElement';
 /**
@@ -121,6 +121,10 @@ export function createCustomFormioComponent(customComponentOptions) {
             function () {
                 /** @type {?} */
                 var info = this.elementInfo();
+                console.log('sajt');
+                console.log(this.key);
+                console.log(customComponentOptions);
+                console.log(this.type);
                 _super.prototype.render.call(this, "<" + info.type + " ref=\"" + customElementRef + "\"></" + info.type + ">");
             };
             /**
@@ -139,18 +143,18 @@ export function createCustomFormioComponent(customComponentOptions) {
                 var superAttach = _super.prototype.attach.call(this, element);
                 console.log(this.refs);
                 console.log(this.refs[customElementRef]);
-                // this._customAngularElement = this.refs[customElementRef].firstChild;
-                // // Bind the custom options and the validations to the Angular component's inputs (flattened)
-                // for (const key in this.component.customOptions) {
-                //   if (this.component.customOptions.hasOwnProperty(key)) {
-                //     this._customAngularElement[key] = this.component.customOptions[key];
-                //   }
-                // }
-                // for (const key in this.component.validate) {
-                //   if (this.component.validate.hasOwnProperty(key)) {
-                //     this._customAngularElement[key] = this.component.validate[key];
-                //   }
-                // }
+                this._customAngularElement = this.refs[customElementRef].firstChild;
+                // Bind the custom options and the validations to the Angular component's inputs (flattened)
+                for (var key in this.component.customOptions) {
+                    if (this.component.customOptions.hasOwnProperty(key)) {
+                        this._customAngularElement[key] = this.component.customOptions[key];
+                    }
+                }
+                for (var key in this.component.validate) {
+                    if (this.component.validate.hasOwnProperty(key)) {
+                        this._customAngularElement[key] = this.component.validate[key];
+                    }
+                }
                 return superAttach;
             };
             Object.defineProperty(CustomComponent.prototype, "defaultValue", {
