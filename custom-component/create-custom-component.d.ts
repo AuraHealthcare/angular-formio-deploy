@@ -1,6 +1,5 @@
 import { BuilderInfo, ExtendedComponentSchema } from 'formiojs';
 import { FormioCustomComponentInfo, FormioCustomElement } from '../formio.common';
-import { ElementInfo } from 'formiojs/types/components/_classes/component/component';
 export declare function createCustomFormioComponent(customComponentOptions: FormioCustomComponentInfo): {
     new (component: ExtendedComponentSchema<any>, options: any, data: any): {
         id: string;
@@ -10,7 +9,7 @@ export declare function createCustomFormioComponent(customComponentOptions: Form
         readonly defaultSchema: ExtendedComponentSchema<any>;
         readonly emptyValue: any;
         component: ExtendedComponentSchema<any>;
-        elementInfo(): ElementInfo;
+        elementInfo(): import("formiojs").ElementInfo;
         render(): void;
         attach(element: any): any;
         readonly defaultValue: any;
@@ -198,7 +197,7 @@ export declare function createCustomFormioComponent(customComponentOptions: Form
         autofocus(): void;
         focus(): void;
         readonly shouldDisable: boolean;
-        readonly info: ElementInfo;
+        readonly info: import("formiojs").ElementInfo;
         validators: ("required" | "minLength" | "maxLength" | "pattern" | "custom" | "customPrivate" | "min" | "max" | "minSelectedCount" | "maxSelectedCount" | "minWords" | "maxWords" | "email" | "url" | "date" | "day" | "json" | "mask" | "minDate" | "maxDate")[];
         calculatedValue: any;
         options: any;
