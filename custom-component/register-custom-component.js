@@ -27,6 +27,7 @@ export function registerCustomFormioComponent(options, angularComponent, injecto
  * @return {?}
  */
 export function registerCustomFormioComponentWithClass(options, angularComponent, formioClass, injector) {
+    injector.get(CustomTagsService).addCustomTag(options.selector);
     /** @type {?} */
     var complexCustomComponent = createCustomElement(angularComponent, { injector: injector });
     customElements.define(options.selector, complexCustomComponent);

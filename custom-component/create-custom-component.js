@@ -158,18 +158,20 @@ export function createCustomFormioComponent(customComponentOptions) {
                 this.loadRefs(element, (_a = {}, _a[customElementRef] = 'single', _a));
                 /** @type {?} */
                 var superAttach = _super.prototype.attach.call(this, element);
+                console.log(element);
+                console.log(this.refs);
                 this._customAngularElement = this.refs[customElementRef];
                 // Bind the custom options and the validations to the Angular component's inputs (flattened)
-                for (var key in this.component.customOptions) {
-                    if (this.component.customOptions.hasOwnProperty(key)) {
-                        this._customAngularElement[key] = this.component.customOptions[key];
-                    }
-                }
-                for (var key in this.component.validate) {
-                    if (this.component.validate.hasOwnProperty(key)) {
-                        this._customAngularElement[key] = this.component.validate[key];
-                    }
-                }
+                // for (const key in this.component.customOptions) {
+                //   if (this.component.customOptions.hasOwnProperty(key)) {
+                //     this._customAngularElement[key] = this.component.customOptions[key];
+                //   }
+                // }
+                // for (const key in this.component.validate) {
+                //   if (this.component.validate.hasOwnProperty(key)) {
+                //     this._customAngularElement[key] = this.component.validate[key];
+                //   }
+                // }
                 return superAttach;
             };
             Object.defineProperty(CustomComponent.prototype, "defaultValue", {
