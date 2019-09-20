@@ -164,6 +164,7 @@ var FormBuilderComponent = /** @class */ (function () {
         }
         /** @type {?} */
         var Builder = this.formbuilder || FormBuilder;
+        console.log(this.options);
         this.builder = new Builder(this.builderElement.nativeElement, form, assign({ icons: 'fontawesome' }, this.options || {}));
         return this.builder.ready.then((/**
          * @param {?} instance
