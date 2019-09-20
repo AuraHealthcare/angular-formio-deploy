@@ -29,7 +29,7 @@ var __assign = (this && this.__assign) || function () {
 import { Components, Utils as FormioUtils } from 'formiojs';
 import { clone, isNil } from 'lodash';
 /** @type {?} */
-var BaseComponent = Components.components.input;
+var BaseInputComponent = Components.components.input;
 /** @type {?} */
 var customElementRef = 'customElement';
 /**
@@ -61,7 +61,7 @@ export function createCustomFormioComponent(customComponentOptions) {
              * @return {?}
              */
             function () {
-                return BaseComponent.schema(__assign({}, customComponentOptions.schema, { type: customComponentOptions.type }));
+                return BaseInputComponent.schema(__assign({}, customComponentOptions.schema, { type: customComponentOptions.type }));
             };
             Object.defineProperty(CustomComponent.prototype, "defaultSchema", {
                 get: /**
@@ -199,7 +199,7 @@ export function createCustomFormioComponent(customComponentOptions) {
                 configurable: true
             });
             return CustomComponent;
-        }(BaseComponent)),
+        }(BaseInputComponent)),
         _a.editForm = customComponentOptions.editForm // || BaseComponent.editForm;
     ,
         _a;

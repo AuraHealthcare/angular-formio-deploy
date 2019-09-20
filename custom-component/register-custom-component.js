@@ -15,10 +15,7 @@ export function registerCustomFormioComponent(options, angularComponent, injecto
     /** @type {?} */
     var complexCustomComponent = createCustomElement(angularComponent, { injector: injector });
     customElements.define(options.selector, complexCustomComponent);
-    /** @type {?} */
-    var customClass = createCustomFormioComponent(options);
-    console.log(customClass);
-    Components.setComponent(options.type, customClass);
+    Components.setComponent(options.type, createCustomFormioComponent(options));
 }
 /**
  * @param {?} options
