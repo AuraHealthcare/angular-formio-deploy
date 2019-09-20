@@ -38,21 +38,6 @@ var FormBuilderComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        var _this = this;
-        console.log('elso', this.customTags._tags);
-        this.customTags.tags$.subscribe((/**
-         * @param {?} tags
-         * @return {?}
-         */
-        function (tags) {
-            console.log(tags);
-            _this.options = assign({
-                sanitizeConfig: {
-                    addTags: tags,
-                }
-            }, _this.options || {});
-            console.log(_this.options);
-        }));
         Utils.Evaluator.noeval = this.noeval;
     };
     /**
@@ -165,8 +150,12 @@ var FormBuilderComponent = /** @class */ (function () {
         }
         /** @type {?} */
         var Builder = this.formbuilder || FormBuilder;
-        console.log(this.options);
-        this.builder = new Builder(this.builderElement.nativeElement, form, assign({ icons: 'fontawesome' }, this.options || {}));
+        this.builder = new Builder(this.builderElement.nativeElement, form, assign({
+            icons: 'fontawesome',
+            sanitizeConfig: {
+                addTags: this.customTags.tags,
+            }
+        }, this.options || {}));
         return this.builder.ready.then((/**
          * @param {?} instance
          * @return {?}

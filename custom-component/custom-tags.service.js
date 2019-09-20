@@ -3,12 +3,10 @@
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
 import * as i0 from "@angular/core";
 var CustomTagsService = /** @class */ (function () {
     function CustomTagsService() {
-        this._tags = [];
-        this.tags$ = new BehaviorSubject([]);
+        this.tags = [];
     }
     /**
      * @param {?} tag
@@ -19,8 +17,7 @@ var CustomTagsService = /** @class */ (function () {
      * @return {?}
      */
     function (tag) {
-        this._tags.push(tag);
-        this.tags$.next(this._tags);
+        this.tags.push(tag);
     };
     CustomTagsService.decorators = [
         { type: Injectable, args: [{ providedIn: 'root' },] },
@@ -31,7 +28,5 @@ var CustomTagsService = /** @class */ (function () {
 export { CustomTagsService };
 if (false) {
     /** @type {?} */
-    CustomTagsService.prototype._tags;
-    /** @type {?} */
-    CustomTagsService.prototype.tags$;
+    CustomTagsService.prototype.tags;
 }
