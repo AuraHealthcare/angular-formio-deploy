@@ -20,11 +20,13 @@ import { FormioLoader } from '../loader/formio.loader';
 import { FormioAppConfig } from '../../formio.config';
 import { Formio, Form, Utils } from 'formiojs';
 import { FormioBaseComponent } from '../../FormioBaseComponent';
+import { CustomTagsService } from '../../custom-component/custom-tags.service';
 /* tslint:disable */
 var FormioComponent = /** @class */ (function (_super) {
     __extends(FormioComponent, _super);
-    function FormioComponent(loader, config) {
-        var _this = _super.call(this, loader, config) || this;
+    function FormioComponent(customTags, loader, config) {
+        var _this = _super.call(this, customTags, loader, config) || this;
+        _this.customTags = customTags;
         _this.loader = loader;
         _this.config = config;
         _this.noeval = false;
@@ -66,6 +68,7 @@ var FormioComponent = /** @class */ (function (_super) {
     ];
     /** @nocollapse */
     FormioComponent.ctorParameters = function () { return [
+        { type: CustomTagsService },
         { type: FormioLoader },
         { type: FormioAppConfig, decorators: [{ type: Optional }] }
     ]; };
@@ -78,6 +81,8 @@ export { FormioComponent };
 if (false) {
     /** @type {?} */
     FormioComponent.prototype.noeval;
+    /** @type {?} */
+    FormioComponent.prototype.customTags;
     /** @type {?} */
     FormioComponent.prototype.loader;
     /** @type {?} */

@@ -4,7 +4,9 @@ import { FormioLoader } from './components/loader/formio.loader';
 import { FormioAlerts } from './components/alerts/formio.alerts';
 import { FormioAppConfig } from './formio.config';
 import { FormioForm, FormioOptions, FormioRefreshValue } from './formio.common';
+import { CustomTagsService } from './custom-component/custom-tags.service';
 export declare class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
+    customTags: CustomTagsService;
     loader: FormioLoader;
     config: FormioAppConfig;
     form?: FormioForm;
@@ -43,7 +45,7 @@ export declare class FormioBaseComponent implements OnInit, OnChanges, OnDestroy
     private formioReady;
     private formioReadyResolve;
     private submitting;
-    constructor(loader: FormioLoader, config: FormioAppConfig);
+    constructor(customTags: CustomTagsService, loader: FormioLoader, config: FormioAppConfig);
     getRenderer(): any;
     getRendererOptions(): any;
     createRenderer(): any;

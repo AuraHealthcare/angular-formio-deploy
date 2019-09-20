@@ -8,9 +8,11 @@ import { FormioLoader } from './components/loader/formio.loader';
 import { FormioAlerts } from './components/alerts/formio.alerts';
 import { FormioAppConfig } from './formio.config';
 import { isEmpty, get, assign } from 'lodash';
+import { CustomTagsService } from './custom-component/custom-tags.service';
 var FormioBaseComponent = /** @class */ (function () {
-    function FormioBaseComponent(loader, config) {
+    function FormioBaseComponent(customTags, loader, config) {
         var _this = this;
+        this.customTags = customTags;
         this.loader = loader;
         this.config = config;
         this.submission = {};
@@ -63,7 +65,10 @@ var FormioBaseComponent = /** @class */ (function () {
             viewAsHtml: this.viewOnly,
             i18n: get(this.options, 'i18n', null),
             fileService: get(this.options, 'fileService', null),
-            hooks: this.hooks
+            hooks: this.hooks,
+            sanitizeConfig: {
+                addTags: this.customTags.tags
+            }
         }, this.renderOptions || {});
     };
     /**
@@ -190,6 +195,9 @@ var FormioBaseComponent = /** @class */ (function () {
             disableAlerts: false,
             hooks: {
                 beforeSubmit: null
+            },
+            sanitizeConfig: {
+                addTags: this.customTags.tags
             }
         }, this.options);
         this.initialized = true;
@@ -549,6 +557,7 @@ var FormioBaseComponent = /** @class */ (function () {
     };
     /** @nocollapse */
     FormioBaseComponent.ctorParameters = function () { return [
+        { type: CustomTagsService },
         { type: FormioLoader },
         { type: FormioAppConfig, decorators: [{ type: Optional }] }
     ]; };
@@ -669,6 +678,8 @@ if (false) {
      * @private
      */
     FormioBaseComponent.prototype.submitting;
+    /** @type {?} */
+    FormioBaseComponent.prototype.customTags;
     /** @type {?} */
     FormioBaseComponent.prototype.loader;
     /** @type {?} */
