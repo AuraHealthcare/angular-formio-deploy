@@ -112,23 +112,16 @@ export function createCustomFormioComponent(customComponentOptions) {
                  });
                 return info;
             };
-            /**
-             * @return {?}
-             */
-            CustomComponent.prototype.render = /**
-             * @return {?}
-             */
-            function () {
-                console.log('render');
-                console.log(this.type);
-                // const info = this.elementInfo();
-                // const element = `<${info.type} ref="${customElementRef}"></${info.type}>`;
-                // super.render(this.renderTemplate('field', {
-                //   label: this.labelInfo,
-                //   element: element,
-                //   // tooltip: this.interpolate(this.component.tooltip || '').replace(/(?:\r\n|\r|\n)/g, '<br />'),
-                // }));
-            };
+            Object.defineProperty(CustomComponent.prototype, "inputInfo", {
+                get: /**
+                 * @return {?}
+                 */
+                function () {
+                    return __assign({ id: this.key }, this.elementInfo());
+                },
+                enumerable: true,
+                configurable: true
+            });
             /**
              * @param {?} element
              * @return {?}

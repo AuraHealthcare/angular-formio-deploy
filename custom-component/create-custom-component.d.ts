@@ -10,16 +10,15 @@ export declare function createCustomFormioComponent(customComponentOptions: Form
         readonly emptyValue: any;
         component: ExtendedComponentSchema<any>;
         elementInfo(): import("formiojs").ElementInfo;
-        render(): void;
+        readonly inputInfo: {
+            type: string;
+            component: ExtendedComponentSchema<any>;
+            changeEvent: string;
+            attr: any;
+            id: any;
+        };
         attach(element: any): void;
         readonly defaultValue: any;
-        readonly inputInfo: {
-            id: string | number;
-            type: string;
-            changeEvent: string;
-            content?: any;
-            attr: any;
-        };
         readonly maskOptions: {
             label: any;
             value: any;
@@ -50,6 +49,7 @@ export declare function createCustomFormioComponent(customComponentOptions: Form
         updateMask(input: any, mask: any): void;
         addNewValue(value: any): void;
         addValue(): void;
+        render(element: any): any;
         originalComponent: any;
         refs: Object;
         attached: boolean;
