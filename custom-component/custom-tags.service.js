@@ -30,10 +30,7 @@ var CustomTagsService = /** @class */ (function () {
 }());
 export { CustomTagsService };
 if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
+    /** @type {?} */
     CustomTagsService.prototype._tags;
     /** @type {?} */
     CustomTagsService.prototype.tags$;

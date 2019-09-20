@@ -39,6 +39,7 @@ var FormBuilderComponent = /** @class */ (function () {
      */
     function () {
         var _this = this;
+        console.log('elso', this.customTags._tags);
         this.customTags.tags$.subscribe((/**
          * @param {?} tags
          * @return {?}
