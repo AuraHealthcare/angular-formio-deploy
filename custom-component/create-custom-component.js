@@ -123,6 +123,26 @@ export function createCustomFormioComponent(customComponentOptions) {
                 configurable: true
             });
             /**
+             * @param {?} value
+             * @param {?} index
+             * @return {?}
+             */
+            CustomComponent.prototype.renderElement = /**
+             * @param {?} value
+             * @param {?} index
+             * @return {?}
+             */
+            function (value, index) {
+                console.log('asd');
+                /** @type {?} */
+                var info = this.inputInfo;
+                this.renderTemplate('input', {
+                    input: info,
+                    value: value,
+                    index: index
+                });
+            };
+            /**
              * @param {?} element
              * @return {?}
              */
@@ -132,15 +152,11 @@ export function createCustomFormioComponent(customComponentOptions) {
              */
             function (element) {
                 var _a;
-                debugger;
                 console.log('sajt');
                 console.log(element);
                 this.loadRefs(element, (_a = {}, _a[customElementRef] = 'single', _a));
-                // const superAttach = super.attach(element);
-                console.log(this.type);
-                console.log(customComponentOptions);
-                console.log(this.refs);
-                console.log(this.refs[customElementRef]);
+                /** @type {?} */
+                var superAttach = _super.prototype.attach.call(this, element);
                 // this._customAngularElement = this.refs[customElementRef].firstChild;
                 // // Bind the custom options and the validations to the Angular component's inputs (flattened)
                 // for (const key in this.component.customOptions) {
@@ -153,7 +169,7 @@ export function createCustomFormioComponent(customComponentOptions) {
                 //     this._customAngularElement[key] = this.component.validate[key];
                 //   }
                 // }
-                // return superAttach;
+                return superAttach;
             };
             Object.defineProperty(CustomComponent.prototype, "defaultValue", {
                 get: /**

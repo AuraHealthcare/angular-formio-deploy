@@ -17,7 +17,8 @@ export declare function createCustomFormioComponent(customComponentOptions: Form
             attr: any;
             id: any;
         };
-        attach(element: any): void;
+        renderElement(value: any, index: number): void;
+        attach(element: any): any;
         readonly defaultValue: any;
         readonly maskOptions: {
             label: any;
@@ -31,7 +32,6 @@ export declare function createCustomFormioComponent(customComponentOptions: Form
             value: any;
         }[];
         readonly remainingWords: number;
-        renderElement(value: any, index: string | number): any;
         setCounter(type: string, element: any, count: number, max: number): void;
         updateValueAt(value: any, flags: any, index: string | number): void;
         getValueAt(index: string | number): any;
