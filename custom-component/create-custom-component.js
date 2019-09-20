@@ -41,17 +41,17 @@ export function createCustomFormioComponent(customComponentOptions) {
     return _a = /** @class */ (function (_super) {
             __extends(CustomComponent, _super);
             function CustomComponent(component, options, data) {
-                var _this = _super.call(this, component, options, data) || this;
+                var _this = _super.call(this, component, __assign({}, options, { sanitizeConfig: {
+                        addTags: [customComponentOptions.selector],
+                    } }), data) || this;
                 _this.component = component;
                 // || BaseComponent.editForm;
                 _this.id = FormioUtils.getRandomComponentId();
                 _this.type = customComponentOptions.type;
-                _this.options = __assign({}, _this.options, { sanitizeConfig: {
-                        allowedTags: [customComponentOptions.selector],
-                    } });
                 if (customComponentOptions.extraValidators) {
                     _this.validators = _this.validators.concat(customComponentOptions.extraValidators);
                 }
+                console.log(_this.options);
                 return _this;
             }
             /**
