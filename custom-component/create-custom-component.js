@@ -187,13 +187,17 @@ export function createCustomFormioComponent(customComponentOptions) {
              * @return {?}
              */
             function (dirty) {
-                return sanitize(dirty, {
+                console.log(dirty);
+                /** @type {?} */
+                var asd = sanitize(dirty, {
                     ADD_ATTR: ['ref', 'target'],
                     ADD_TAGS: [customComponentOptions.selector],
                     USE_PROFILES: {
                         html: true
                     }
                 });
+                console.log(asd);
+                return asd;
             };
             Object.defineProperty(CustomComponent.prototype, "defaultValue", {
                 get: /**
