@@ -17,7 +17,7 @@ export declare function createCustomFormioComponent(customComponentOptions: Form
             attr: any;
             id: any;
         };
-        renderElement(value: any, index: number): void;
+        renderElement(value: any, index: number): any;
         attach(element: any): any;
         readonly defaultValue: any;
         readonly maskOptions: {

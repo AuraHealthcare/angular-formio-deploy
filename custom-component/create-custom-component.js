@@ -117,7 +117,9 @@ export function createCustomFormioComponent(customComponentOptions) {
                  * @return {?}
                  */
                 function () {
-                    return __assign({ id: this.key }, this.elementInfo());
+                    /** @type {?} */
+                    var info = __assign({ id: this.key }, this.elementInfo());
+                    return info;
                 },
                 enumerable: true,
                 configurable: true
@@ -136,7 +138,8 @@ export function createCustomFormioComponent(customComponentOptions) {
                 console.log('asd');
                 /** @type {?} */
                 var info = this.inputInfo;
-                this.renderTemplate('input', {
+                console.log(info);
+                return this.renderTemplate('input', {
                     input: info,
                     value: value,
                     index: index
