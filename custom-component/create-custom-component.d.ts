@@ -16,10 +16,9 @@ export declare function createCustomFormioComponent(customComponentOptions: Form
             changeEvent: string;
             attr: any;
             id: any;
-            ref: string;
         };
         renderElement(value: any, index: number): any;
-        attach(element: any): any;
+        attach(element: HTMLElement): any;
         readonly defaultValue: any;
         readonly maskOptions: {
             label: any;

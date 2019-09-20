@@ -30,8 +30,6 @@ import { Components, Utils as FormioUtils } from 'formiojs';
 import { clone, isNil } from 'lodash';
 /** @type {?} */
 var BaseInputComponent = Components.components.input;
-/** @type {?} */
-var customElementRef = 'customElement';
 /**
  * @param {?} customComponentOptions
  * @return {?}
@@ -120,7 +118,7 @@ export function createCustomFormioComponent(customComponentOptions) {
                  */
                 function () {
                     /** @type {?} */
-                    var info = __assign({ id: this.key, ref: customElementRef }, this.elementInfo());
+                    var info = __assign({ id: this.key }, this.elementInfo());
                     return info;
                 },
                 enumerable: true,
@@ -154,11 +152,9 @@ export function createCustomFormioComponent(customComponentOptions) {
              * @return {?}
              */
             function (element) {
-                var _a;
-                this.loadRefs(element, (_a = {}, _a[customElementRef] = 'single', _a));
                 /** @type {?} */
                 var superAttach = _super.prototype.attach.call(this, element);
-                this._customAngularElement = this.refs[customElementRef];
+                this._customAngularElement = element.querySelector(customComponentOptions.selector);
                 console.log(this.refs);
                 console.log(this._customAngularElement);
                 if (this._customAngularElement) {
