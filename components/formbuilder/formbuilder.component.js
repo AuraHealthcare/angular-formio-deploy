@@ -153,7 +153,7 @@ var FormBuilderComponent = /** @class */ (function () {
         this.builder = new Builder(this.builderElement.nativeElement, form, assign({
             icons: 'fontawesome',
             sanitizeConfig: {
-                addTags: this.customTags.tags,
+                addTags: this.customTags.tags
             }
         }, this.options || {}));
         return this.builder.ready.then((/**

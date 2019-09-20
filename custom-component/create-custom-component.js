@@ -51,7 +51,6 @@ export function createCustomFormioComponent(customComponentOptions) {
                 if (customComponentOptions.extraValidators) {
                     _this.validators = _this.validators.concat(customComponentOptions.extraValidators);
                 }
-                console.log(_this.options);
                 return _this;
             }
             /**
@@ -121,7 +120,7 @@ export function createCustomFormioComponent(customComponentOptions) {
                  */
                 function () {
                     /** @type {?} */
-                    var info = __assign({ id: this.key }, this.elementInfo());
+                    var info = __assign({ id: this.key, ref: customElementRef }, this.elementInfo());
                     return info;
                 },
                 enumerable: true,
@@ -138,18 +137,13 @@ export function createCustomFormioComponent(customComponentOptions) {
              * @return {?}
              */
             function (value, index) {
-                console.log('asd');
                 /** @type {?} */
                 var info = this.inputInfo;
-                console.log(info);
-                /** @type {?} */
-                var template = this.renderTemplate('input', {
+                return this.renderTemplate(customComponentOptions.template || 'input', {
                     input: info,
                     value: value,
                     index: index
                 });
-                console.log(template);
-                return template;
             };
             /**
              * @param {?} element
@@ -161,23 +155,21 @@ export function createCustomFormioComponent(customComponentOptions) {
              */
             function (element) {
                 var _a;
-                console.log('sajt');
-                console.log(element);
                 this.loadRefs(element, (_a = {}, _a[customElementRef] = 'single', _a));
                 /** @type {?} */
                 var superAttach = _super.prototype.attach.call(this, element);
-                // this._customAngularElement = this.refs[customElementRef].firstChild;
-                // // Bind the custom options and the validations to the Angular component's inputs (flattened)
-                // for (const key in this.component.customOptions) {
-                //   if (this.component.customOptions.hasOwnProperty(key)) {
-                //     this._customAngularElement[key] = this.component.customOptions[key];
-                //   }
-                // }
-                // for (const key in this.component.validate) {
-                //   if (this.component.validate.hasOwnProperty(key)) {
-                //     this._customAngularElement[key] = this.component.validate[key];
-                //   }
-                // }
+                this._customAngularElement = this.refs[customElementRef];
+                // Bind the custom options and the validations to the Angular component's inputs (flattened)
+                for (var key in this.component.customOptions) {
+                    if (this.component.customOptions.hasOwnProperty(key)) {
+                        this._customAngularElement[key] = this.component.customOptions[key];
+                    }
+                }
+                for (var key in this.component.validate) {
+                    if (this.component.validate.hasOwnProperty(key)) {
+                        this._customAngularElement[key] = this.component.validate[key];
+                    }
+                }
                 return superAttach;
             };
             Object.defineProperty(CustomComponent.prototype, "defaultValue", {
@@ -187,6 +179,7 @@ export function createCustomFormioComponent(customComponentOptions) {
                 function () {
                     /** @type {?} */
                     var defaultValue = this.emptyValue;
+                    // handle falsy default value
                     if (!isNil(this.component.defaultValue)) {
                         defaultValue = this.component.defaultValue;
                     }
