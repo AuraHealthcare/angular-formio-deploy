@@ -19,8 +19,6 @@ var CustomTagsService = /** @class */ (function () {
      * @return {?}
      */
     function (tag) {
-        console.log('nagyonbaba');
-        console.log(tag);
         this._tags.push(tag);
         this.tags$.next(this._tags);
     };
