@@ -46,6 +46,9 @@ export function createCustomFormioComponent(customComponentOptions) {
                 // || BaseComponent.editForm;
                 _this.id = FormioUtils.getRandomComponentId();
                 _this.type = customComponentOptions.type;
+                _this.options = __assign({}, _this.options, { sanitizeConfig: {
+                        allowedTags: [customComponentOptions.selector],
+                    } });
                 if (customComponentOptions.extraValidators) {
                     _this.validators = _this.validators.concat(customComponentOptions.extraValidators);
                 }
@@ -146,7 +149,7 @@ export function createCustomFormioComponent(customComponentOptions) {
                     index: index
                 });
                 console.log(template);
-                return template + '<p>sajt</p>';
+                return template;
             };
             /**
              * @param {?} element
@@ -176,19 +179,6 @@ export function createCustomFormioComponent(customComponentOptions) {
                 //   }
                 // }
                 return superAttach;
-            };
-            /**
-             * @param {?} dirty
-             * @return {?}
-             */
-            CustomComponent.prototype.sanitize = /**
-             * @param {?} dirty
-             * @return {?}
-             */
-            function (dirty) {
-                console.log('SAJTOS');
-                console.log(dirty);
-                return dirty;
             };
             Object.defineProperty(CustomComponent.prototype, "defaultValue", {
                 get: /**
