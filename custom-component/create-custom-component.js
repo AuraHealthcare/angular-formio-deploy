@@ -27,7 +27,6 @@ var __assign = (this && this.__assign) || function () {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 import { Components, Utils as FormioUtils } from 'formiojs';
-import { sanitize as sanitizer } from 'dompurify';
 import { clone, isNil } from 'lodash';
 /** @type {?} */
 var BaseComponent = Components.components.input;
@@ -189,16 +188,7 @@ export function createCustomFormioComponent(customComponentOptions) {
             function (dirty) {
                 console.log('SAJTOS');
                 console.log(dirty);
-                /** @type {?} */
-                var asd = sanitizer(dirty, {
-                    ADD_ATTR: ['ref', 'target'],
-                    ADD_TAGS: [customComponentOptions.selector],
-                    USE_PROFILES: {
-                        html: true
-                    }
-                });
-                console.log(asd);
-                return asd;
+                return dirty;
             };
             Object.defineProperty(CustomComponent.prototype, "defaultValue", {
                 get: /**

@@ -19,7 +19,7 @@ export declare function createCustomFormioComponent(customComponentOptions: Form
         };
         renderElement(value: any, index: number): string;
         attach(element: any): any;
-        sanitize(dirty: string | Node): any;
+        sanitize(dirty: string | Node): string | Node;
         readonly defaultValue: any;
         readonly maskOptions: {
             label: any;
