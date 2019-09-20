@@ -52,6 +52,7 @@ export interface FormioOptions {
     i18n?: object;
     fileService?: object;
     hooks?: FormioHookOptions;
+    sanitizeConfig?: any;
 }
 export interface FormioCustomComponentInfo extends BuilderInfo {
     type: string;

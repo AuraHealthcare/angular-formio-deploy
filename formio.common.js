@@ -121,6 +121,8 @@ if (false) {
     FormioOptions.prototype.fileService;
     /** @type {?|undefined} */
     FormioOptions.prototype.hooks;
+    /** @type {?|undefined} */
+    FormioOptions.prototype.sanitizeConfig;
 }
 /**
  * @record

@@ -1,3 +1,14 @@
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 /**
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
@@ -6,11 +17,13 @@ import { Component, Input, ViewEncapsulation, Optional, ElementRef, ViewChild, E
 import { FormioAppConfig } from '../../formio.config';
 import { Formio, FormBuilder, Utils } from 'formiojs';
 import { assign } from 'lodash';
+import { CustomTagsService } from '../../custom-component/custom-tags.service';
 /* tslint:disable */
 var FormBuilderComponent = /** @class */ (function () {
-    function FormBuilderComponent(config) {
+    function FormBuilderComponent(config, customTags) {
         var _this = this;
         this.config = config;
+        this.customTags = customTags;
         this.componentAdding = false;
         this.noeval = false;
         if (this.config) {
@@ -20,6 +33,15 @@ var FormBuilderComponent = /** @class */ (function () {
         else {
             console.warn('You must provide an AppConfig within your application!');
         }
+        this.customTags.tags$.subscribe((/**
+         * @param {?} tags
+         * @return {?}
+         */
+        function (tags) {
+            _this.options = __assign({}, _this.options, { sanitizeConfig: {
+                    addTags: tags,
+                } });
+        }));
         this.change = new EventEmitter();
         this.ready = new Promise((/**
          * @param {?} resolve
@@ -189,7 +211,8 @@ var FormBuilderComponent = /** @class */ (function () {
     ];
     /** @nocollapse */
     FormBuilderComponent.ctorParameters = function () { return [
-        { type: FormioAppConfig, decorators: [{ type: Optional }] }
+        { type: FormioAppConfig, decorators: [{ type: Optional }] },
+        { type: CustomTagsService }
     ]; };
     FormBuilderComponent.propDecorators = {
         form: [{ type: Input }],
@@ -230,4 +253,9 @@ if (false) {
      * @private
      */
     FormBuilderComponent.prototype.config;
+    /**
+     * @type {?}
+     * @private
+     */
+    FormBuilderComponent.prototype.customTags;
 }

@@ -5,6 +5,7 @@
 import { createCustomElement } from '@angular/elements';
 import { Components } from 'formiojs';
 import { createCustomFormioComponent } from './create-custom-component';
+import { CustomTagsService } from './custom-tags.service';
 /**
  * @param {?} options
  * @param {?} angularComponent
@@ -12,6 +13,7 @@ import { createCustomFormioComponent } from './create-custom-component';
  * @return {?}
  */
 export function registerCustomFormioComponent(options, angularComponent, injector) {
+    injector.get(CustomTagsService).addCustomTag(options.selector);
     /** @type {?} */
     var complexCustomComponent = createCustomElement(angularComponent, { injector: injector });
     customElements.define(options.selector, complexCustomComponent);
