@@ -139,11 +139,14 @@ export function createCustomFormioComponent(customComponentOptions) {
                 /** @type {?} */
                 var info = this.inputInfo;
                 console.log(info);
-                return this.renderTemplate('input', {
+                /** @type {?} */
+                var template = this.renderTemplate('input', {
                     input: info,
                     value: value,
                     index: index
                 });
+                console.log(template);
+                return template + '<p>sajt</p>';
             };
             /**
              * @param {?} element
