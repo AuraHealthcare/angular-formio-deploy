@@ -19,6 +19,7 @@ export declare function createCustomFormioComponent(customComponentOptions: Form
         };
         renderElement(value: any, index: number): string;
         attach(element: any): any;
+        sanitize(dirty: string | Node): any;
         readonly defaultValue: any;
         readonly maskOptions: {
             label: any;
@@ -89,7 +90,6 @@ export declare function createCustomFormioComponent(customComponentOptions: Form
         checkTemplate(templates: any, names: any, modes: any): any;
         checkTemplateMode(templatesByName: any, modes: any): any;
         renderTemplate(name: any, data: any, modeOption?: any[]): any;
-        sanitize(dirty: string): any;
         renderString(template: any, data: any): HTMLElement;
         performInputMapping(input: any): any;
         getBrowserLanguage(): string;

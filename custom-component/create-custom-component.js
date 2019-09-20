@@ -27,6 +27,7 @@ var __assign = (this && this.__assign) || function () {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 import { Components, Utils as FormioUtils } from 'formiojs';
+import { sanitize } from 'dompurify';
 import { clone, isNil } from 'lodash';
 /** @type {?} */
 var BaseComponent = Components.components.input;
@@ -176,6 +177,23 @@ export function createCustomFormioComponent(customComponentOptions) {
                 //   }
                 // }
                 return superAttach;
+            };
+            /**
+             * @param {?} dirty
+             * @return {?}
+             */
+            CustomComponent.prototype.sanitize = /**
+             * @param {?} dirty
+             * @return {?}
+             */
+            function (dirty) {
+                return sanitize(dirty, {
+                    ADD_ATTR: ['ref', 'target'],
+                    ADD_TAGS: [customComponentOptions.selector],
+                    USE_PROFILES: {
+                        html: true
+                    }
+                });
             };
             Object.defineProperty(CustomComponent.prototype, "defaultValue", {
                 get: /**
