@@ -30,6 +30,8 @@ import { Components, Utils as FormioUtils } from 'formiojs';
 import { clone, isNil } from 'lodash';
 /** @type {?} */
 var BaseInputComponent = Components.components.input;
+/** @type {?} */
+var TextfieldComponent = Components.components.textfield;
 /**
  * @param {?} customComponentOptions
  * @return {?}
@@ -43,7 +45,6 @@ export function createCustomFormioComponent(customComponentOptions) {
                         addTags: [customComponentOptions.selector],
                     } }), data) || this;
                 _this.component = component;
-                // || BaseComponent.editForm;
                 _this.id = FormioUtils.getRandomComponentId();
                 _this.type = customComponentOptions.type;
                 if (customComponentOptions.extraValidators) {
@@ -191,7 +192,6 @@ export function createCustomFormioComponent(customComponentOptions) {
             });
             return CustomComponent;
         }(BaseInputComponent)),
-        _a.editForm = customComponentOptions.editForm // || BaseComponent.editForm;
-    ,
+        _a.editForm = customComponentOptions.editForm || TextfieldComponent.editForm,
         _a;
 }

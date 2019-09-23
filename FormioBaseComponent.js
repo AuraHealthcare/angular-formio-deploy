@@ -441,6 +441,7 @@ var FormioBaseComponent = /** @class */ (function () {
         if (err.silent) {
             return;
         }
+        this.formio.emit('submitError', errors);
         // Iterate through each one and set the alerts array.
         errors.forEach((/**
          * @param {?} error

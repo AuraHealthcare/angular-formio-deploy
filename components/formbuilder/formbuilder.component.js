@@ -54,13 +54,17 @@ var FormBuilderComponent = /** @class */ (function () {
         instance.off('addComponent');
         instance.off('saveComponent');
         instance.off('updateComponent');
-        instance.off('deleteComponent');
+        instance.off('removeComponent');
         instance.on('addComponent', (/**
-         * @param {?} event
+         * @param {?} component
+         * @param {?} parent
+         * @param {?} path
+         * @param {?} index
+         * @param {?} isNew
          * @return {?}
          */
-        function (event) {
-            if (event.isNew) {
+        function (component, parent, path, index, isNew) {
+            if (isNew) {
                 _this.componentAdding = true;
             }
             else {
@@ -68,43 +72,62 @@ var FormBuilderComponent = /** @class */ (function () {
                     type: 'addComponent',
                     builder: instance,
                     form: instance.schema,
-                    component: event
+                    component: component,
+                    parent: parent,
+                    path: path,
+                    index: index
                 });
                 _this.componentAdding = false;
             }
         }));
         instance.on('saveComponent', (/**
-         * @param {?} event
+         * @param {?} component
+         * @param {?} original
+         * @param {?} parent
+         * @param {?} path
+         * @param {?} index
+         * @param {?} isNew
          * @return {?}
          */
-        function (event) {
+        function (component, original, parent, path, index, isNew) {
             _this.change.emit({
                 type: _this.componentAdding ? 'addComponent' : 'saveComponent',
                 builder: instance,
                 form: instance.schema,
-                component: event
+                component: component,
+                originalComponent: original,
+                parent: parent,
+                path: path,
+                index: index,
+                isNew: isNew || false
             });
             _this.componentAdding = false;
         }));
         instance.on('updateComponent', (/**
-         * @param {?} event
+         * @param {?} component
          * @return {?}
          */
-        function (event) { return _this.change.emit({
+        function (component) { return _this.change.emit({
             type: 'updateComponent',
             builder: instance,
             form: instance.schema,
-            component: event
+            component: component
         }); }));
-        instance.on('deleteComponent', (/**
-         * @param {?} event
+        instance.on('removeComponent', (/**
+         * @param {?} component
+         * @param {?} parent
+         * @param {?} path
+         * @param {?} index
          * @return {?}
          */
-        function (event) { return _this.change.emit({
+        function (component, parent, path, index) { return _this.change.emit({
             type: 'deleteComponent',
             builder: instance,
             form: instance.schema,
-            component: event
+            component: component,
+            parent: parent,
+            path: path,
+            index: index
         }); }));
         this.readyResolve(instance);
         return instance;
