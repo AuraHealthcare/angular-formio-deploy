@@ -134,11 +134,13 @@ if (false) {
     /** @type {?} */
     FormioCustomComponentInfo.prototype.selector;
     /** @type {?|undefined} */
-    FormioCustomComponentInfo.prototype.template;
-    /** @type {?|undefined} */
     FormioCustomComponentInfo.prototype.emptyValue;
     /** @type {?|undefined} */
     FormioCustomComponentInfo.prototype.extraValidators;
+    /** @type {?|undefined} */
+    FormioCustomComponentInfo.prototype.template;
+    /** @type {?|undefined} */
+    FormioCustomComponentInfo.prototype.changeEvent;
     /** @type {?|undefined} */
     FormioCustomComponentInfo.prototype.editForm;
 }

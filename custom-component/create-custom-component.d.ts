@@ -4,7 +4,6 @@ export declare function createCustomFormioComponent(customComponentOptions: Form
     new (component: ExtendedComponentSchema<any>, options: any, data: any): {
         id: string;
         type: string;
-        element: HTMLElement;
         _customAngularElement: FormioCustomElement;
         readonly defaultSchema: ExtendedComponentSchema<any>;
         readonly emptyValue: any;
@@ -198,6 +197,7 @@ export declare function createCustomFormioComponent(customComponentOptions: Form
         focus(): void;
         readonly shouldDisable: boolean;
         readonly info: import("formiojs").ElementInfo;
+        element: any;
         validators: ("required" | "minLength" | "maxLength" | "pattern" | "custom" | "customPrivate" | "min" | "max" | "minSelectedCount" | "maxSelectedCount" | "minWords" | "maxWords" | "email" | "url" | "date" | "day" | "json" | "mask" | "minDate" | "maxDate")[];
         calculatedValue: any;
         options: any;

@@ -107,7 +107,7 @@ export function createCustomFormioComponent(customComponentOptions) {
                 /** @type {?} */
                 var info = _super.prototype.elementInfo.call(this);
                 info.type = customComponentOptions.selector;
-                info.changeEvent = 'valueChange';
+                info.changeEvent = customComponentOptions.changeEvent || 'valueChange';
                 info.attr = __assign({}, info.attr, { class: info.attr.class.replace('form-control', 'form-control-custom-field') // remove the form-control class as the custom angular component may look different
                  });
                 return info;
