@@ -15,6 +15,18 @@ export function registerCustomTag(tag, injector) {
     injector.get(CustomTagsService).addCustomTag(tag);
 }
 /**
+ * @param {?} tags
+ * @param {?} injector
+ * @return {?}
+ */
+export function registerCustomTags(tags, injector) {
+    tags.forEach((/**
+     * @param {?} tag
+     * @return {?}
+     */
+    function (tag) { return registerCustomTag(tag, injector); }));
+}
+/**
  * @param {?} options
  * @param {?} angularComponent
  * @param {?} injector
