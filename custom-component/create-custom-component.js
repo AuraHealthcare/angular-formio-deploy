@@ -159,9 +159,10 @@ export function createCustomFormioComponent(customComponentOptions) {
                 // Bind the custom options and the validations to the Angular component's inputs (flattened)
                 if (this._customAngularElement) {
                     // To make sure we have working input in IE
-                    if (!this._customAngularElement.isConnected) {
+                    if (!this._customAngularElement.getAttribute('ng-version')) {
                         console.log('missing');
                         console.log(this.key);
+                        console.log(this._customAngularElement.getAttribute('ng-version'));
                     }
                     for (var key in this.component.customOptions) {
                         if (this.component.customOptions.hasOwnProperty(key)) {
