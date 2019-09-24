@@ -153,6 +153,7 @@ export function createCustomFormioComponent(customComponentOptions) {
              * @return {?}
              */
             function (element) {
+                var _this = this;
                 /** @type {?} */
                 var superAttach = _super.prototype.attach.call(this, element);
                 this._customAngularElement = element.querySelector(customComponentOptions.selector);
@@ -160,20 +161,23 @@ export function createCustomFormioComponent(customComponentOptions) {
                 if (this._customAngularElement) {
                     // To make sure we have working input in IE
                     // IE doesn't render it properly if not visible on the screen due to
-                    // The whole structure applied via innerHTML to the parent
-                    // So we need to use appendChild
+                    // the whole structure applied via innerHTML to the parent
+                    // so we need to use appendChild
                     if (!this._customAngularElement.getAttribute('ng-version')) {
+                        this._customAngularElement.removeAttribute('ref');
                         /** @type {?} */
-                        var newCustomElement = (/** @type {?} */ (document.createElement(customComponentOptions.selector)));
-                        /** @type {?} */
-                        var attr = void 0;
-                        /** @type {?} */
-                        var attributes = Array.prototype.slice.call(this._customAngularElement.attributes);
-                        while (attr = attributes.pop()) {
-                            newCustomElement.setAttribute(attr.nodeName, attr.nodeValue);
-                        }
-                        this._customAngularElement.appendChild(newCustomElement);
-                        this._customAngularElement = newCustomElement;
+                        var newCustomElement_1 = (/** @type {?} */ (document.createElement(customComponentOptions.selector)));
+                        newCustomElement_1.setAttribute('ref', 'input');
+                        Object.keys(this.inputInfo.attr).forEach((/**
+                         * @param {?} attr
+                         * @return {?}
+                         */
+                        function (attr) {
+                            newCustomElement_1.setAttribute(attr, _this.inputInfo.attr[attr]);
+                        }));
+                        this._customAngularElement.appendChild(newCustomElement_1);
+                        this._customAngularElement = newCustomElement_1;
+                        superAttach = _super.prototype.attach.call(this, element);
                     }
                     for (var key in this.component.customOptions) {
                         if (this.component.customOptions.hasOwnProperty(key)) {
