@@ -159,13 +159,21 @@ export function createCustomFormioComponent(customComponentOptions) {
                 // Bind the custom options and the validations to the Angular component's inputs (flattened)
                 if (this._customAngularElement) {
                     // To make sure we have working input in IE
+                    // IE doesn't render it properly if not visible on the screen due to
+                    // The whole structure applied via innerHTML to the parent
+                    // So we need to use appendChild
                     if (!this._customAngularElement.getAttribute('ng-version')) {
-                        console.log('missing');
-                        console.log(this.key);
-                        console.log(this._customAngularElement.getAttribute('ng-version'));
                         /** @type {?} */
-                        var test = document.createElement(customComponentOptions.selector);
-                        this._customAngularElement.appendChild(test);
+                        var newCustomElement = (/** @type {?} */ (document.createElement(customComponentOptions.selector)));
+                        /** @type {?} */
+                        var attr = void 0;
+                        /** @type {?} */
+                        var attributes = Array.prototype.slice.call(this._customAngularElement.attributes);
+                        while (attr = attributes.pop()) {
+                            newCustomElement.setAttribute(attr.nodeName, attr.nodeValue);
+                        }
+                        this._customAngularElement.appendChild(newCustomElement);
+                        this._customAngularElement = newCustomElement;
                     }
                     for (var key in this.component.customOptions) {
                         if (this.component.customOptions.hasOwnProperty(key)) {
