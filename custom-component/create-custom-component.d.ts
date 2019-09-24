@@ -18,6 +18,7 @@ export declare function createCustomFormioComponent(customComponentOptions: Form
         };
         renderElement(value: any, index: number): any;
         attach(element: HTMLElement): any;
+        useWrapper(): boolean;
         readonly defaultValue: any;
         readonly maskOptions: {
             label: any;
@@ -41,7 +42,6 @@ export declare function createCustomFormioComponent(customComponentOptions: Form
         addFocusBlurEvents(element: any): void;
         dataValue: any;
         readonly addAnother: any;
-        useWrapper(): boolean;
         renderRow(value: any, index: any): any;
         onSelectMaskHandler(event: any): void;
         tryAttachMultipleMasksInput(): boolean;

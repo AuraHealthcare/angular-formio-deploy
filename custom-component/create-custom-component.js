@@ -171,6 +171,15 @@ export function createCustomFormioComponent(customComponentOptions) {
                 }
                 return superAttach;
             };
+            /**
+             * @return {?}
+             */
+            CustomComponent.prototype.useWrapper = /**
+             * @return {?}
+             */
+            function () {
+                return this.component.hasOwnProperty('multiple') && this.component.multiple && !this.component.disableMultiValueWrapper;
+            };
             Object.defineProperty(CustomComponent.prototype, "defaultValue", {
                 get: /**
                  * @return {?}
