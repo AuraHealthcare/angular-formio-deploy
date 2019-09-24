@@ -163,6 +163,9 @@ export function createCustomFormioComponent(customComponentOptions) {
                         console.log('missing');
                         console.log(this.key);
                         console.log(this._customAngularElement.getAttribute('ng-version'));
+                        /** @type {?} */
+                        var test = document.createElement(customComponentOptions.selector);
+                        this._customAngularElement.appendChild(test);
                     }
                     for (var key in this.component.customOptions) {
                         if (this.component.customOptions.hasOwnProperty(key)) {
