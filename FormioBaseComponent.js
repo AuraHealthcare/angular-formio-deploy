@@ -155,7 +155,6 @@ var FormioBaseComponent = /** @class */ (function () {
         function (loadedForm) {
             return _this.formLoad.emit(loadedForm);
         }));
-        this.formio.form = this.form;
         return this.formio.ready.then((/**
          * @return {?}
          */
@@ -361,7 +360,7 @@ var FormioBaseComponent = /** @class */ (function () {
             if (changes.submission && changes.submission.currentValue) {
                 _this.formio.submission = changes.submission.currentValue;
             }
-            if (changes.hideComponents) {
+            if (changes.hideComponents && changes.hideComponents.currentValue) {
                 _this.formio.hideComponents(changes.hideComponents.currentValue);
             }
         }));
@@ -441,7 +440,9 @@ var FormioBaseComponent = /** @class */ (function () {
         if (err.silent) {
             return;
         }
-        this.formio.emit('submitError', errors);
+        if (this.formio) {
+            this.formio.emit('submitError', errors);
+        }
         // Iterate through each one and set the alerts array.
         errors.forEach((/**
          * @param {?} error
@@ -474,21 +475,23 @@ var FormioBaseComponent = /** @class */ (function () {
                 type: 'danger',
                 message: message,
             });
-            paths.forEach((/**
-             * @param {?} path
-             * @return {?}
-             */
-            function (path) {
-                /** @type {?} */
-                var component = _this.formio.getComponent(path);
-                /** @type {?} */
-                var components = Array.isArray(component) ? component : [component];
-                components.forEach((/**
-                 * @param {?} comp
+            if (_this.formio) {
+                paths.forEach((/**
+                 * @param {?} path
                  * @return {?}
                  */
-                function (comp) { return comp.setCustomValidity(message, true); }));
-            }));
+                function (path) {
+                    /** @type {?} */
+                    var component = _this.formio.getComponent(path);
+                    /** @type {?} */
+                    var components = Array.isArray(component) ? component : [component];
+                    components.forEach((/**
+                     * @param {?} comp
+                     * @return {?}
+                     */
+                    function (comp) { return comp.setCustomValidity(message, true); }));
+                }));
+            }
         }));
     };
     /**
