@@ -12,4 +12,4 @@ export * from './components/alerts/formio.alerts.component';
 export * from './custom-component/create-custom-component';
 export * from './custom-component/register-custom-component';
 export { FormioModule } from './formio.module';
-export { Formio, Utils as FormioUtils } from 'formiojs';
+export { Formio, Utils as FormioUtils, Templates, Components, ComponentSchema, ExtendedComponentSchema, ElementInfo } from 'formiojs';

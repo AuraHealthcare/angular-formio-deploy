@@ -159,9 +159,9 @@ export function createCustomFormioComponent(customComponentOptions) {
                 this._customAngularElement = element.querySelector(customComponentOptions.selector);
                 // Bind the custom options and the validations to the Angular component's inputs (flattened)
                 if (this._customAngularElement) {
-                    // To make sure we have working input in IE
-                    // IE doesn't render it properly if not visible on the screen due to
-                    // the whole structure applied via innerHTML to the parent
+                    // To make sure we have working input in IE...
+                    // IE doesn't render it properly if it's not visible on the screen
+                    // due to the whole structure applied via innerHTML to the parent
                     // so we need to use appendChild
                     if (!this._customAngularElement.getAttribute('ng-version')) {
                         this._customAngularElement.removeAttribute('ref');

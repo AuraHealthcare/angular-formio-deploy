@@ -16,4 +16,4 @@ export { FormioAlertsComponent } from './components/alerts/formio.alerts.compone
 export { createCustomFormioComponent } from './custom-component/create-custom-component';
 export { registerCustomTag, registerCustomTags, registerCustomFormioComponent, registerCustomFormioComponentWithClass } from './custom-component/register-custom-component';
 export { FormioModule } from './formio.module';
-export { Formio, Utils as FormioUtils } from 'formiojs';
+export { Formio, Utils as FormioUtils, Templates, Components } from 'formiojs';
