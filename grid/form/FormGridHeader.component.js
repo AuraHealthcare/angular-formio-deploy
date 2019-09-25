@@ -13,7 +13,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 import { Component } from '@angular/core';
 import { GridHeaderComponent } from '../GridHeaderComponent';

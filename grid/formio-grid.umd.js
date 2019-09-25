@@ -6,7 +6,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var GridHeaderComponent = /** @class */ (function () {
         function GridHeaderComponent() {
@@ -86,7 +86,8 @@
                  * @return {?}
                  */
                 function (component) {
-                    if (component.input && component.tableView) {
+                    if (component.input &&
+                        (!component.hasOwnProperty('tableView') || component.tableView)) {
                         _this.headers.push({
                             label: component.label,
                             key: 'data.' + component.key,
@@ -108,7 +109,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var GridBodyComponent = /** @class */ (function () {
         function GridBodyComponent() {
@@ -290,7 +291,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var GridFooterComponent = /** @class */ (function () {
         function GridFooterComponent() {
@@ -353,7 +354,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var index = {
         header: SubmissionGridHeaderComponent,

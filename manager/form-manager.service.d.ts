@@ -25,7 +25,7 @@ export declare class FormManagerService {
     hasAccess(roles: any): boolean;
     setForm(form: any): any;
     loadForm(): any;
-    setSubmission(route: ActivatedRoute): Promise<{}>;
+    setSubmission(route: ActivatedRoute): Promise<unknown>;
     submissionLoaded(submission: any): void;
     loadForms(): any;
     createForm(form: any): Promise<any>;

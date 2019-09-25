@@ -13,7 +13,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 import { Component } from '@angular/core';
 import { Utils, Components } from 'formiojs';
@@ -47,7 +47,8 @@ var SubmissionGridHeaderComponent = /** @class */ (function (_super) {
              * @return {?}
              */
             function (component) {
-                if (component.input && component.tableView) {
+                if (component.input &&
+                    (!component.hasOwnProperty('tableView') || component.tableView)) {
                     _this.headers.push({
                         label: component.label,
                         key: 'data.' + component.key,

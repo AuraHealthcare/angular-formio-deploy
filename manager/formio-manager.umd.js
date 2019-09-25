@@ -9,7 +9,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var FormioAppConfig = /** @class */ (function () {
         function FormioAppConfig() {
@@ -24,7 +24,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var FormManagerConfig = /** @class */ (function () {
         function FormManagerConfig() {
@@ -40,7 +40,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var FormioAuthConfig = /** @class */ (function () {
         function FormioAuthConfig() {
@@ -53,7 +53,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var FormioAuthService = /** @class */ (function () {
         function FormioAuthService(appConfig, config) {
@@ -73,15 +73,12 @@
             else {
                 console.error('You must provide an AppConfig within your application!');
             }
-            if (this.config.project) {
-                formiojs.Formio.setAuthUrl(this.config.project);
-            }
             this.loginForm =
-                (this.config.project || this.appConfig.appUrl) +
+                this.appConfig.appUrl +
                     '/' +
                     lodash.get(this.config, 'login.form', 'user/login');
             this.registerForm =
-                (this.config.project || this.appConfig.appUrl) +
+                this.appConfig.appUrl +
                     '/' +
                     lodash.get(this.config, 'register.form', 'user/login');
             this.onLogin = new core.EventEmitter();
@@ -317,7 +314,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var FormManagerService = /** @class */ (function () {
         function FormManagerService(appConfig, config, auth) {
@@ -610,7 +607,7 @@
 
     /**
      * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var SubmissionViewComponent = /** @class */ (function () {
         function SubmissionViewComponent(service) {
