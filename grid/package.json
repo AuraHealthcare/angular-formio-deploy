@@ -31,7 +31,7 @@
 },
   "dependencies": {
   "core-js": "^3.2.1",
-  "formiojs": "git+https://git@github.com/merobal/formio.js.git#types",
+  "formiojs": "git+https://github.com/merobal/formio-js-deploy.git",
   "lodash": "^4.17.15",
   "ngx-bootstrap": "^5.1.2"
 }
