@@ -191,7 +191,7 @@ export function createCustomFormioComponent(customComponentOptions) {
                     }
                     // Ensure we bind the default value
                     if (!this._customAngularElement.value) {
-                        this._customAngularElement.value = this.defaultValue;
+                        this.restoreValue();
                     }
                 }
                 return superAttach;
