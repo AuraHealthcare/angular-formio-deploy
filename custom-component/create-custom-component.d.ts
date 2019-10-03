@@ -111,7 +111,7 @@ export declare function createCustomFormioComponent(customComponentOptions: Form
         readonly defaultViewOnlyValue: "-";
         getValueAsString(value: any): string;
         getView(value: any): string;
-        updateItems(...args: any): void;
+        updateItems(...args: any[]): void;
         createModal(): HTMLElement;
         readonly className: string;
         readonly customStyle: string;
@@ -226,7 +226,7 @@ export declare function createCustomFormioComponent(customComponentOptions: Form
         empty(element: HTMLElement): void;
         interpolate(string: any, data: any): any;
         evaluate(func: any, args: any, ret: any, tokenize?: any): any;
-        hook(...args: any): any;
+        hook(...args: any[]): any;
     };
     editForm: () => {
         components: ExtendedComponentSchema<any>[];
