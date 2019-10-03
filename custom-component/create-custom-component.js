@@ -189,17 +189,21 @@ export function createCustomFormioComponent(customComponentOptions) {
                             this._customAngularElement[key] = this.component.validate[key];
                         }
                     }
-                    // Ensure we bind the value
-                    if (!this._customAngularElement.value) {
+                    // Ensure we bind the value (if it isn't a multiple-value component with no wrapper)
+                    if (!this._customAngularElement.value && !this.component.disableMultiValueWrapper) {
                         this.restoreValue();
                     }
                 }
                 return superAttach;
             };
+            // Add extra option to support multiple value (e.g. datagrid) with single angular component (disableMultiValueWrapper)
+            // Add extra option to support multiple value (e.g. datagrid) with single angular component (disableMultiValueWrapper)
             /**
              * @return {?}
              */
-            CustomComponent.prototype.useWrapper = /**
+            CustomComponent.prototype.useWrapper = 
+            // Add extra option to support multiple value (e.g. datagrid) with single angular component (disableMultiValueWrapper)
+            /**
              * @return {?}
              */
             function () {
