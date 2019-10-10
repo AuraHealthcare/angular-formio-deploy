@@ -24,11 +24,11 @@ import { CustomTagsService } from '../../custom-component/custom-tags.service';
 /* tslint:disable */
 var FormioComponent = /** @class */ (function (_super) {
     __extends(FormioComponent, _super);
-    function FormioComponent(customTags, loader, config) {
-        var _this = _super.call(this, customTags, loader, config) || this;
-        _this.customTags = customTags;
+    function FormioComponent(loader, config, customTags) {
+        var _this = _super.call(this, loader, config, customTags) || this;
         _this.loader = loader;
         _this.config = config;
+        _this.customTags = customTags;
         _this.noeval = false;
         if (_this.config) {
             Formio.setBaseUrl(_this.config.apiUrl);
@@ -68,9 +68,9 @@ var FormioComponent = /** @class */ (function (_super) {
     ];
     /** @nocollapse */
     FormioComponent.ctorParameters = function () { return [
-        { type: CustomTagsService },
         { type: FormioLoader },
-        { type: FormioAppConfig, decorators: [{ type: Optional }] }
+        { type: FormioAppConfig, decorators: [{ type: Optional }] },
+        { type: CustomTagsService, decorators: [{ type: Optional }] }
     ]; };
     FormioComponent.propDecorators = {
         noeval: [{ type: Input }]
@@ -82,9 +82,9 @@ if (false) {
     /** @type {?} */
     FormioComponent.prototype.noeval;
     /** @type {?} */
-    FormioComponent.prototype.customTags;
-    /** @type {?} */
     FormioComponent.prototype.loader;
     /** @type {?} */
     FormioComponent.prototype.config;
+    /** @type {?} */
+    FormioComponent.prototype.customTags;
 }

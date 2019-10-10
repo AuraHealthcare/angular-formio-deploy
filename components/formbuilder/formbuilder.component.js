@@ -6,6 +6,7 @@ import { Component, Input, ViewEncapsulation, Optional, ElementRef, ViewChild, E
 import { FormioAppConfig } from '../../formio.config';
 import { Formio, FormBuilder, Utils } from 'formiojs';
 import { assign } from 'lodash';
+import { Observable } from 'rxjs';
 import { CustomTagsService } from '../../custom-component/custom-tags.service';
 /* tslint:disable */
 var FormBuilderComponent = /** @class */ (function () {
@@ -38,7 +39,16 @@ var FormBuilderComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
+        var _this = this;
         Utils.Evaluator.noeval = this.noeval;
+        if (this.refresh) {
+            this.refreshSubscription = this.refresh.subscribe((/**
+             * @return {?}
+             */
+            function () {
+                _this.buildForm(_this.form);
+            }));
+        }
     };
     /**
      * @param {?} instance
@@ -173,10 +183,12 @@ var FormBuilderComponent = /** @class */ (function () {
         }
         /** @type {?} */
         var Builder = this.formbuilder || FormBuilder;
+        /** @type {?} */
+        var extraTags = this.customTags ? this.customTags.tags : [];
         this.builder = new Builder(this.builderElement.nativeElement, form, assign({
             icons: 'fontawesome',
             sanitizeConfig: {
-                addTags: this.customTags.tags
+                addTags: extraTags
             }
         }, this.options || {}));
         return this.builder.ready.then((/**
@@ -205,6 +217,9 @@ var FormBuilderComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
+        if (this.refreshSubscription) {
+            this.refreshSubscription.unsubscribe();
+        }
         if (this.formio) {
             this.formio.destroy();
         }
@@ -220,13 +235,14 @@ var FormBuilderComponent = /** @class */ (function () {
     /** @nocollapse */
     FormBuilderComponent.ctorParameters = function () { return [
         { type: FormioAppConfig, decorators: [{ type: Optional }] },
-        { type: CustomTagsService }
+        { type: CustomTagsService, decorators: [{ type: Optional }] }
     ]; };
     FormBuilderComponent.propDecorators = {
         form: [{ type: Input }],
         options: [{ type: Input }],
         formbuilder: [{ type: Input }],
         noeval: [{ type: Input }],
+        refresh: [{ type: Input }],
         change: [{ type: Output }],
         builderElement: [{ type: ViewChild, args: ['builder', { static: true },] }]
     };
@@ -244,6 +260,11 @@ if (false) {
     FormBuilderComponent.prototype.builder;
     /** @type {?} */
     FormBuilderComponent.prototype.componentAdding;
+    /**
+     * @type {?}
+     * @private
+     */
+    FormBuilderComponent.prototype.refreshSubscription;
     /** @type {?} */
     FormBuilderComponent.prototype.form;
     /** @type {?} */
@@ -252,6 +273,8 @@ if (false) {
     FormBuilderComponent.prototype.formbuilder;
     /** @type {?} */
     FormBuilderComponent.prototype.noeval;
+    /** @type {?} */
+    FormBuilderComponent.prototype.refresh;
     /** @type {?} */
     FormBuilderComponent.prototype.change;
     /** @type {?} */

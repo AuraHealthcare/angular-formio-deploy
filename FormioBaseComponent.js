@@ -10,11 +10,11 @@ import { FormioAppConfig } from './formio.config';
 import { isEmpty, get, assign } from 'lodash';
 import { CustomTagsService } from './custom-component/custom-tags.service';
 var FormioBaseComponent = /** @class */ (function () {
-    function FormioBaseComponent(customTags, loader, config) {
+    function FormioBaseComponent(loader, config, customTags) {
         var _this = this;
-        this.customTags = customTags;
         this.loader = loader;
         this.config = config;
+        this.customTags = customTags;
         this.submission = {};
         this.readOnly = false;
         this.viewOnly = false;
@@ -58,6 +58,8 @@ var FormioBaseComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
+        /** @type {?} */
+        var extraTags = this.customTags ? this.customTags.tags : [];
         return assign({}, {
             icons: get(this.config, 'icons', 'fontawesome'),
             noAlerts: get(this.options, 'noAlerts', true),
@@ -67,7 +69,7 @@ var FormioBaseComponent = /** @class */ (function () {
             fileService: get(this.options, 'fileService', null),
             hooks: this.hooks,
             sanitizeConfig: {
-                addTags: this.customTags.tags
+                addTags: extraTags
             }
         }, this.renderOptions || {});
     };
@@ -184,6 +186,8 @@ var FormioBaseComponent = /** @class */ (function () {
         if (this.initialized) {
             return;
         }
+        /** @type {?} */
+        var extraTags = this.customTags ? this.customTags.tags : [];
         this.options = Object.assign({
             errors: {
                 message: 'Please fix the following errors before submitting.'
@@ -196,7 +200,7 @@ var FormioBaseComponent = /** @class */ (function () {
                 beforeSubmit: null
             },
             sanitizeConfig: {
-                addTags: this.customTags.tags
+                addTags: extraTags
             }
         }, this.options);
         this.initialized = true;
@@ -561,9 +565,9 @@ var FormioBaseComponent = /** @class */ (function () {
     };
     /** @nocollapse */
     FormioBaseComponent.ctorParameters = function () { return [
-        { type: CustomTagsService },
         { type: FormioLoader },
-        { type: FormioAppConfig, decorators: [{ type: Optional }] }
+        { type: FormioAppConfig, decorators: [{ type: Optional }] },
+        { type: CustomTagsService, decorators: [{ type: Optional }] }
     ]; };
     FormioBaseComponent.propDecorators = {
         form: [{ type: Input }],
@@ -683,9 +687,9 @@ if (false) {
      */
     FormioBaseComponent.prototype.submitting;
     /** @type {?} */
-    FormioBaseComponent.prototype.customTags;
-    /** @type {?} */
     FormioBaseComponent.prototype.loader;
     /** @type {?} */
     FormioBaseComponent.prototype.config;
+    /** @type {?} */
+    FormioBaseComponent.prototype.customTags;
 }
