@@ -1,8 +1,8 @@
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('formiojs'), require('lodash'), require('lodash/each'), require('lodash/intersection'), require('@angular/router')) :
-    typeof define === 'function' && define.amd ? define('formManagerConfig', ['exports', '@angular/core', 'formiojs', 'lodash', 'lodash/each', 'lodash/intersection', '@angular/router'], factory) :
-    (global = global || self, factory(global['formio-manager'] = {}, global.core, global.formiojs, global.lodash, global._each, global._intersection, global.router));
-}(this, function (exports, core, formiojs, lodash, _each, _intersection, router) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('formiojs'), require('lodash'), require('lodash/each'), require('lodash/intersection')) :
+    typeof define === 'function' && define.amd ? define('formManagerConfig', ['exports', '@angular/core', 'formiojs', 'lodash', 'lodash/each', 'lodash/intersection'], factory) :
+    (global = global || self, factory(global['formio-manager'] = {}, global.core, global.formiojs, global.lodash, global._each, global._intersection));
+}(this, function (exports, core, formiojs, lodash, _each, _intersection) { 'use strict';
 
     _each = _each && _each.hasOwnProperty('default') ? _each['default'] : _each;
     _intersection = _intersection && _intersection.hasOwnProperty('default') ? _intersection['default'] : _intersection;
@@ -609,56 +609,23 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var SubmissionComponent = /** @class */ (function () {
-        function SubmissionComponent(service, route) {
+    var SubmissionViewComponent = /** @class */ (function () {
+        function SubmissionViewComponent(service) {
             this.service = service;
-            this.route = route;
         }
-        /**
-         * @param {?} url
-         * @return {?}
-         */
-        SubmissionComponent.prototype.setDownloadUrl = /**
-         * @param {?} url
-         * @return {?}
-         */
-        function (url) {
-            this.downloadUrl = url;
-        };
-        /**
-         * @return {?}
-         */
-        SubmissionComponent.prototype.ngOnInit = /**
-         * @return {?}
-         */
-        function () {
-            var _this = this;
-            this.service.setSubmission(this.route).then((/**
-             * @param {?} formio
-             * @return {?}
-             */
-            function (formio) {
-                formio.getDownloadUrl().then((/**
-                 * @param {?} url
-                 * @return {?}
-                 */
-                function (url) { return _this.setDownloadUrl(url); }));
-            }));
-        };
-        SubmissionComponent.decorators = [
+        SubmissionViewComponent.decorators = [
             { type: core.Component, args: [{
-                        template: "<a *ngIf=\"downloadUrl\" [href]=\"downloadUrl\" target=\"_blank\" class=\"pull-right\"><img src=\"https://pro.formview.io/assets/pdf.png\" style=\"height: 2em;\" /></a> <ul class=\"nav nav-tabs\" style=\"margin-bottom:10px\"> <li class=\"nav-item\"><a class=\"nav-link\" routerLink=\"../\"><i class=\"fa fa-chevron-left glyphicon glyphicon-chevron-left\"></i></a></li> <li class=\"nav-item\" routerLinkActive=\"active\"><a class=\"nav-link\" routerLink=\"view\" routerLinkActive=\"active\"><i class=\"fa fa-eye glyphicon glyphicon-eye\"></i> View</a></li> <li class=\"nav-item\" routerLinkActive=\"active\" *ngIf=\"service.perms.edit\"><a class=\"nav-link\" routerLink=\"edit\" routerLinkActive=\"active\"><i class=\"fa fa-edit glyphicon glyphicon-edit\"></i> Edit</a></li> <li class=\"nav-item\" routerLinkActive=\"active\" *ngIf=\"service.perms.delete\"><a class=\"nav-link\" routerLink=\"delete\" routerLinkActive=\"active\"><span class=\"fa fa-trash glyphicon glyphicon-trash\"></span></a></li> </ul> <router-outlet></router-outlet> "
+                        template: "<formio [renderer]=\"service.config.renderer\" [src]=\"service.formio.submissionUrl\" [readOnly]=\"true\" (formLoad)=\"service.setForm($event)\" (submissionLoad)=\"service.submissionLoaded($event)\" ></formio> "
                     },] },
         ];
         /** @nocollapse */
-        SubmissionComponent.ctorParameters = function () { return [
-            { type: FormManagerService },
-            { type: router.ActivatedRoute }
+        SubmissionViewComponent.ctorParameters = function () { return [
+            { type: FormManagerService }
         ]; };
-        return SubmissionComponent;
+        return SubmissionViewComponent;
     }());
 
-    exports.SubmissionComponent = SubmissionComponent;
+    exports.SubmissionViewComponent = SubmissionViewComponent;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
