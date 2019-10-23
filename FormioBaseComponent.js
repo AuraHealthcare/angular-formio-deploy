@@ -10,10 +10,10 @@ import { FormioAppConfig } from './formio.config';
 import { isEmpty, get, assign } from 'lodash';
 import { CustomTagsService } from './custom-component/custom-tags.service';
 var FormioBaseComponent = /** @class */ (function () {
-    function FormioBaseComponent(loader, ngZone, config, customTags) {
+    function FormioBaseComponent(ngZone, loader, config, customTags) {
         var _this = this;
-        this.loader = loader;
         this.ngZone = ngZone;
+        this.loader = loader;
         this.config = config;
         this.customTags = customTags;
         this.submission = {};
@@ -605,8 +605,8 @@ var FormioBaseComponent = /** @class */ (function () {
     };
     /** @nocollapse */
     FormioBaseComponent.ctorParameters = function () { return [
-        { type: FormioLoader },
         { type: NgZone },
+        { type: FormioLoader },
         { type: FormioAppConfig, decorators: [{ type: Optional }] },
         { type: CustomTagsService, decorators: [{ type: Optional }] }
     ]; };
@@ -728,9 +728,9 @@ if (false) {
      */
     FormioBaseComponent.prototype.submitting;
     /** @type {?} */
-    FormioBaseComponent.prototype.loader;
-    /** @type {?} */
     FormioBaseComponent.prototype.ngZone;
+    /** @type {?} */
+    FormioBaseComponent.prototype.loader;
     /** @type {?} */
     FormioBaseComponent.prototype.config;
     /** @type {?} */

@@ -24,10 +24,10 @@ import { CustomTagsService } from '../../custom-component/custom-tags.service';
 /* tslint:disable */
 var FormioComponent = /** @class */ (function (_super) {
     __extends(FormioComponent, _super);
-    function FormioComponent(loader, ngZone, config, customTags) {
-        var _this = _super.call(this, loader, ngZone, config, customTags) || this;
-        _this.loader = loader;
+    function FormioComponent(ngZone, loader, config, customTags) {
+        var _this = _super.call(this, ngZone, loader, config, customTags) || this;
         _this.ngZone = ngZone;
+        _this.loader = loader;
         _this.config = config;
         _this.customTags = customTags;
         _this.noeval = false;
@@ -69,8 +69,8 @@ var FormioComponent = /** @class */ (function (_super) {
     ];
     /** @nocollapse */
     FormioComponent.ctorParameters = function () { return [
-        { type: FormioLoader },
         { type: NgZone },
+        { type: FormioLoader },
         { type: FormioAppConfig, decorators: [{ type: Optional }] },
         { type: CustomTagsService, decorators: [{ type: Optional }] }
     ]; };
@@ -84,9 +84,9 @@ if (false) {
     /** @type {?} */
     FormioComponent.prototype.noeval;
     /** @type {?} */
-    FormioComponent.prototype.loader;
-    /** @type {?} */
     FormioComponent.prototype.ngZone;
+    /** @type {?} */
+    FormioComponent.prototype.loader;
     /** @type {?} */
     FormioComponent.prototype.config;
     /** @type {?} */
