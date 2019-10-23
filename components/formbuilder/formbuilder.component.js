@@ -2,7 +2,7 @@
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-import { Component, Input, ViewEncapsulation, Optional, ElementRef, ViewChild, EventEmitter, Output } from '@angular/core';
+import { Component, Input, ViewEncapsulation, Optional, ElementRef, ViewChild, EventEmitter, Output, NgZone } from '@angular/core';
 import { FormioAppConfig } from '../../formio.config';
 import { Formio, FormBuilder, Utils } from 'formiojs';
 import { assign } from 'lodash';
@@ -10,8 +10,9 @@ import { Observable } from 'rxjs';
 import { CustomTagsService } from '../../custom-component/custom-tags.service';
 /* tslint:disable */
 var FormBuilderComponent = /** @class */ (function () {
-    function FormBuilderComponent(config, customTags) {
+    function FormBuilderComponent(ngZone, config, customTags) {
         var _this = this;
+        this.ngZone = ngZone;
         this.config = config;
         this.customTags = customTags;
         this.componentAdding = false;
@@ -46,7 +47,12 @@ var FormBuilderComponent = /** @class */ (function () {
              * @return {?}
              */
             function () {
-                _this.buildForm(_this.form);
+                _this.ngZone.runOutsideAngular((/**
+                 * @return {?}
+                 */
+                function () {
+                    _this.buildForm(_this.form);
+                }));
             }));
         }
     };
@@ -74,21 +80,26 @@ var FormBuilderComponent = /** @class */ (function () {
          * @return {?}
          */
         function (component, parent, path, index, isNew) {
-            if (isNew) {
-                _this.componentAdding = true;
-            }
-            else {
-                _this.change.emit({
-                    type: 'addComponent',
-                    builder: instance,
-                    form: instance.schema,
-                    component: component,
-                    parent: parent,
-                    path: path,
-                    index: index
-                });
-                _this.componentAdding = false;
-            }
+            _this.ngZone.run((/**
+             * @return {?}
+             */
+            function () {
+                if (isNew) {
+                    _this.componentAdding = true;
+                }
+                else {
+                    _this.change.emit({
+                        type: 'addComponent',
+                        builder: instance,
+                        form: instance.schema,
+                        component: component,
+                        parent: parent,
+                        path: path,
+                        index: index
+                    });
+                    _this.componentAdding = false;
+                }
+            }));
         }));
         instance.on('saveComponent', (/**
          * @param {?} component
@@ -100,29 +111,41 @@ var FormBuilderComponent = /** @class */ (function () {
          * @return {?}
          */
         function (component, original, parent, path, index, isNew) {
-            _this.change.emit({
-                type: _this.componentAdding ? 'addComponent' : 'saveComponent',
-                builder: instance,
-                form: instance.schema,
-                component: component,
-                originalComponent: original,
-                parent: parent,
-                path: path,
-                index: index,
-                isNew: isNew || false
-            });
-            _this.componentAdding = false;
+            _this.ngZone.run((/**
+             * @return {?}
+             */
+            function () {
+                _this.change.emit({
+                    type: _this.componentAdding ? 'addComponent' : 'saveComponent',
+                    builder: instance,
+                    form: instance.schema,
+                    component: component,
+                    originalComponent: original,
+                    parent: parent,
+                    path: path,
+                    index: index,
+                    isNew: isNew || false
+                });
+                _this.componentAdding = false;
+            }));
         }));
         instance.on('updateComponent', (/**
          * @param {?} component
          * @return {?}
          */
-        function (component) { return _this.change.emit({
-            type: 'updateComponent',
-            builder: instance,
-            form: instance.schema,
-            component: component
-        }); }));
+        function (component) {
+            _this.ngZone.run((/**
+             * @return {?}
+             */
+            function () {
+                _this.change.emit({
+                    type: 'updateComponent',
+                    builder: instance,
+                    form: instance.schema,
+                    component: component
+                });
+            }));
+        }));
         instance.on('removeComponent', (/**
          * @param {?} component
          * @param {?} parent
@@ -130,16 +153,28 @@ var FormBuilderComponent = /** @class */ (function () {
          * @param {?} index
          * @return {?}
          */
-        function (component, parent, path, index) { return _this.change.emit({
-            type: 'deleteComponent',
-            builder: instance,
-            form: instance.schema,
-            component: component,
-            parent: parent,
-            path: path,
-            index: index
-        }); }));
-        this.readyResolve(instance);
+        function (component, parent, path, index) {
+            _this.ngZone.run((/**
+             * @return {?}
+             */
+            function () {
+                _this.change.emit({
+                    type: 'deleteComponent',
+                    builder: instance,
+                    form: instance.schema,
+                    component: component,
+                    parent: parent,
+                    path: path,
+                    index: index
+                });
+            }));
+        }));
+        this.ngZone.run((/**
+         * @return {?}
+         */
+        function () {
+            _this.readyResolve(instance);
+        }));
         return instance;
     };
     /**
@@ -206,8 +241,14 @@ var FormBuilderComponent = /** @class */ (function () {
      * @return {?}
      */
     function (changes) {
+        var _this = this;
         if (changes.form && changes.form.currentValue) {
-            this.buildForm(changes.form.currentValue || { components: [] });
+            this.ngZone.runOutsideAngular((/**
+             * @return {?}
+             */
+            function () {
+                _this.buildForm(changes.form.currentValue || { components: [] });
+            }));
         }
     };
     /**
@@ -234,6 +275,7 @@ var FormBuilderComponent = /** @class */ (function () {
     ];
     /** @nocollapse */
     FormBuilderComponent.ctorParameters = function () { return [
+        { type: NgZone },
         { type: FormioAppConfig, decorators: [{ type: Optional }] },
         { type: CustomTagsService, decorators: [{ type: Optional }] }
     ]; };
@@ -279,6 +321,11 @@ if (false) {
     FormBuilderComponent.prototype.change;
     /** @type {?} */
     FormBuilderComponent.prototype.builderElement;
+    /**
+     * @type {?}
+     * @private
+     */
+    FormBuilderComponent.prototype.ngZone;
     /**
      * @type {?}
      * @private

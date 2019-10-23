@@ -15,7 +15,7 @@ var __extends = (this && this.__extends) || (function () {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-import { Component, Optional, ViewEncapsulation, Input } from '@angular/core';
+import { Component, Optional, ViewEncapsulation, Input, NgZone } from '@angular/core';
 import { FormioLoader } from '../loader/formio.loader';
 import { FormioAppConfig } from '../../formio.config';
 import { Formio, Form, Utils } from 'formiojs';
@@ -24,9 +24,10 @@ import { CustomTagsService } from '../../custom-component/custom-tags.service';
 /* tslint:disable */
 var FormioComponent = /** @class */ (function (_super) {
     __extends(FormioComponent, _super);
-    function FormioComponent(loader, config, customTags) {
-        var _this = _super.call(this, loader, config, customTags) || this;
+    function FormioComponent(loader, ngZone, config, customTags) {
+        var _this = _super.call(this, loader, ngZone, config, customTags) || this;
         _this.loader = loader;
+        _this.ngZone = ngZone;
         _this.config = config;
         _this.customTags = customTags;
         _this.noeval = false;
@@ -69,6 +70,7 @@ var FormioComponent = /** @class */ (function (_super) {
     /** @nocollapse */
     FormioComponent.ctorParameters = function () { return [
         { type: FormioLoader },
+        { type: NgZone },
         { type: FormioAppConfig, decorators: [{ type: Optional }] },
         { type: CustomTagsService, decorators: [{ type: Optional }] }
     ]; };
@@ -83,6 +85,8 @@ if (false) {
     FormioComponent.prototype.noeval;
     /** @type {?} */
     FormioComponent.prototype.loader;
+    /** @type {?} */
+    FormioComponent.prototype.ngZone;
     /** @type {?} */
     FormioComponent.prototype.config;
     /** @type {?} */

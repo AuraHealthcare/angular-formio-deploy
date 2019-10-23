@@ -1,4 +1,4 @@
-import { EventEmitter, OnInit, OnChanges, OnDestroy, ElementRef } from '@angular/core';
+import { EventEmitter, OnInit, OnChanges, OnDestroy, ElementRef, NgZone } from '@angular/core';
 import { FormioService } from './formio.service';
 import { FormioLoader } from './components/loader/formio.loader';
 import { FormioAlerts } from './components/alerts/formio.alerts';
@@ -7,6 +7,7 @@ import { FormioForm, FormioOptions, FormioRefreshValue } from './formio.common';
 import { CustomTagsService } from './custom-component/custom-tags.service';
 export declare class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
     loader: FormioLoader;
+    ngZone: NgZone;
     config: FormioAppConfig;
     customTags?: CustomTagsService;
     form?: FormioForm;
@@ -45,7 +46,7 @@ export declare class FormioBaseComponent implements OnInit, OnChanges, OnDestroy
     private formioReady;
     private formioReadyResolve;
     private submitting;
-    constructor(loader: FormioLoader, config: FormioAppConfig, customTags?: CustomTagsService);
+    constructor(loader: FormioLoader, ngZone: NgZone, config: FormioAppConfig, customTags?: CustomTagsService);
     getRenderer(): any;
     getRendererOptions(): any;
     createRenderer(): any;

@@ -2,7 +2,7 @@
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-import { Input, Output, EventEmitter, Optional, ElementRef, ViewChild } from '@angular/core';
+import { Input, Output, EventEmitter, Optional, ElementRef, ViewChild, NgZone } from '@angular/core';
 import { FormioService } from './formio.service';
 import { FormioLoader } from './components/loader/formio.loader';
 import { FormioAlerts } from './components/alerts/formio.alerts';
@@ -10,9 +10,10 @@ import { FormioAppConfig } from './formio.config';
 import { isEmpty, get, assign } from 'lodash';
 import { CustomTagsService } from './custom-component/custom-tags.service';
 var FormioBaseComponent = /** @class */ (function () {
-    function FormioBaseComponent(loader, config, customTags) {
+    function FormioBaseComponent(loader, ngZone, config, customTags) {
         var _this = this;
         this.loader = loader;
+        this.ngZone = ngZone;
         this.config = config;
         this.customTags = customTags;
         this.submission = {};
@@ -116,63 +117,92 @@ var FormioBaseComponent = /** @class */ (function () {
          * @param {?} data
          * @return {?}
          */
-        function (data) { return _this.onPrevPage(data); }));
+        function (data) { return _this.ngZone.run((/**
+         * @return {?}
+         */
+        function () { return _this.onPrevPage(data); })); }));
         this.formio.on('nextPage', (/**
          * @param {?} data
          * @return {?}
          */
-        function (data) { return _this.onNextPage(data); }));
+        function (data) { return _this.ngZone.run((/**
+         * @return {?}
+         */
+        function () { return _this.onNextPage(data); })); }));
         this.formio.on('change', (/**
          * @param {?} value
          * @return {?}
          */
-        function (value) { return _this.change.emit(value); }));
+        function (value) { return _this.ngZone.run((/**
+         * @return {?}
+         */
+        function () { return _this.change.emit(value); })); }));
         this.formio.on('customEvent', (/**
          * @param {?} event
          * @return {?}
          */
         function (event) {
-            return _this.customEvent.emit(event);
+            return _this.ngZone.run((/**
+             * @return {?}
+             */
+            function () { return _this.customEvent.emit(event); }));
         }));
         this.formio.on('submit', (/**
          * @param {?} submission
          * @return {?}
          */
         function (submission) {
-            return _this.submitForm(submission);
+            return _this.ngZone.run((/**
+             * @return {?}
+             */
+            function () { return _this.submitForm(submission); }));
         }));
         this.formio.on('error', (/**
          * @param {?} err
          * @return {?}
          */
-        function (err) { return _this.onError(err); }));
+        function (err) { return _this.ngZone.run((/**
+         * @return {?}
+         */
+        function () { return _this.onError(err); })); }));
         this.formio.on('render', (/**
          * @return {?}
          */
-        function () { return _this.render.emit(); }));
+        function () { return _this.ngZone.run((/**
+         * @return {?}
+         */
+        function () { return _this.render.emit(); })); }));
         this.formio.on('formLoad', (/**
          * @param {?} loadedForm
          * @return {?}
          */
         function (loadedForm) {
-            return _this.formLoad.emit(loadedForm);
+            return _this.ngZone.run((/**
+             * @return {?}
+             */
+            function () { return _this.formLoad.emit(loadedForm); }));
         }));
         return this.formio.ready.then((/**
          * @return {?}
          */
         function () {
-            _this.loader.loading = false;
-            _this.ready.emit(_this);
-            _this.formioReadyResolve(_this.formio);
-            if (_this.formio.submissionReady) {
-                _this.formio.submissionReady.then((/**
-                 * @param {?} submission
-                 * @return {?}
-                 */
-                function (submission) {
-                    _this.submissionLoad.emit(submission);
-                }));
-            }
+            _this.ngZone.run((/**
+             * @return {?}
+             */
+            function () {
+                _this.loader.loading = false;
+                _this.ready.emit(_this);
+                _this.formioReadyResolve(_this.formio);
+                if (_this.formio.submissionReady) {
+                    _this.formio.submissionReady.then((/**
+                     * @param {?} submission
+                     * @return {?}
+                     */
+                    function (submission) {
+                        _this.submissionLoad.emit(submission);
+                    }));
+                }
+            }));
             return _this.formio;
         }));
     };
@@ -262,7 +292,12 @@ var FormioBaseComponent = /** @class */ (function () {
              */
             function (form) {
                 if (form && form.components) {
-                    _this.setForm(form);
+                    _this.ngZone.runOutsideAngular((/**
+                     * @return {?}
+                     */
+                    function () {
+                        _this.setForm(form);
+                    }));
                 }
                 // if a submission is also provided.
                 if (isEmpty(_this.submission) &&
@@ -355,7 +390,12 @@ var FormioBaseComponent = /** @class */ (function () {
         var _this = this;
         this.initialize();
         if (changes.form && changes.form.currentValue) {
-            this.setForm(changes.form.currentValue);
+            this.ngZone.runOutsideAngular((/**
+             * @return {?}
+             */
+            function () {
+                _this.setForm(changes.form.currentValue);
+            }));
         }
         this.formioReady.then((/**
          * @return {?}
@@ -566,6 +606,7 @@ var FormioBaseComponent = /** @class */ (function () {
     /** @nocollapse */
     FormioBaseComponent.ctorParameters = function () { return [
         { type: FormioLoader },
+        { type: NgZone },
         { type: FormioAppConfig, decorators: [{ type: Optional }] },
         { type: CustomTagsService, decorators: [{ type: Optional }] }
     ]; };
@@ -688,6 +729,8 @@ if (false) {
     FormioBaseComponent.prototype.submitting;
     /** @type {?} */
     FormioBaseComponent.prototype.loader;
+    /** @type {?} */
+    FormioBaseComponent.prototype.ngZone;
     /** @type {?} */
     FormioBaseComponent.prototype.config;
     /** @type {?} */
