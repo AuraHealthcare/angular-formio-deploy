@@ -1,7 +1,6 @@
-import { ChangeDetectorRef } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 export declare class FormioLoader {
-    private cdr;
+    loading$: BehaviorSubject<boolean>;
     loading: boolean;
-    constructor(cdr: ChangeDetectorRef);
     setLoading(loading: boolean): void;
 }

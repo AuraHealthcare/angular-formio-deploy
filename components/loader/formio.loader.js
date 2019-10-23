@@ -2,10 +2,11 @@
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-import { Injectable, ChangeDetectorRef } from '@angular/core';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 var FormioLoader = /** @class */ (function () {
-    function FormioLoader(cdr) {
-        this.cdr = cdr;
+    function FormioLoader() {
+        this.loading$ = new BehaviorSubject(true);
         this.loading = true;
     }
     /**
@@ -18,24 +19,17 @@ var FormioLoader = /** @class */ (function () {
      */
     function (loading) {
         this.loading = loading;
-        this.cdr.detectChanges();
+        this.loading$.next(loading);
     };
     FormioLoader.decorators = [
         { type: Injectable },
     ];
-    /** @nocollapse */
-    FormioLoader.ctorParameters = function () { return [
-        { type: ChangeDetectorRef }
-    ]; };
     return FormioLoader;
 }());
 export { FormioLoader };
 if (false) {
     /** @type {?} */
+    FormioLoader.prototype.loading$;
+    /** @type {?} */
     FormioLoader.prototype.loading;
-    /**
-     * @type {?}
-     * @private
-     */
-    FormioLoader.prototype.cdr;
 }

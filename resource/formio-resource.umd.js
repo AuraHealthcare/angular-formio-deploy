@@ -1,8 +1,8 @@
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('lodash'), require('formiojs'), require('native-promise-only')) :
-    typeof define === 'function' && define.amd ? define('formioResource', ['exports', '@angular/core', 'lodash', 'formiojs', 'native-promise-only'], factory) :
-    (global = global || self, factory(global['formio-resource'] = {}, global.core, global._, global.formiojs, global.Promise$1));
-}(this, function (exports, core, _, formiojs, Promise$1) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('lodash'), require('formiojs'), require('rxjs'), require('native-promise-only')) :
+    typeof define === 'function' && define.amd ? define('formioResource', ['exports', '@angular/core', 'lodash', 'formiojs', 'rxjs', 'native-promise-only'], factory) :
+    (global = global || self, factory(global['formio-resource'] = {}, global.core, global._, global.formiojs, global.rxjs, global.Promise$1));
+}(this, function (exports, core, _, formiojs, rxjs, Promise$1) { 'use strict';
 
     var ___default = 'default' in _ ? _['default'] : _;
     Promise$1 = Promise$1 && Promise$1.hasOwnProperty('default') ? Promise$1['default'] : Promise$1;
@@ -387,8 +387,8 @@
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var FormioLoader = /** @class */ (function () {
-        function FormioLoader(cdr) {
-            this.cdr = cdr;
+        function FormioLoader() {
+            this.loading$ = new rxjs.BehaviorSubject(true);
             this.loading = true;
         }
         /**
@@ -401,15 +401,11 @@
          */
         function (loading) {
             this.loading = loading;
-            this.cdr.detectChanges();
+            this.loading$.next(loading);
         };
         FormioLoader.decorators = [
             { type: core.Injectable },
         ];
-        /** @nocollapse */
-        FormioLoader.ctorParameters = function () { return [
-            { type: core.ChangeDetectorRef }
-        ]; };
         return FormioLoader;
     }());
 
