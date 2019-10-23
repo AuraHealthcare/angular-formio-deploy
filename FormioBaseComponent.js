@@ -190,7 +190,7 @@ var FormioBaseComponent = /** @class */ (function () {
              * @return {?}
              */
             function () {
-                _this.loader.loading = false;
+                _this.loader.setLoading(false);
                 _this.ready.emit(_this);
                 _this.formioReadyResolve(_this.formio);
                 if (_this.formio.submissionReady) {
@@ -285,7 +285,7 @@ var FormioBaseComponent = /** @class */ (function () {
             if (!this.service) {
                 this.service = new FormioService(this.src);
             }
-            this.loader.loading = true;
+            this.loader.setLoading(true);
             this.service.loadForm({ params: { live: 1 } }).subscribe((/**
              * @param {?} form
              * @return {?}
@@ -470,9 +470,9 @@ var FormioBaseComponent = /** @class */ (function () {
      */
     function (err) {
         var _this = this;
-        this.loader.loading = false;
         this.alerts.setAlerts([]);
         this.submitting = false;
+        this.loader.setLoading(false);
         if (!err) {
             return;
         }

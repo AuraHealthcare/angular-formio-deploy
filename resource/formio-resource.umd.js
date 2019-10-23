@@ -387,12 +387,29 @@
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var FormioLoader = /** @class */ (function () {
-        function FormioLoader() {
+        function FormioLoader(cdr) {
+            this.cdr = cdr;
             this.loading = true;
         }
+        /**
+         * @param {?} loading
+         * @return {?}
+         */
+        FormioLoader.prototype.setLoading = /**
+         * @param {?} loading
+         * @return {?}
+         */
+        function (loading) {
+            this.loading = loading;
+            this.cdr.detectChanges();
+        };
         FormioLoader.decorators = [
             { type: core.Injectable },
         ];
+        /** @nocollapse */
+        FormioLoader.ctorParameters = function () { return [
+            { type: core.ChangeDetectorRef }
+        ]; };
         return FormioLoader;
     }());
 
