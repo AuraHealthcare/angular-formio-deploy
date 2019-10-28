@@ -2,7 +2,7 @@
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('lodash'), require('formiojs'), require('rxjs'), require('native-promise-only')) :
     typeof define === 'function' && define.amd ? define('formioResource', ['exports', '@angular/core', 'lodash', 'formiojs', 'rxjs', 'native-promise-only'], factory) :
     (global = global || self, factory(global['formio-resource'] = {}, global.core, global._, global.formiojs, global.rxjs, global.Promise$1));
-}(this, function (exports, core, _, formiojs, rxjs, Promise$1) { 'use strict';
+}(this, (function (exports, core, _, formiojs, rxjs, Promise$1) { 'use strict';
 
     var ___default = 'default' in _ ? _['default'] : _;
     Promise$1 = Promise$1 && Promise$1.hasOwnProperty('default') ? Promise$1['default'] : Promise$1;
@@ -781,4 +781,4 @@
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
-}));
+})));

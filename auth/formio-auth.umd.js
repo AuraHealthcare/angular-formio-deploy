@@ -2,7 +2,7 @@
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('lodash'), require('formiojs')) :
     typeof define === 'function' && define.amd ? define('authComponent', ['exports', '@angular/core', 'lodash', 'formiojs'], factory) :
     (global = global || self, factory(global['formio-auth'] = {}, global.core, global.lodash, global.formiojs));
-}(this, function (exports, core, lodash, formiojs) { 'use strict';
+}(this, (function (exports, core, lodash, formiojs) { 'use strict';
 
     /**
      * @fileoverview added by tsickle
@@ -317,4 +317,4 @@
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
-}));
+})));

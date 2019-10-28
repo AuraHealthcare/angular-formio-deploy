@@ -2,7 +2,7 @@
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('formiojs'), require('lodash'), require('lodash/each'), require('lodash/intersection')) :
     typeof define === 'function' && define.amd ? define('formioBaseComponent', ['exports', '@angular/core', 'formiojs', 'lodash', 'lodash/each', 'lodash/intersection'], factory) :
     (global = global || self, factory(global['angular-formio'] = {}, global.core, global.formiojs, global.lodash, global._each, global._intersection));
-}(this, function (exports, core, formiojs, lodash, _each, _intersection) { 'use strict';
+}(this, (function (exports, core, formiojs, lodash, _each, _intersection) { 'use strict';
 
     _each = _each && _each.hasOwnProperty('default') ? _each['default'] : _each;
     _intersection = _intersection && _intersection.hasOwnProperty('default') ? _intersection['default'] : _intersection;
@@ -629,4 +629,4 @@
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
-}));
+})));

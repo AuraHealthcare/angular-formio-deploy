@@ -2,7 +2,7 @@
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('formiojs'), require('lodash')) :
     typeof define === 'function' && define.amd ? define('gridBodyComponent', ['exports', '@angular/core', 'formiojs', 'lodash'], factory) :
     (global = global || self, factory(global['formio-grid'] = {}, global.core, global.formiojs, global.lodash));
-}(this, function (exports, core, formiojs, lodash) { 'use strict';
+}(this, (function (exports, core, formiojs, lodash) { 'use strict';
 
     /**
      * @fileoverview added by tsickle
@@ -366,4 +366,4 @@
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
-}));
+})));
