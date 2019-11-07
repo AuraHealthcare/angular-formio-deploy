@@ -130,7 +130,7 @@ var FormioResourceService = /** @class */ (function () {
     function () {
         var _this = this;
         this.formFormio = new Formio(this.formUrl);
-        this.loader.loading = true;
+        this.loader.setLoading(true);
         this.formLoading = this.formFormio
             .loadForm()
             .then((/**
@@ -140,7 +140,7 @@ var FormioResourceService = /** @class */ (function () {
         function (form) {
             _this.form = form;
             _this.formResolve(form);
-            _this.loader.loading = false;
+            _this.loader.setLoading(false);
             _this.loadParents();
             return form;
         }), (/**
@@ -255,7 +255,7 @@ var FormioResourceService = /** @class */ (function () {
     function (route) {
         var _this = this;
         this.setContext(route);
-        this.loader.loading = true;
+        this.loader.setLoading(true);
         this.resourceLoading = this.resourceLoaded = this.formio
             .loadSubmission(null, { ignoreCache: true })
             .then((/**
@@ -264,7 +264,7 @@ var FormioResourceService = /** @class */ (function () {
          */
         function (resource) {
             _this.resource = resource;
-            _this.loader.loading = false;
+            _this.loader.setLoading(false);
             _this.refresh.emit({
                 property: 'submission',
                 value: _this.resource

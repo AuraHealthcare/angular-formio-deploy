@@ -22,7 +22,7 @@ var FormioGridComponent = /** @class */ (function () {
         this.rowAction = new EventEmitter();
         this.createItem = new EventEmitter();
         this.error = new EventEmitter();
-        this.loader.loading = true;
+        this.loader.setLoading(true);
     }
     /**
      * @param {?} property
@@ -173,7 +173,8 @@ var FormioGridComponent = /** @class */ (function () {
          * @return {?}
          */
         function (_loading) {
-            this.loader.loading = this.isLoading = _loading;
+            this.isLoading = _loading;
+            this.loader.setLoading(_loading);
         },
         enumerable: true,
         configurable: true
