@@ -81,7 +81,7 @@
             this.registerForm =
                 this.appConfig.appUrl +
                     '/' +
-                    _.get(this.config, 'register.form', 'user/login');
+                    _.get(this.config, 'register.form', 'user/register');
             this.onLogin = new i0.EventEmitter();
             this.onLogout = new i0.EventEmitter();
             this.onRegister = new i0.EventEmitter();

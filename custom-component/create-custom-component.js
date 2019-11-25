@@ -27,7 +27,7 @@ var __assign = (this && this.__assign) || function () {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 import { Components, Utils as FormioUtils } from 'formiojs';
-import { clone, isNil } from 'lodash';
+import { clone, isNil, isArray } from 'lodash';
 /** @type {?} */
 var BaseInputComponent = Components.components.input;
 /** @type {?} */
@@ -187,6 +187,13 @@ export function createCustomFormioComponent(customComponentOptions) {
                     for (var key in this.component.validate) {
                         if (this.component.validate.hasOwnProperty(key)) {
                             this._customAngularElement[key] = this.component.validate[key];
+                        }
+                    }
+                    if (isArray(customComponentOptions.fieldOptions) && customComponentOptions.fieldOptions.length > 0) {
+                        for (var key in customComponentOptions.fieldOptions) {
+                            if (this.component.validate.hasOwnProperty(key)) {
+                                this._customAngularElement[key] = this.component.validate[key];
+                            }
                         }
                     }
                     // Ensure we bind the value (if it isn't a multiple-value component with no wrapper)

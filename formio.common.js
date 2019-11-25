@@ -138,6 +138,8 @@ if (false) {
     /** @type {?|undefined} */
     FormioCustomComponentInfo.prototype.extraValidators;
     /** @type {?|undefined} */
+    FormioCustomComponentInfo.prototype.fieldOptions;
+    /** @type {?|undefined} */
     FormioCustomComponentInfo.prototype.template;
     /** @type {?|undefined} */
     FormioCustomComponentInfo.prototype.changeEvent;

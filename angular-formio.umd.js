@@ -1542,6 +1542,13 @@
                                 this._customAngularElement[key] = this.component.validate[key];
                             }
                         }
+                        if (lodash.isArray(customComponentOptions.fieldOptions) && customComponentOptions.fieldOptions.length > 0) {
+                            for (var key in customComponentOptions.fieldOptions) {
+                                if (this.component.validate.hasOwnProperty(key)) {
+                                    this._customAngularElement[key] = this.component.validate[key];
+                                }
+                            }
+                        }
                         // Ensure we bind the value (if it isn't a multiple-value component with no wrapper)
                         if (!this._customAngularElement.value && !this.component.disableMultiValueWrapper) {
                             this.restoreValue();
