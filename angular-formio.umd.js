@@ -1542,10 +1542,12 @@
                                 this._customAngularElement[key] = this.component.validate[key];
                             }
                         }
-                        if (lodash.isArray(customComponentOptions.fieldOptions) && customComponentOptions.fieldOptions.length > 0) {
-                            for (var key in customComponentOptions.fieldOptions) {
-                                if (this.component.hasOwnProperty(key)) {
-                                    this._customAngularElement[key] = this.component[key];
+                        /** @type {?} */
+                        var fieldOptions = customComponentOptions.fieldOptions;
+                        if (lodash.isArray(fieldOptions) && fieldOptions.length > 0) {
+                            for (var key in fieldOptions) {
+                                if (fieldOptions.hasOwnProperty(key)) {
+                                    this._customAngularElement[key] = this.component[fieldOptions[key]];
                                 }
                             }
                         }
