@@ -191,8 +191,8 @@ export function createCustomFormioComponent(customComponentOptions) {
                     }
                     if (isArray(customComponentOptions.fieldOptions) && customComponentOptions.fieldOptions.length > 0) {
                         for (var key in customComponentOptions.fieldOptions) {
-                            if (this.component.validate.hasOwnProperty(key)) {
-                                this._customAngularElement[key] = this.component.validate[key];
+                            if (this.component.hasOwnProperty(key)) {
+                                this._customAngularElement[key] = this.component[key];
                             }
                         }
                     }
