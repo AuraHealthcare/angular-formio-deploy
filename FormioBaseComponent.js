@@ -411,7 +411,19 @@ var FormioBaseComponent = /** @class */ (function () {
                 _this.formio.submission = changes.submission.currentValue;
             }
             if (changes.hideComponents && changes.hideComponents.currentValue) {
-                _this.formio.hideComponents(changes.hideComponents.currentValue);
+                /** @type {?} */
+                var hiddenComponents_1 = changes.hideComponents.currentValue;
+                _this.formio.options.hide = hiddenComponents_1;
+                _this.formio.everyComponent((/**
+                 * @param {?} component
+                 * @return {?}
+                 */
+                function (component) {
+                    component.options.hide = hiddenComponents_1;
+                    if (hiddenComponents_1.includes(component.component.key)) {
+                        component.visible = false;
+                    }
+                }));
             }
         }));
     };
