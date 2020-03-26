@@ -24,12 +24,15 @@ var __assign = (this && this.__assign) || function () {
 };
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated from: custom-component/create-custom-component.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 import { Components, Utils as FormioUtils } from 'formiojs';
-import { clone, isNil } from 'lodash';
+import { clone, isNil, isArray } from 'lodash';
 /** @type {?} */
-var BaseComponent = Components.components.base;
+var BaseInputComponent = Components.components.input;
+/** @type {?} */
+var TextfieldComponent = Components.components.textfield;
 /**
  * @param {?} customComponentOptions
  * @return {?}
@@ -39,7 +42,9 @@ export function createCustomFormioComponent(customComponentOptions) {
     return _a = /** @class */ (function (_super) {
             __extends(CustomComponent, _super);
             function CustomComponent(component, options, data) {
-                var _this = _super.call(this, component, options, data) || this;
+                var _this = _super.call(this, component, __assign(__assign({}, options), { sanitizeConfig: {
+                        addTags: [customComponentOptions.selector],
+                    } }), data) || this;
                 _this.component = component;
                 _this.id = FormioUtils.getRandomComponentId();
                 _this.type = customComponentOptions.type;
@@ -48,6 +53,15 @@ export function createCustomFormioComponent(customComponentOptions) {
                 }
                 return _this;
             }
+            /**
+             * @return {?}
+             */
+            CustomComponent.schema = /**
+             * @return {?}
+             */
+            function () {
+                return BaseInputComponent.schema(__assign(__assign({}, customComponentOptions.schema), { type: customComponentOptions.type }));
+            };
             Object.defineProperty(CustomComponent.prototype, "defaultSchema", {
                 get: /**
                  * @return {?}
@@ -88,15 +102,6 @@ export function createCustomFormioComponent(customComponentOptions) {
             /**
              * @return {?}
              */
-            CustomComponent.schema = /**
-             * @return {?}
-             */
-            function () {
-                return BaseComponent.schema(__assign({}, customComponentOptions.schema, { type: customComponentOptions.type }));
-            };
-            /**
-             * @return {?}
-             */
             CustomComponent.prototype.elementInfo = /**
              * @return {?}
              */
@@ -104,76 +109,126 @@ export function createCustomFormioComponent(customComponentOptions) {
                 /** @type {?} */
                 var info = _super.prototype.elementInfo.call(this);
                 info.type = customComponentOptions.selector;
-                info.changeEvent = 'valueChange';
-                info.attr = __assign({}, info.attr, { class: info.attr.class.replace('form-control', 'form-control-custom-field') // remove the form-control class as the custom angular component may look different
+                info.changeEvent = customComponentOptions.changeEvent || 'valueChange';
+                info.attr = __assign(__assign({}, info.attr), { class: info.attr.class.replace('form-control', 'form-control-custom-field') // remove the form-control class as the custom angular component may look different
                  });
                 return info;
             };
+            Object.defineProperty(CustomComponent.prototype, "inputInfo", {
+                get: /**
+                 * @return {?}
+                 */
+                function () {
+                    /** @type {?} */
+                    var info = __assign({ id: this.key }, this.elementInfo());
+                    return info;
+                },
+                enumerable: true,
+                configurable: true
+            });
             /**
-             * @param {?} state
+             * @param {?} value
+             * @param {?} index
              * @return {?}
              */
-            CustomComponent.prototype.build = /**
-             * @param {?} state
+            CustomComponent.prototype.renderElement = /**
+             * @param {?} value
+             * @param {?} index
              * @return {?}
              */
-            function (state) {
-                state = state || {};
-                this.calculatedValue = state.calculatedValue;
-                this.createElement();
+            function (value, index) {
                 /** @type {?} */
-                var labelAtTheBottom = this.component.labelPosition === 'bottom';
-                if (!labelAtTheBottom) {
-                    this.createLabel(this.element);
-                }
-                this.createInput(this.element);
-                if (labelAtTheBottom) {
-                    this.createLabel(this.element);
-                }
-                this.createDescription(this.element);
-                // Disable if needed.
-                if (this.shouldDisable) {
-                    this.disabled = true;
-                }
-                // Bind the custom options and the validations to the Angular component's inputs (flattened)
-                for (var key in this.component.customOptions) {
-                    if (this.component.customOptions.hasOwnProperty(key)) {
-                        this._customAngularElement[key] = this.component.customOptions[key];
-                    }
-                }
-                for (var key in this.component.validate) {
-                    if (this.component.validate.hasOwnProperty(key)) {
-                        this._customAngularElement[key] = this.component.validate[key];
-                    }
-                }
-                // Restore the value.
-                this.restoreValue();
-                // Attach the refresh on events.
-                this.attachRefreshOn();
-                this.autofocus();
-                this.attachLogic();
+                var info = this.inputInfo;
+                return this.renderTemplate(customComponentOptions.template || 'input', {
+                    input: info,
+                    value: value,
+                    index: index
+                });
             };
             /**
-             * @param {?} container
+             * @param {?} element
              * @return {?}
              */
-            CustomComponent.prototype.createInput = /**
-             * @param {?} container
+            CustomComponent.prototype.attach = /**
+             * @param {?} element
              * @return {?}
              */
-            function (container) {
+            function (element) {
+                var _this = this;
                 /** @type {?} */
-                var input = (/** @type {?} */ (this.ce(this.info.type, this.info.attr)));
-                this.setInputMask(input);
-                /** @type {?} */
-                var inputGroup = this.addInputGroup(input, container);
-                this.addPrefix(input, inputGroup);
-                this.addInput(input, inputGroup || container);
-                this.addSuffix(input, inputGroup);
-                this.errorContainer = container;
-                this.setInputStyles(inputGroup || input);
-                this._customAngularElement = input;
-                return inputGroup || input;
+                var superAttach = _super.prototype.attach.call(this, element);
+                this._customAngularElement = element.querySelector(customComponentOptions.selector);
+                // Bind the custom options and the validations to the Angular component's inputs (flattened)
+                if (this._customAngularElement) {
+                    // To make sure we have working input in IE...
+                    // IE doesn't render it properly if it's not visible on the screen
+                    // due to the whole structure applied via innerHTML to the parent
+                    // so we need to use appendChild
+                    if (!this._customAngularElement.getAttribute('ng-version')) {
+                        this._customAngularElement.removeAttribute('ref');
+                        /** @type {?} */
+                        var newCustomElement_1 = (/** @type {?} */ (document.createElement(customComponentOptions.selector)));
+                        newCustomElement_1.setAttribute('ref', 'input');
+                        Object.keys(this.inputInfo.attr).forEach((/**
+                         * @param {?} attr
+                         * @return {?}
+                         */
+                        function (attr) {
+                            newCustomElement_1.setAttribute(attr, _this.inputInfo.attr[attr]);
+                        }));
+                        this._customAngularElement.appendChild(newCustomElement_1);
+                        this._customAngularElement = newCustomElement_1;
+                        superAttach = _super.prototype.attach.call(this, element);
+                    }
+                    // Bind customOptions
+                    for (var key in this.component.customOptions) {
+                        if (this.component.customOptions.hasOwnProperty(key)) {
+                            this._customAngularElement[key] = this.component.customOptions[key];
+                        }
+                    }
+                    // Bind validate options
+                    for (var key in this.component.validate) {
+                        if (this.component.validate.hasOwnProperty(key)) {
+                            this._customAngularElement[key] = this.component.validate[key];
+                        }
+                    }
+                    // Bind options explicitly set
+                    /** @type {?} */
+                    var fieldOptions = customComponentOptions.fieldOptions;
+                    if (isArray(fieldOptions) && fieldOptions.length > 0) {
+                        for (var key in fieldOptions) {
+                            if (fieldOptions.hasOwnProperty(key)) {
+                                this._customAngularElement[fieldOptions[key]] = this.component[fieldOptions[key]];
+                            }
+                        }
+                    }
+                    // Attach event listener for emit event
+                    this._customAngularElement.addEventListener('formioEvent', (/**
+                     * @param {?} event
+                     * @return {?}
+                     */
+                    function (event) {
+                        _this.emit(event.detail.eventName, __assign(__assign({}, event.detail.data), { component: _this.component }));
+                    }));
+                    // Ensure we bind the value (if it isn't a multiple-value component with no wrapper)
+                    if (!this._customAngularElement.value && !this.component.disableMultiValueWrapper) {
+                        this.restoreValue();
+                    }
+                }
+                return superAttach;
+            };
+            // Add extra option to support multiple value (e.g. datagrid) with single angular component (disableMultiValueWrapper)
+            // Add extra option to support multiple value (e.g. datagrid) with single angular component (disableMultiValueWrapper)
+            /**
+             * @return {?}
+             */
+            CustomComponent.prototype.useWrapper = 
+            // Add extra option to support multiple value (e.g. datagrid) with single angular component (disableMultiValueWrapper)
+            /**
+             * @return {?}
+             */
+            function () {
+                return this.component.hasOwnProperty('multiple') && this.component.multiple && !this.component.disableMultiValueWrapper;
             };
             Object.defineProperty(CustomComponent.prototype, "defaultValue", {
                 get: /**
@@ -182,20 +237,20 @@ export function createCustomFormioComponent(customComponentOptions) {
                 function () {
                     /** @type {?} */
                     var defaultValue = this.emptyValue;
+                    // handle falsy default value
                     if (!isNil(this.component.defaultValue)) {
                         defaultValue = this.component.defaultValue;
                     }
                     if (this.component.customDefaultValue && !this.options.preview) {
                         defaultValue = this.evaluate(this.component.customDefaultValue, { value: '' }, 'value');
                     }
-                    // Clone so that it creates a new instance.
                     return clone(defaultValue);
                 },
                 enumerable: true,
                 configurable: true
             });
             return CustomComponent;
-        }(BaseComponent)),
-        _a.editForm = customComponentOptions.editForm || BaseComponent.editForm,
+        }(BaseInputComponent)),
+        _a.editForm = customComponentOptions.editForm || TextfieldComponent.editForm,
         _a;
 }

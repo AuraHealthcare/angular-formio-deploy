@@ -1,6 +1,4 @@
-import { ExtendedComponentSchema, BuilderInfo, ValidateOptions } from 'formiojs';
-import { EventEmitter } from '@angular/core';
-import { NgElement, WithProperties } from '@angular/elements';
+import { ExtendedComponentSchema, ValidateOptions } from 'formiojs';
 export { ConditionalOptions, ValidateOptions } from 'formiojs';
 export interface ComponentOptions<T = any, V = ValidateOptions> extends ExtendedComponentSchema<T> {
     validate?: V;
@@ -37,7 +35,8 @@ export interface ErrorsOptions {
 export declare class FormioError {
     message: string;
     component: ExtendedComponentSchema;
-    constructor(message: string, component: ExtendedComponentSchema);
+    silent?: boolean;
+    constructor(message: string, component: ExtendedComponentSchema, silent?: boolean);
 }
 export declare type FormioSubmissionCallback = (error: FormioError, submission: object) => void;
 export declare type FormioBeforeSubmit = (submission: object, callback: FormioSubmissionCallback) => void;
@@ -51,21 +50,5 @@ export interface FormioOptions {
     i18n?: object;
     fileService?: object;
     hooks?: FormioHookOptions;
-}
-export interface FormioCustomComponentInfo extends BuilderInfo {
-    type: string;
-    selector: string;
-    emptyValue?: any;
-    extraValidators?: (keyof ValidateOptions)[];
-    editForm?: () => {
-        components: ExtendedComponentSchema[];
-    };
-}
-export declare type FormioCustomElement = NgElement & WithProperties<{
-    value: any;
-} & ExtendedComponentSchema>;
-export interface FormioCustomComponent<T> {
-    value: T;
-    valueChange: EventEmitter<T>;
-    disabled: boolean;
+    sanitizeConfig?: any;
 }

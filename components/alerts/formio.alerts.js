@@ -1,6 +1,7 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated from: components/alerts/formio.alerts.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @record
@@ -11,6 +12,8 @@ if (false) {
     FormioAlert.prototype.type;
     /** @type {?} */
     FormioAlert.prototype.message;
+    /** @type {?|undefined} */
+    FormioAlert.prototype.component;
 }
 var FormioAlerts = /** @class */ (function () {
     function FormioAlerts() {

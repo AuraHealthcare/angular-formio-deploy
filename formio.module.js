@@ -1,6 +1,7 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated from: formio.module.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -10,6 +11,7 @@ import { FormioAlerts } from './components/alerts/formio.alerts';
 import { FormioAlertsComponent } from './components/alerts/formio.alerts.component';
 import { FormioLoader } from './components/loader/formio.loader';
 import { FormioLoaderComponent } from './components/loader/formio.loader.component';
+import { CustomTagsService } from './custom-component/custom-tags.service';
 var FormioModule = /** @class */ (function () {
     function FormioModule() {
     }
@@ -32,7 +34,8 @@ var FormioModule = /** @class */ (function () {
                     ],
                     providers: [
                         FormioLoader,
-                        FormioAlerts
+                        FormioAlerts,
+                        CustomTagsService
                     ],
                     entryComponents: [
                         FormioComponent,

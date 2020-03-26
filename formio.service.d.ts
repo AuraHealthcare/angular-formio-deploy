@@ -9,6 +9,6 @@ export declare class FormioService {
     saveForm(form: FormioForm): Observable<FormioForm>;
     loadForm(options?: any): Observable<FormioForm>;
     loadSubmission(): Observable<{}>;
-    saveSubmission(submission: {}, opts?: {}): Observable<{}>;
+    saveSubmission(submission: {}): Observable<{}>;
     loadSubmissions(): Observable<{}>;
 }

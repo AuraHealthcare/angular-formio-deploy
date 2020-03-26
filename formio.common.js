@@ -1,6 +1,7 @@
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated from: formio.common.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @record
@@ -80,9 +81,10 @@ if (false) {
     ErrorsOptions.prototype.message;
 }
 var FormioError = /** @class */ (function () {
-    function FormioError(message, component) {
+    function FormioError(message, component, silent) {
         this.message = message;
         this.component = component;
+        this.silent = silent;
     }
     return FormioError;
 }());
@@ -92,6 +94,8 @@ if (false) {
     FormioError.prototype.message;
     /** @type {?} */
     FormioError.prototype.component;
+    /** @type {?} */
+    FormioError.prototype.silent;
 }
 /**
  * @record
@@ -118,33 +122,6 @@ if (false) {
     FormioOptions.prototype.fileService;
     /** @type {?|undefined} */
     FormioOptions.prototype.hooks;
-}
-/**
- * @record
- */
-export function FormioCustomComponentInfo() { }
-if (false) {
-    /** @type {?} */
-    FormioCustomComponentInfo.prototype.type;
-    /** @type {?} */
-    FormioCustomComponentInfo.prototype.selector;
     /** @type {?|undefined} */
-    FormioCustomComponentInfo.prototype.emptyValue;
-    /** @type {?|undefined} */
-    FormioCustomComponentInfo.prototype.extraValidators;
-    /** @type {?|undefined} */
-    FormioCustomComponentInfo.prototype.editForm;
-}
-/**
- * @record
- * @template T
- */
-export function FormioCustomComponent() { }
-if (false) {
-    /** @type {?} */
-    FormioCustomComponent.prototype.value;
-    /** @type {?} */
-    FormioCustomComponent.prototype.valueChange;
-    /** @type {?} */
-    FormioCustomComponent.prototype.disabled;
+    FormioOptions.prototype.sanitizeConfig;
 }
