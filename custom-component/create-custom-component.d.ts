@@ -176,7 +176,7 @@ export declare function createCustomFormioComponent(customComponentOptions: Form
         checkValidity(data: any, dirty: any, rowData: any): boolean;
         readonly validationValue: any;
         isEmpty(value: any): boolean;
-        validateMultiple(): boolean;
+        validateMultiple(value: any): boolean;
         readonly errors: any[];
         setCustomValidity(message: any, dirty: any): void;
         shouldSkipValidation(data: any, dirty: any, rowData: any): boolean;
