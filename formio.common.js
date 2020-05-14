@@ -67,6 +67,28 @@ if (false) {
 /**
  * @record
  */
+export function ComponentInstance() { }
+if (false) {
+    /** @type {?} */
+    ComponentInstance.prototype.component;
+    /** @type {?} */
+    ComponentInstance.prototype.id;
+    /** @type {?} */
+    ComponentInstance.prototype.type;
+    /**
+     * @param {?} value
+     * @return {?}
+     */
+    ComponentInstance.prototype.asString = function (value) { };
+    /**
+     * @param {?} value
+     * @return {?}
+     */
+    ComponentInstance.prototype.getView = function (value) { };
+}
+/**
+ * @record
+ */
 export function AlertsOptions() { }
 if (false) {
     /** @type {?} */
@@ -114,6 +136,8 @@ if (false) {
     FormioOptions.prototype.errors;
     /** @type {?|undefined} */
     FormioOptions.prototype.alerts;
+    /** @type {?|undefined} */
+    FormioOptions.prototype.alertsPosition;
     /** @type {?|undefined} */
     FormioOptions.prototype.disableAlerts;
     /** @type {?|undefined} */

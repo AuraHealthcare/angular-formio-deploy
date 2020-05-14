@@ -60,74 +60,141 @@ var FormioService = /** @class */ (function () {
     };
     /**
      * @param {?} form
+     * @param {?=} options
      * @return {?}
      */
     FormioService.prototype.saveForm = /**
      * @param {?} form
+     * @param {?=} options
      * @return {?}
      */
-    function (form) {
+    function (form, options) {
         var _this = this;
         return this.requestWrapper((/**
          * @return {?}
          */
-        function () { return _this.formio.saveForm(form); }));
+        function () { return _this.formio.saveForm(form, options); }));
     };
     /**
+     * @param {?=} query
      * @param {?=} options
      * @return {?}
      */
     FormioService.prototype.loadForm = /**
+     * @param {?=} query
      * @param {?=} options
      * @return {?}
      */
-    function (options) {
+    function (query, options) {
         var _this = this;
         return this.requestWrapper((/**
          * @return {?}
          */
-        function () { return _this.formio.loadForm(options); }));
+        function () { return _this.formio.loadForm(query, options); }));
     };
     /**
+     * @param {?} query
+     * @param {?=} options
+     * @return {?}
+     */
+    FormioService.prototype.loadForms = /**
+     * @param {?} query
+     * @param {?=} options
+     * @return {?}
+     */
+    function (query, options) {
+        var _this = this;
+        return this.requestWrapper((/**
+         * @return {?}
+         */
+        function () { return _this.formio.loadForms(query, options); }));
+    };
+    /**
+     * @param {?=} query
+     * @param {?=} options
      * @return {?}
      */
     FormioService.prototype.loadSubmission = /**
+     * @param {?=} query
+     * @param {?=} options
      * @return {?}
      */
-    function () {
+    function (query, options) {
         var _this = this;
         return this.requestWrapper((/**
          * @return {?}
          */
-        function () { return _this.formio.loadSubmission(); }));
+        function () { return _this.formio.loadSubmission(query, options); }));
+    };
+    /**
+     * @param {?} user
+     * @param {?} form
+     * @param {?} submission
+     * @return {?}
+     */
+    FormioService.prototype.userPermissions = /**
+     * @param {?} user
+     * @param {?} form
+     * @param {?} submission
+     * @return {?}
+     */
+    function (user, form, submission) {
+        var _this = this;
+        return this.requestWrapper((/**
+         * @return {?}
+         */
+        function () { return _this.formio.userPermissions(user, form, submission); }));
+    };
+    /**
+     * @param {?=} data
+     * @param {?=} options
+     * @return {?}
+     */
+    FormioService.prototype.deleteSubmission = /**
+     * @param {?=} data
+     * @param {?=} options
+     * @return {?}
+     */
+    function (data, options) {
+        var _this = this;
+        return this.requestWrapper((/**
+         * @return {?}
+         */
+        function () { return _this.formio.deleteSubmission(data, options); }));
     };
     /**
      * @param {?} submission
+     * @param {?=} options
      * @return {?}
      */
     FormioService.prototype.saveSubmission = /**
      * @param {?} submission
+     * @param {?=} options
      * @return {?}
      */
-    function (submission) {
+    function (submission, options) {
         var _this = this;
         return this.requestWrapper((/**
          * @return {?}
          */
-        function () { return _this.formio.saveSubmission(submission); }));
+        function () { return _this.formio.saveSubmission(submission, options); }));
     };
     /**
+     * @param {?=} query
+     * @param {?=} options
      * @return {?}
      */
     FormioService.prototype.loadSubmissions = /**
+     * @param {?=} query
+     * @param {?=} options
      * @return {?}
      */
-    function () {
+    function (query, options) {
         var _this = this;
         return this.requestWrapper((/**
          * @return {?}
          */
-        function () { return _this.formio.loadSubmissions(); }));
+        function () { return _this.formio.loadSubmissions(query, options); }));
     };
     return FormioService;
 }());

@@ -1,13 +1,12 @@
-import { EventEmitter, OnInit, OnChanges, OnDestroy, ElementRef, NgZone } from '@angular/core';
+import { ElementRef, EventEmitter, NgZone, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { FormioService } from './formio.service';
-import { FormioLoader } from './components/loader/formio.loader';
 import { FormioAlerts } from './components/alerts/formio.alerts';
 import { FormioAppConfig } from './formio.config';
 import { FormioForm, FormioOptions, FormioRefreshValue } from './formio.common';
 import { CustomTagsService } from './custom-component/custom-tags.service';
+import { AlertsPosition } from './types/alerts-position';
 export declare class FormioBaseComponent implements OnInit, OnChanges, OnDestroy {
     ngZone: NgZone;
-    loader: FormioLoader;
     config: FormioAppConfig;
     customTags?: CustomTagsService;
     form?: FormioForm;
@@ -41,13 +40,15 @@ export declare class FormioBaseComponent implements OnInit, OnChanges, OnDestroy
     submissionLoad: EventEmitter<any>;
     ready: EventEmitter<FormioBaseComponent>;
     formioElement?: ElementRef<any>;
+    AlertsPosition: typeof AlertsPosition;
     formio: any;
     initialized: boolean;
     alerts: FormioAlerts;
     formioReady: Promise<any>;
     private formioReadyResolve;
     private submitting;
-    constructor(ngZone: NgZone, loader: FormioLoader, config: FormioAppConfig, customTags?: CustomTagsService);
+    isLoading: boolean;
+    constructor(ngZone: NgZone, config: FormioAppConfig, customTags?: CustomTagsService);
     getRenderer(): any;
     getRendererOptions(): any;
     createRenderer(): any;

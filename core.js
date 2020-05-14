@@ -10,7 +10,6 @@ export { extendRouter } from './formio.utils';
 export { FormioBaseComponent } from './FormioBaseComponent';
 export { FormioComponent } from './components/formio/formio.component';
 export { FormBuilderComponent } from './components/formbuilder/formbuilder.component';
-export { FormioLoader } from './components/loader/formio.loader';
 export { FormioLoaderComponent } from './components/loader/formio.loader.component';
 export { FormioAlerts } from './components/alerts/formio.alerts';
 export { FormioAlertsComponent } from './components/alerts/formio.alerts.component';

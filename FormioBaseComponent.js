@@ -3,19 +3,18 @@
  * Generated from: FormioBaseComponent.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-import { Input, Output, EventEmitter, Optional, ElementRef, ViewChild, NgZone } from '@angular/core';
+import { ElementRef, EventEmitter, Input, NgZone, Optional, Output, ViewChild } from '@angular/core';
 import { FormioService } from './formio.service';
-import { FormioLoader } from './components/loader/formio.loader';
 import { FormioAlerts } from './components/alerts/formio.alerts';
 import { FormioAppConfig } from './formio.config';
-import { isEmpty, get, assign } from 'lodash';
+import { assign, get, isEmpty } from 'lodash';
 import { CustomTagsService } from './custom-component/custom-tags.service';
 import Evaluator from 'formiojs/utils/Evaluator';
+import { AlertsPosition } from './types/alerts-position';
 var FormioBaseComponent = /** @class */ (function () {
-    function FormioBaseComponent(ngZone, loader, config, customTags) {
+    function FormioBaseComponent(ngZone, config, customTags) {
         var _this = this;
         this.ngZone = ngZone;
-        this.loader = loader;
         this.config = config;
         this.customTags = customTags;
         this.submission = {};
@@ -35,9 +34,11 @@ var FormioBaseComponent = /** @class */ (function () {
         this.formLoad = new EventEmitter();
         this.submissionLoad = new EventEmitter();
         this.ready = new EventEmitter();
+        this.AlertsPosition = AlertsPosition;
         this.initialized = false;
         this.alerts = new FormioAlerts();
         this.submitting = false;
+        this.isLoading = true;
         this.formioReady = new Promise((/**
          * @param {?} ready
          * @return {?}
@@ -194,7 +195,7 @@ var FormioBaseComponent = /** @class */ (function () {
              * @return {?}
              */
             function () {
-                _this.loader.setLoading(false);
+                _this.isLoading = false;
                 _this.ready.emit(_this);
                 _this.formioReadyResolve(_this.formio);
                 if (_this.formio.submissionReady) {
@@ -222,7 +223,8 @@ var FormioBaseComponent = /** @class */ (function () {
         }
         /** @type {?} */
         var extraTags = this.customTags ? this.customTags.tags : [];
-        this.options = Object.assign({
+        /** @type {?} */
+        var defaultOptions = {
             errors: {
                 message: 'Please fix the following errors before submitting.'
             },
@@ -235,8 +237,13 @@ var FormioBaseComponent = /** @class */ (function () {
             },
             sanitizeConfig: {
                 addTags: extraTags
-            }
-        }, this.options);
+            },
+            alertsPosition: AlertsPosition.top,
+        };
+        this.options = Object.assign(defaultOptions, this.options);
+        if (this.options.disableAlerts) {
+            this.options.alertsPosition = AlertsPosition.none;
+        }
         this.initialized = true;
     };
     /**
@@ -290,7 +297,7 @@ var FormioBaseComponent = /** @class */ (function () {
             if (!this.service) {
                 this.service = new FormioService(this.src);
             }
-            this.loader.setLoading(true);
+            this.isLoading = true;
             this.service.loadForm({ params: { live: 1 } }).subscribe((/**
              * @param {?} form
              * @return {?}
@@ -490,7 +497,7 @@ var FormioBaseComponent = /** @class */ (function () {
         var _this = this;
         this.alerts.setAlerts([]);
         this.submitting = false;
-        this.loader.setLoading(false);
+        this.isLoading = false;
         if (!err) {
             return;
         }
@@ -640,7 +647,6 @@ var FormioBaseComponent = /** @class */ (function () {
     /** @nocollapse */
     FormioBaseComponent.ctorParameters = function () { return [
         { type: NgZone },
-        { type: FormioLoader },
         { type: FormioAppConfig, decorators: [{ type: Optional }] },
         { type: CustomTagsService, decorators: [{ type: Optional }] }
     ]; };
@@ -744,6 +750,8 @@ if (false) {
     /** @type {?} */
     FormioBaseComponent.prototype.formioElement;
     /** @type {?} */
+    FormioBaseComponent.prototype.AlertsPosition;
+    /** @type {?} */
     FormioBaseComponent.prototype.formio;
     /** @type {?} */
     FormioBaseComponent.prototype.initialized;
@@ -762,9 +770,9 @@ if (false) {
      */
     FormioBaseComponent.prototype.submitting;
     /** @type {?} */
-    FormioBaseComponent.prototype.ngZone;
+    FormioBaseComponent.prototype.isLoading;
     /** @type {?} */
-    FormioBaseComponent.prototype.loader;
+    FormioBaseComponent.prototype.ngZone;
     /** @type {?} */
     FormioBaseComponent.prototype.config;
     /** @type {?} */

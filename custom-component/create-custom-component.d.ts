@@ -14,6 +14,7 @@ export declare function createCustomFormioComponent(customComponentOptions: Form
             component: ExtendedComponentSchema<any>;
             changeEvent: string;
             attr: any;
+            content: string;
             id: any;
         };
         renderElement(value: any, index: number): any;
@@ -81,7 +82,7 @@ export declare function createCustomFormioComponent(customComponentOptions: Form
         readonly builderMode: boolean;
         getModifiedSchema(schema: ExtendedComponentSchema<any>, defaultSchema: import("formiojs").ComponentSchema<any>, recursion: boolean): ExtendedComponentSchema<any>;
         readonly schema: ExtendedComponentSchema<any>;
-        t(text: string, params: Object): any;
+        t(text: string, params?: Object): any;
         labelIsHidden(): boolean;
         readonly transform: any;
         getTemplate(names: any, modes: any): any;
@@ -176,7 +177,7 @@ export declare function createCustomFormioComponent(customComponentOptions: Form
         checkValidity(data: any, dirty: any, rowData: any): boolean;
         readonly validationValue: any;
         isEmpty(value: any): boolean;
-        validateMultiple(value: any): boolean;
+        validateMultiple(): boolean;
         readonly errors: any[];
         setCustomValidity(message: any, dirty: any): void;
         shouldSkipValidation(data: any, dirty: any, rowData: any): boolean;
